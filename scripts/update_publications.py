@@ -9,7 +9,8 @@ Uses only the Python standard library. Settings live in
 data/publications-config.json (members, how many years, hidden records).
 
 What it does:
-  * downloads each member's DBLP record list (https://dblp.org/pid/<pid>.xml)
+  * queries DBLP's SPARQL endpoint for the members' records (with a mirror as
+    fallback; the dblp.org pages themselves block cloud servers)
   * keeps papers from the last N years
   * merges an arXiv preprint with its published version (same title), keeping
     the venue version and attaching the arXiv link
@@ -23,14 +24,25 @@ import json
 import re
 import sys
 import time
+import urllib.parse
 import urllib.request
-import xml.etree.ElementTree as ET
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 CONFIG = ROOT / "data" / "publications-config.json"
 OUTPUT = ROOT / "data" / "publications.json"
 USER_AGENT = "csiro-funml-website/1.0 (+https://csiro-funml.github.io; publication list updater)"
+
+# DBLP's SPARQL endpoints, meant for programmatic access (the main dblp.org
+# pages sit behind a bot check that blocks cloud servers such as GitHub's).
+ENDPOINTS = [
+    "https://sparql.dblp.org/sparql",
+    "https://qlever.cs.uni-freiburg.de/api/dblp",  # mirror run by the QLever team
+]
+
+PREFIXES = """PREFIX dblp: <https://dblp.org/rdf/schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+"""
 
 # Short names for common venues; anything else is shown as DBLP writes it.
 VENUE_SHORT = {
@@ -49,25 +61,56 @@ VENUE_SHORT = {
 }
 
 
-def fetch(url, tries=4):
-    for attempt in range(tries):
-        try:
-            req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT, "Accept": "application/xml"})
-            with urllib.request.urlopen(req, timeout=60) as res:
-                body = res.read()
-            if b"<dblpperson" not in body[:2000]:
-                raise RuntimeError("response is not a DBLP person record (possibly a bot check page)")
-            return body
-        except Exception as err:  # noqa: BLE001
-            if attempt == tries - 1:
-                raise
-            wait = 5 * (attempt + 1)
-            print(f"  retrying {url} in {wait}s ({err})", file=sys.stderr)
-            time.sleep(wait)
+def sparql(query, tries=3):
+    """Run a SPARQL query, trying each endpoint in turn. Returns result rows."""
+    errors = []
+    for endpoint in ENDPOINTS:
+        for attempt in range(tries):
+            try:
+                url = endpoint + "?" + urllib.parse.urlencode({"query": PREFIXES + query})
+                req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT, "Accept": "application/sparql-results+json"})
+                with urllib.request.urlopen(req, timeout=120) as res:
+                    return json.loads(res.read())["results"]["bindings"]
+            except Exception as err:  # noqa: BLE001
+                errors.append(f"{endpoint}: {err}")
+                if attempt < tries - 1:
+                    time.sleep(5 * (attempt + 1))
+        print(f"  {endpoint} failed, trying the next endpoint", file=sys.stderr)
+    raise RuntimeError("all DBLP SPARQL endpoints failed:\n  " + "\n  ".join(errors))
 
 
-def text(el):
-    return re.sub(r"\s+", " ", "".join(el.itertext())).strip() if el is not None else ""
+def selector(member_pids=None, keys=None):
+    if member_pids:
+        vals = " ".join(f"<https://dblp.org/pid/{p}>" for p in member_pids)
+        return f"VALUES ?m {{ {vals} }}\n  ?p dblp:authoredBy ?m ."
+    vals = " ".join(f"<https://dblp.org/rec/{k}>" for k in keys)
+    return f"VALUES ?p {{ {vals} }}"
+
+
+def fetch_rows(sel, since):
+    year = f'?p dblp:yearOfPublication ?year . FILTER(?year >= "{since}"^^xsd:gYear)' if since else "?p dblp:yearOfPublication ?year ."
+    recs = sparql(f"""SELECT DISTINCT ?p ?type ?title ?year ?venue ?vol ?page WHERE {{
+  {sel}
+  {year}
+  ?p dblp:title ?title ; a ?type .
+  FILTER(?type != dblp:Publication)
+  OPTIONAL {{ ?p dblp:publishedIn ?venue }}
+  OPTIONAL {{ ?p dblp:publishedInJournalVolume ?vol }}
+  OPTIONAL {{ ?p dblp:primaryDocumentPage ?page }}
+}}""")
+    time.sleep(1)
+    auth = sparql(f"""SELECT DISTINCT ?p ?ord ?name ?creator WHERE {{
+  {sel}
+  {year}
+  ?p dblp:hasSignature ?s .
+  ?s dblp:signatureOrdinal ?ord ; dblp:signatureDblpName ?name .
+  OPTIONAL {{ ?s dblp:signatureCreator ?creator }}
+}}""")
+    return recs, auth
+
+
+def v(row, name):
+    return row[name]["value"] if name in row else ""
 
 
 def clean_name(name):
@@ -78,35 +121,39 @@ def norm_title(title):
     return re.sub(r"[^a-z0-9]+", "", title.lower())
 
 
-def parse_records(xml_bytes, team_pids):
-    root = ET.fromstring(xml_bytes)
-    out = []
-    for r in root.findall("r"):
-        e = r[0]
-        if e.tag not in ("article", "inproceedings", "incollection", "book"):
-            continue  # skip edited proceedings, theses, data entries
-        key = e.get("key")
-        journal, booktitle = text(e.find("journal")), text(e.find("booktitle"))
-        is_corr = journal == "CoRR"
-        if e.get("publtype") == "informal" and not is_corr:
-            continue  # informal non-arXiv records (e.g. withdrawn or tech notes)
-        title = text(e.find("title")).rstrip(".")
-        year = int(text(e.find("year")) or 0)
-        venue_full = booktitle or journal
-        venue = "arXiv" if is_corr else VENUE_SHORT.get(venue_full, re.sub(r"\s*\(\d+\)$", "", venue_full))
-        ees = [text(x) for x in e.findall("ee")]
+def build_records(rec_rows, auth_rows, team_pids):
+    team_uris = {f"https://dblp.org/pid/{p}" for p in team_pids}
+    authors = {}
+    for r in auth_rows:
+        authors.setdefault(v(r, "p"), {})[int(v(r, "ord"))] = {
+            "name": clean_name(v(r, "name")), "team": v(r, "creator") in team_uris}
+    out = {}
+    for r in rec_rows:
+        uri, rtype = v(r, "p"), v(r, "type").rsplit("#", 1)[-1]
+        key = uri.replace("https://dblp.org/rec/", "")
+        if key in out:  # extra rows for a second document page etc.
+            continue
+        venue_full = v(r, "venue")
+        is_corr = venue_full == "CoRR"
+        if rtype == "Informal" and not is_corr:
+            continue  # informal non-arXiv records (tech notes, withdrawn papers)
+        if rtype not in ("Article", "Inproceedings", "Incollection", "Book", "Informal"):
+            continue  # edited proceedings, theses, data and software entries
         arxiv = None
-        if is_corr:
-            m = re.search(r"abs/(\S+)", text(e.find("volume")))
-            if m:
-                arxiv = f"https://arxiv.org/abs/{m.group(1)}"
-        authors = [{"name": clean_name(text(a)), "team": a.get("pid") in team_pids} for a in e.findall("author")]
-        out.append({
-            "key": key, "title": title, "year": year, "venue": venue, "venueFull": venue_full,
-            "type": "preprint" if is_corr else ("journal" if e.tag == "article" else "conference"),
-            "authors": authors, "url": arxiv or (ees[0] if ees else f"https://dblp.org/rec/{key}"),
+        m = re.search(r"abs/(\S+)", v(r, "vol"))
+        if is_corr and m:
+            arxiv = f"https://arxiv.org/abs/{m.group(1)}"
+        out[key] = {
+            "key": key,
+            "title": re.sub(r"\s+", " ", v(r, "title")).strip().rstrip("."),
+            "year": int(v(r, "year")[:4]),
+            "venue": "arXiv" if is_corr else VENUE_SHORT.get(venue_full, re.sub(r"\s*\(\d+\)$", "", venue_full)),
+            "venueFull": venue_full,
+            "type": "preprint" if is_corr else ("journal" if rtype == "Article" else "conference"),
+            "authors": [a for _, a in sorted(authors.get(uri, {}).items())],
+            "url": arxiv or v(r, "page") or uri,
             "arxiv": arxiv,
-        })
+        }
     return out
 
 
@@ -142,7 +189,7 @@ def merge(records):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--from-dir", help="read <pid with / replaced by _>.xml files from this folder instead of downloading (for testing)")
+    ap.add_argument("--from-dir", help="read records.json and authors.json (saved SPARQL results) from this folder instead of querying DBLP (for testing)")
     ap.add_argument("--year", type=int, default=dt.date.today().year, help="treat this as the current year")
     ap.add_argument("--output", default=str(OUTPUT))
     args = ap.parse_args()
@@ -150,28 +197,23 @@ def main():
     cfg = json.loads(CONFIG.read_text())
     since = args.year - int(cfg.get("years", 5))
     team_pids = {m["pid"] for m in cfg["members"]}
-    hide, records = set(cfg.get("hide", [])), {}
+    hide = set(cfg.get("hide", []))
 
-    for i, m in enumerate(cfg["members"]):
-        print(f"Fetching {m['name']} ({m['pid']})")
-        if args.from_dir:
-            data = (Path(args.from_dir) / (m["pid"].replace("/", "_") + ".xml")).read_bytes()
-        else:
-            if i:
-                time.sleep(3)  # be polite to DBLP
-            data = fetch(f"https://dblp.org/pid/{m['pid']}.xml")
-        for rec in parse_records(data, team_pids):
-            records.setdefault(rec["key"], rec)
-
-    for key in cfg.get("extra", []):
-        if key not in records and not args.from_dir:
-            print(f"Fetching extra record {key}")
-            time.sleep(2)
-            req = urllib.request.Request(f"https://dblp.org/rec/{key}.xml", headers={"User-Agent": USER_AGENT})
-            with urllib.request.urlopen(req, timeout=60) as res:
-                rec_xml = res.read().replace(b"<dblp>", b"<dblpperson><r>").replace(b"</dblp>", b"</r></dblpperson>")
-            for rec in parse_records(rec_xml, team_pids):
-                records[rec["key"]] = rec
+    pids = [m["pid"] for m in cfg["members"]]
+    if args.from_dir:  # testing: saved SPARQL JSON responses
+        d = Path(args.from_dir)
+        rec_rows = json.loads((d / "records.json").read_text())["results"]["bindings"]
+        auth_rows = json.loads((d / "authors.json").read_text())["results"]["bindings"]
+    else:
+        print(f"Querying DBLP for {', '.join(m['name'] for m in cfg['members'])} (since {since})")
+        rec_rows, auth_rows = fetch_rows(selector(member_pids=pids), since)
+        if cfg.get("extra"):
+            print(f"Querying {len(cfg['extra'])} extra record(s)")
+            r2, a2 = fetch_rows(selector(keys=cfg["extra"]), None)
+            rec_rows, auth_rows = rec_rows + r2, auth_rows + a2
+    records = build_records(rec_rows, auth_rows, team_pids)
+    if not records:
+        sys.exit("DBLP returned no publications; leaving the existing list unchanged.")
 
     kept = [r for k, r in records.items() if r["year"] >= since and k not in hide]
     pubs = merge(kept)
