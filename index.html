@@ -53,7 +53,7 @@
 
   /* ---------- hero ---------- */
   .hero { position: relative; min-height: 92vh; min-height: 92svh; background: radial-gradient(1200px 600px at 75% 40%, #16304d 0%, var(--night) 60%); color: #fff; overflow: hidden; display: flex; align-items: center; }
-  #gp-canvas { position: absolute; inset: 0; width: 100%; height: 100%; cursor: crosshair; }
+  #hero-canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
   .hero .wrap { position: relative; width: 100%; pointer-events: none; }
   .hero-text { max-width: 480px; padding: 110px 0 60px; }
   .eyebrow { font-size: 12px; letter-spacing: .18em; text-transform: uppercase; font-weight: 600; color: var(--teal); }
@@ -76,15 +76,6 @@
     .legend { display: none; }
   }
 
-  /* ---------- stats ---------- */
-  .stats { background: var(--night-2); color: #fff; }
-  .stats .wrap { display: grid; grid-template-columns: repeat(4, 1fr); }
-  .stat { padding: 30px 0 30px 24px; border-left: 1px solid rgba(255,255,255,.1); }
-  .stat:first-child { border-left: 0; padding-left: 0; }
-  .stat .n { font-family: var(--serif); font-size: 38px; line-height: 1; }
-  .stat .l { font-size: 13px; color: rgba(255,255,255,.6); margin-top: 8px; }
-  @media (max-width: 720px) { .stats .wrap { grid-template-columns: 1fr 1fr; } .stat { padding: 22px 0 22px 18px; } .stat:nth-child(3) { border-left: 0; padding-left: 0; } }
-
   /* ---------- sections ---------- */
   section { padding: 104px 0; }
   .section-head { display: flex; justify-content: space-between; align-items: end; gap: 24px; flex-wrap: wrap; margin-bottom: 48px; }
@@ -97,6 +88,7 @@
   .area { background: var(--card); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; display: flex; flex-direction: column; transition: transform .25s, box-shadow .25s; }
   .area:hover { transform: translateY(-3px); box-shadow: 0 18px 40px -20px rgba(11,22,38,.35); }
   .area canvas { width: 100%; height: 230px; display: block; background: var(--night); }
+  .area canvas[data-anim="bo"] { cursor: crosshair; }
   .area .body { padding: 26px 28px 28px; display: flex; flex-direction: column; flex: 1; }
   .area .num { font-family: var(--mono); font-size: 12px; color: var(--teal-deep); }
   .area h3 { font-family: var(--serif); font-weight: 600; font-size: 24px; margin: 6px 0 10px; line-height: 1.2; }
@@ -210,12 +202,12 @@
 <main id="top">
   <!-- ================= HERO ================= -->
   <div class="hero">
-    <canvas id="gp-canvas" aria-label="Animated Bayesian optimisation: a Gaussian process learns a hidden function while an acquisition function chooses where to sample next. Click to add an observation."></canvas>
+    <canvas id="hero-canvas" aria-label="Animated causal discovery: uncertain edges in a causal graph are queried one at a time and confirmed or removed. Click a node to intervene on it."></canvas>
     <div class="wrap">
       <div class="hero-text">
         <div class="eyebrow">CSIRO · Data61 · Australia</div>
         <h1>Fundamental <em>Machine Learning</em></h1>
-        <p class="lede">Principled methods for learning and deciding under uncertainty, from Bayesian optimisation to causal AI.</p>
+        <p class="lede">Principled methods for learning and deciding under uncertainty, from causal AI to Bayesian optimisation.</p>
         <div class="cta">
           <a class="btn primary" href="#research">Explore our research</a>
           <a class="btn" href="https://github.com/csiro-funml">
@@ -224,18 +216,13 @@
           </a>
         </div>
         <div class="legend">
-          <span><i style="background:#fff"></i>GP posterior mean</span>
-          <span><i style="background:rgba(31,165,179,.6);height:8px"></i>Uncertainty</span>
-          <span><i style="background:#f0a23b"></i>Acquisition (EI)</span>
+          <span><i style="background:#5fd3df"></i>Confirmed cause</span>
+          <span><i style="background:repeating-linear-gradient(90deg,rgba(255,255,255,.6) 0 3px,transparent 3px 6px)"></i>Uncertain edge</span>
+          <span><i style="background:#f0a23b"></i>Expert query</span>
         </div>
       </div>
     </div>
-    <div class="hero-hint">click anywhere on the plot to add an observation</div>
-  </div>
-
-  <!-- ================= STATS ================= -->
-  <div class="stats">
-    <div class="wrap" id="stats"></div>
+    <div class="hero-hint">click a node to intervene</div>
   </div>
 
   <!-- ================= RESEARCH ================= -->
@@ -249,10 +236,19 @@
         <p>Our methods come with guarantees and work on real scientific problems, where data is scarce, experiments are expensive and decisions carry weight.</p>
       </div>
       <div class="areas">
+        <article class="area reveal" data-area="causal">
+          <canvas data-anim="causal" aria-hidden="true"></canvas>
+          <div class="body">
+            <div class="num">01</div>
+            <h3>Causal AI</h3>
+            <p>Moving from correlation to cause: discovering causal structure from data, quantifying uncertainty over causal graphs, and bringing human experts into the loop.</p>
+            <div class="chips" data-chips="causal"></div>
+          </div>
+        </article>
         <article class="area reveal" data-area="bo">
           <canvas data-anim="bo" aria-hidden="true"></canvas>
           <div class="body">
-            <div class="num">01</div>
+            <div class="num">02</div>
             <h3>Bayesian Optimisation &amp; Experimental Design</h3>
             <p>Choosing the next experiment wisely, with generative and variational search, Thompson sampling in function spaces, adaptive calibration of simulators, and theory for neural surrogates.</p>
             <div class="chips" data-chips="bo"></div>
@@ -261,7 +257,7 @@
         <article class="area reveal" data-area="uq">
           <canvas data-anim="uq" aria-hidden="true"></canvas>
           <div class="body">
-            <div class="num">02</div>
+            <div class="num">03</div>
             <h3>Uncertainty Quantification &amp; Probabilistic Inference</h3>
             <p>Knowing what a model doesn't know, with new variational objectives, fractional posteriors, robust neural processes and scalable approximate Bayesian inference.</p>
             <div class="chips" data-chips="uq"></div>
@@ -270,19 +266,10 @@
         <article class="area reveal" data-area="sciml">
           <canvas data-anim="sciml" aria-hidden="true"></canvas>
           <div class="body">
-            <div class="num">03</div>
+            <div class="num">04</div>
             <h3>Scientific Machine Learning</h3>
             <p>Learning the operators behind physical systems, from turbulent flows and shallow water to global climate, with multi-scale architectures built for long, stable rollouts.</p>
             <div class="chips" data-chips="sciml"></div>
-          </div>
-        </article>
-        <article class="area reveal" data-area="causal">
-          <canvas data-anim="causal" aria-hidden="true"></canvas>
-          <div class="body">
-            <div class="num">04</div>
-            <h3>Causal AI</h3>
-            <p>Moving from correlation to cause, with causal discovery that brings human experts into the loop and causal attribution for climate and decision intelligence.</p>
-            <div class="chips" data-chips="causal"></div>
           </div>
         </article>
       </div>
@@ -366,10 +353,10 @@
 const TEAM = new Set(["Edwin V. Bonilla", "Daniel M. Steinberg", "He Zhao", "Rafael Oliveira"]);
 
 const AREAS = {
+  causal: "Causal AI",
   bo:     "BO & Experimental Design",
   uq:     "UQ & Inference",
   sciml:  "Scientific ML",
-  causal: "Causal AI",
 };
 
 // fig: {img|video|draw, tag}  · tag "paper" = real figure, otherwise a generated illustration
@@ -511,26 +498,19 @@ const PUBS = [
   year      = {2024}
 }`
   },
-  {
-    id: "karrikins", short: "Karrikins", year: 2026, venue: "Project", areas: ["causal"],
-    title: "Karrikins: Causal AI for Climate Attribution and Decision Intelligence",
-    authors: [],
-    code: "https://github.com/csiro-funml/karrikins", repo: "karrikins",
-    fig: { draw: "karrikins" },
-  },
 ];
 
 const PEOPLE = [
   { name: "Edwin V. Bonilla", role: "Senior Principal Research Scientist & Science Leader", grad: ["#1fa5b3", "#0b1626"],
-    photo: "", links: { Homepage: "https://ebonilla.github.io", Scholar: "https://scholar.google.com/citations?user=uDLRZQMAAAAJ", GitHub: "https://github.com/ebonilla" } },
+    photo: "images/people/edwin.jpg", links: { Homepage: "https://ebonilla.github.io", Scholar: "https://scholar.google.com/citations?user=uDLRZQMAAAAJ", GitHub: "https://github.com/ebonilla" } },
   { name: "Daniel M. Steinberg", role: "Senior Research Scientist", grad: ["#f0a23b", "#7a3e12"],
-    photo: "", links: { Homepage: "https://dsteinberg.github.io", Scholar: "https://scholar.google.com/citations?user=w0oqSe8AAAAJ" } },
+    photo: "images/people/daniel-steinberg.jpg", links: { Homepage: "https://dsteinberg.github.io", Scholar: "https://scholar.google.com/citations?user=w0oqSe8AAAAJ" } },
   { name: "He Zhao", role: "Senior Research Scientist", grad: ["#7b6fd6", "#241b5c"],
-    photo: "", links: { Homepage: "https://hezgit.github.io", Scholar: "https://scholar.google.com/citations?user=pkn0NPsAAAAJ" } },
+    photo: "images/people/he-zhao.jpg", links: { Homepage: "https://hezgit.github.io", Scholar: "https://scholar.google.com/citations?user=pkn0NPsAAAAJ" } },
   { name: "Rafael Oliveira", role: "Senior Research Scientist", grad: ["#e0605a", "#5a1714"],
-    photo: "", links: { Homepage: "https://rafaeloliveira.me", Scholar: "https://scholar.google.com/citations?user=vdGqGjQAAAAJ", GitHub: "https://github.com/rafaol" } },
+    photo: "images/people/rafael-oliveira.jpg", links: { Homepage: "https://rafaeloliveira.me", Scholar: "https://scholar.google.com/citations?user=vdGqGjQAAAAJ", GitHub: "https://github.com/rafaol" } },
 ];
-// To add a photo: put e.g. images/people/edwin.jpg in the repo and set photo: "images/people/edwin.jpg"
+// Photos live in images/people/ (square, ~400px). Set photo: "" to show initials instead.
 
 /* =====================================================================
    Helpers
@@ -564,10 +544,10 @@ function animateWhenVisible(canvas, drawFn) {
 }
 
 /* =====================================================================
-   HERO: live Gaussian process + expected improvement
+   GAUSSIAN PROCESS + EXPECTED IMPROVEMENT (Bayesian optimisation card)
    ===================================================================== */
-(function hero() {
-  const canvas = $("#gp-canvas");
+function gpScene(canvas, compact) {
+  let clock = 0;
   const N = 160, xs = Array.from({ length: N }, (_, i) => i / (N - 1));
   const ell = 0.085, sf2 = 1, noise = 1e-4;
   const k = (a, b) => sf2 * Math.exp(-((a - b) ** 2) / (2 * ell * ell));
@@ -612,17 +592,19 @@ function animateWhenVisible(canvas, drawFn) {
   const ease = t => t < 0 ? 0 : t > 1 ? 1 : 1 - Math.pow(1 - t, 3);
 
   function plotRect(w, h) {
+    if (compact) return { x: 14, y: 28, w: w - 28, h: h - 42 };
     return w > 900 ? { x: w * 0.47, y: h * 0.16, w: w * 0.49, h: h * 0.70 } : { x: 20, y: h * 0.6, w: w - 40, h: h * 0.32 };
   }
   canvas.addEventListener("click", e => {
     const b = canvas.getBoundingClientRect(), R = plotRect(b.width, b.height), x = (e.clientX - b.left - R.x) / R.w;
-    if (x >= 0 && x <= 1) { addPoint(x); lastStep = performance.now() / 1000 + 1.5; resetAt = 0; }
+    if (x >= 0 && x <= 1) { addPoint(x); lastStep = clock + 1.5; resetAt = 0; }
   });
 
   newFunction(); setTarget();
   function draw(now) {
+    clock = now;
     const { ctx, w, h } = fitCanvas(canvas), R = plotRect(w, h);
-    ctx.clearRect(0, 0, w, h);
+    if (compact) { ctx.fillStyle = "#0b1626"; ctx.fillRect(0, 0, w, h); } else ctx.clearRect(0, 0, w, h);
     if (!REDUCED) {
       if (now - lastStep > 1.6 && tTrans >= 1) {
         lastStep = now;
@@ -676,52 +658,155 @@ function animateWhenVisible(canvas, drawFn) {
       if (i === X.length - 1 && age < 1) { ctx.strokeStyle = `rgba(240,162,59,${1 - age})`; ctx.beginPath(); ctx.arc(X2(x), Yf(Y[i]), 6 + 22 * age, 0, 7); ctx.stroke(); }
     });
     // labels
-    ctx.font = "500 11px 'JetBrains Mono', monospace"; ctx.fillStyle = "rgba(255,255,255,.45)";
-    ctx.fillText(`f(x) ~ GP   ·   n = ${X.length}`, R.x, R.y - 10);
-    ctx.fillText("expected improvement", R.x, aY - aH - 6);
+    ctx.font = `500 ${compact ? 10 : 11}px 'JetBrains Mono', monospace`; ctx.fillStyle = "rgba(255,255,255,.45)";
+    ctx.fillText(compact ? `GP + expected improvement · n = ${X.length} · click to sample` : `f(x) ~ GP   ·   n = ${X.length}`, R.x, R.y - 10);
+    if (!compact) ctx.fillText("expected improvement", R.x, aY - aH - 6);
     ctx.globalAlpha = 1;
   }
-  if (REDUCED) { for (let i = 0; i < 4; i++) addPoint(nextX); const r2 = () => draw(0); r2(); window.addEventListener("resize", r2); }
-  else { const loop = () => { draw(performance.now() / 1000); requestAnimationFrame(loop); }; requestAnimationFrame(loop); }
-})();
+  if (REDUCED) { for (let i = 0; i < 4; i++) addPoint(nextX); }
+  return draw;
+}
+
+/* =====================================================================
+   CAUSAL DISCOVERY SCENE (hero + Causal AI card)
+   Known edges carry signal; uncertain edges are queried one at a time
+   (as with an expert in the loop) and are either confirmed or removed.
+   Click a node to intervene: do(X) ripples through its descendants.
+   ===================================================================== */
+function causalScene(canvas, big) {
+  const NODES = [
+    { x: .05, y: .50, l: "X₁" }, { x: .27, y: .16, l: "X₂" }, { x: .27, y: .84, l: "X₃" },
+    { x: .50, y: .50, l: "X₄" }, { x: .73, y: .16, l: "X₅" }, { x: .73, y: .84, l: "X₆" }, { x: .95, y: .50, l: "Y", target: true },
+  ];
+  // [from, to, isTrueEdge]
+  const CAND = [[0, 1, 1], [0, 2, 1], [1, 3, 1], [2, 3, 1], [1, 4, 1], [3, 4, 1], [3, 5, 1], [2, 5, 1], [4, 6, 1], [5, 6, 1],
+                [0, 3, 0], [4, 5, 0], [1, 2, 0], [3, 6, 0]];
+  const r = rng(big ? 42 : 17);
+  let edges = [], phase = { kind: "idle", t0: 0, edge: null }, clock = 0, intervention = null, hover = -1;
+
+  function reset() {
+    edges = CAND.map(([a, b, truth]) => ({ a, b, truth, state: r() < 0.5 && truth ? "known" : "uncertain", p: 0.3 + 0.4 * r(), t0: -9, verdict: null }));
+    phase = { kind: "idle", t0: clock, edge: null };
+  }
+  reset();
+  if (REDUCED) { edges.forEach((e, i) => { if (e.state === "uncertain" && i % 3 === 0) e.state = e.truth ? "known" : "gone"; }); const q = edges.find(e => e.state === "uncertain"); if (q) phase = { kind: "query", t0: 0, edge: q }; }
+
+  function rect(w, h) {
+    if (!big) return { x: 34, y: 34, w: w - 68, h: h - 68 };
+    return w > 900 ? { x: w * 0.50, y: h * 0.20, w: w * 0.44, h: h * 0.58 } : { x: 34, y: h * 0.58, w: w - 68, h: h * 0.32 };
+  }
+  const nodeR = (w, h) => big ? Math.max(18, Math.min(30, w * 0.018)) : Math.min(20, h * .085);
+
+  function descendants(src) {
+    const depth = { [src]: 0 }, queue = [src];
+    while (queue.length) { const u = queue.shift(); edges.forEach(e => { if (e.state === "known" && e.a === u && depth[e.b] == null) { depth[e.b] = depth[u] + 1; queue.push(e.b); } }); }
+    return depth;
+  }
+  function nodeAt(ev) {
+    const b = canvas.getBoundingClientRect(), R = rect(b.width, b.height), rad = nodeR(b.width, b.height) * 1.6;
+    const mx = ev.clientX - b.left, my = ev.clientY - b.top;
+    return NODES.findIndex(n => Math.hypot(R.x + n.x * R.w - mx, R.y + n.y * R.h - my) < rad);
+  }
+  canvas.addEventListener("click", ev => { const i = nodeAt(ev); if (i >= 0) intervention = { node: i, t0: clock, depth: descendants(i) }; });
+  canvas.addEventListener("mousemove", ev => { hover = nodeAt(ev); canvas.style.cursor = hover >= 0 ? "pointer" : "default"; });
+
+  function step(now) {
+    const dt = now - phase.t0;
+    if (phase.kind === "idle" && dt > 1.2) {
+      const open = edges.filter(e => e.state === "uncertain");
+      if (!open.length) { phase = { kind: "done", t0: now }; return; }
+      phase = { kind: "query", t0: now, edge: open[Math.floor(r() * open.length)] };
+    } else if (phase.kind === "query" && dt > 1.9) {
+      const e = phase.edge; e.verdict = e.truth ? "yes" : "no"; e.state = e.truth ? "known" : "gone"; e.t0 = now;
+      phase = { kind: "idle", t0: now, edge: null };
+    } else if (phase.kind === "done" && dt > 4) reset();
+  }
+
+  function arrow(ctx, x1, y1, x2, y2, R, col, width, dash, alpha) {
+    const ang = Math.atan2(y2 - y1, x2 - x1), sx = x1 + R * Math.cos(ang), sy = y1 + R * Math.sin(ang), ex = x2 - (R + 5) * Math.cos(ang), ey = y2 - (R + 5) * Math.sin(ang);
+    ctx.globalAlpha = alpha; ctx.strokeStyle = col; ctx.fillStyle = col; ctx.lineWidth = width;
+    ctx.setLineDash(dash); ctx.beginPath(); ctx.moveTo(sx, sy); ctx.lineTo(ex, ey); ctx.stroke(); ctx.setLineDash([]);
+    const a = big ? 8 : 6; ctx.beginPath(); ctx.moveTo(ex + a * Math.cos(ang), ey + a * Math.sin(ang));
+    ctx.lineTo(ex - a * Math.cos(ang - .45), ey - a * Math.sin(ang - .45)); ctx.lineTo(ex - a * Math.cos(ang + .45), ey - a * Math.sin(ang + .45)); ctx.fill();
+    ctx.globalAlpha = 1; return { sx, sy, ex, ey };
+  }
+
+  return t => {
+    clock = t; if (!REDUCED) step(t);
+    const { ctx, w, h } = fitCanvas(canvas), R = rect(w, h), NR = nodeR(w, h);
+    if (big) ctx.clearRect(0, 0, w, h); else { ctx.fillStyle = "#0b1626"; ctx.fillRect(0, 0, w, h); }
+    const P = i => [R.x + NODES[i].x * R.w, R.y + NODES[i].y * R.h];
+    const mono = `500 ${big ? 12 : 10}px 'JetBrains Mono', monospace`;
+
+    // edges
+    edges.forEach((e, i) => {
+      const [x1, y1] = P(e.a), [x2, y2] = P(e.b), since = t - e.t0;
+      const isQ = phase.kind === "query" && phase.edge === e;
+      if (e.state === "gone") {
+        if (since < 1.1) { const g = arrow(ctx, x1, y1, x2, y2, NR, "#e0605a", 1.6, [4, 6], 1 - since / 1.1); mark(ctx, g, "✗", "#e0605a", 1 - since / 1.1); }
+        return;
+      }
+      if (e.state === "known") {
+        const grow = Math.min(1, since / 0.6);
+        const g = arrow(ctx, x1, y1, x2, y2, NR, "#5fd3df", big ? 2.4 : 2, [], 0.35 + 0.5 * grow);
+        if (!REDUCED) { const p = (t * 0.5 + i * 0.37) % 1; ctx.fillStyle = "#fff"; ctx.beginPath(); ctx.arc(g.sx + (g.ex - g.sx) * p, g.sy + (g.ey - g.sy) * p, big ? 3 : 2.4, 0, 7); ctx.fill(); }
+        if (since < 1.1) mark(ctx, g, "✓", "#5fd3df", 1 - since / 1.1);
+        return;
+      }
+      if (isQ) {
+        const pulse = REDUCED ? 1 : (Math.sin((t - phase.t0) * 7) + 1) / 2;
+        const g = arrow(ctx, x1, y1, x2, y2, NR, "#f0a23b", big ? 2.6 : 2, [6, 5], 0.55 + 0.45 * pulse);
+        bubble(ctx, (g.sx + g.ex) / 2, (g.sy + g.ey) / 2, `${NODES[e.a].l} → ${NODES[e.b].l} ?`);
+      } else arrow(ctx, x1, y1, x2, y2, NR, "rgba(255,255,255,.75)", 1.4, [3, 6], 0.2 + 0.4 * e.p);
+    });
+
+    // nodes
+    NODES.forEach((n, i) => {
+      const [x, y] = P(i);
+      let lit = (Math.sin(t * 1.6 - i) + 1) / 2 * 0.4;
+      let ring = 0;
+      if (intervention && intervention.depth[i] != null) {
+        const d = intervention.depth[i], local = t - intervention.t0 - d * 0.45;
+        if (local > 0 && local < 1.2) { lit = 1; ring = local / 1.2; }
+        if (t - intervention.t0 > 6) intervention = null;
+      }
+      const col = n.target ? "#f0a23b" : "#5fd3df";
+      ctx.fillStyle = "#12233a"; ctx.strokeStyle = col; ctx.lineWidth = i === hover ? 3 : 2;
+      ctx.shadowColor = col; ctx.shadowBlur = 6 + 18 * lit;
+      ctx.beginPath(); ctx.arc(x, y, NR, 0, 7); ctx.fill(); ctx.stroke(); ctx.shadowBlur = 0;
+      if (ring) { ctx.strokeStyle = `rgba(240,162,59,${1 - ring})`; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(x, y, NR + 4 + 22 * ring, 0, 7); ctx.stroke(); }
+      ctx.fillStyle = "#fff"; ctx.font = `500 ${big ? 15 : 12}px 'JetBrains Mono', monospace`; ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.fillText(n.l, x, y + 1);
+      if (intervention && intervention.node === i) { ctx.fillStyle = "#f0a23b"; ctx.font = mono; ctx.fillText(`do(${n.l})`, x, y - NR - 12); }
+    });
+    ctx.textAlign = "start"; ctx.textBaseline = "alphabetic";
+
+    // caption
+    const known = edges.filter(e => e.state === "known").length, open = edges.filter(e => e.state === "uncertain").length;
+    ctx.font = mono; ctx.fillStyle = "rgba(255,255,255,.45)";
+    ctx.fillText(big ? `causal graph   ·   ${known} confirmed   ·   ${open} uncertain` : `${known} confirmed · ${open} uncertain`, big ? R.x - NR : 12, big ? R.y - NR - 22 : 20);
+  };
+
+  function bubble(ctx, x, y, text) {
+    ctx.font = `600 ${big ? 12 : 10}px 'JetBrains Mono', monospace`;
+    const tw = ctx.measureText(text).width + 16, th = big ? 24 : 20;
+    ctx.fillStyle = "#f0a23b"; ctx.beginPath(); ctx.roundRect(x - tw / 2, y - th - 8, tw, th, th / 2); ctx.fill();
+    ctx.beginPath(); ctx.moveTo(x - 5, y - 9); ctx.lineTo(x + 5, y - 9); ctx.lineTo(x, y - 3); ctx.fill();
+    ctx.fillStyle = "#0b1626"; ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.fillText(text, x, y - th / 2 - 8); ctx.textAlign = "start"; ctx.textBaseline = "alphabetic";
+  }
+  function mark(ctx, g, sym, col, a) {
+    ctx.globalAlpha = Math.max(0, a); ctx.fillStyle = col; ctx.font = `700 ${big ? 18 : 14}px Inter, sans-serif`; ctx.textAlign = "center";
+    ctx.fillText(sym, (g.sx + g.ex) / 2, (g.sy + g.ey) / 2 - 8); ctx.textAlign = "start"; ctx.globalAlpha = 1;
+  }
+}
+
+animateWhenVisible($("#hero-canvas"), causalScene($("#hero-canvas"), true));
 
 /* =====================================================================
    RESEARCH AREA ANIMATIONS
    ===================================================================== */
 const AREA_ANIMS = {
   // 2D objective landscape; a search population concentrates on the optimum
-  bo(canvas) {
-    let bg = null, bgKey = "";
-    const peaks = [{ x: .72, y: .35, s: .11, a: 1 }, { x: .28, y: .62, s: .14, a: .7 }, { x: .55, y: .8, s: .08, a: .5 }];
-    const F = (x, y) => peaks.reduce((s, p) => s + p.a * Math.exp(-((x - p.x) ** 2 + (y - p.y) ** 2) / (2 * p.s * p.s)), 0);
-    const r = rng(3); let pts = [], cycle = -1;
-    function makeBg(w, h) {
-      const c = document.createElement("canvas"); c.width = Math.ceil(w / 3); c.height = Math.ceil(h / 3);
-      const g = c.getContext("2d"), im = g.createImageData(c.width, c.height);
-      for (let j = 0; j < c.height; j++) for (let i = 0; i < c.width; i++) {
-        const v = F(i / c.width, j / c.height), band = Math.abs((v * 9) % 1 - .5) < .06 ? 1 : 0, o = 4 * (j * c.width + i);
-        im.data[o] = 11 + 20 * v + 40 * band; im.data[o + 1] = 22 + 110 * v + 40 * band; im.data[o + 2] = 38 + 120 * v + 40 * band; im.data[o + 3] = 255;
-      }
-      g.putImageData(im, 0, 0); return c;
-    }
-    return t => {
-      const { ctx, w, h } = fitCanvas(canvas);
-      if (bgKey !== w + "x" + h) { bg = makeBg(w, h); bgKey = w + "x" + h; }
-      ctx.imageSmoothingEnabled = true; ctx.drawImage(bg, 0, 0, w, h);
-      const c = Math.floor(t / 7), p = (t % 7) / 7;
-      if (c !== cycle) { cycle = c; pts = Array.from({ length: 30 }, () => ({ x: r(), y: r(), jx: gauss(r), jy: gauss(r) })); }
-      const sh = Math.min(1, p * 1.4), spread = 0.03 + 0.25 * (1 - sh);
-      ctx.globalAlpha = p > .9 ? (1 - p) * 10 : 1;
-      pts.forEach(q => {
-        const x = q.x + (peaks[0].x + q.jx * spread - q.x) * sh, y = q.y + (peaks[0].y + q.jy * spread * .8 - q.y) * sh;
-        ctx.fillStyle = "#f0a23b"; ctx.beginPath(); ctx.arc(x * w, y * h, 3, 0, 7); ctx.fill();
-      });
-      ctx.globalAlpha = 1;
-      ctx.strokeStyle = "#fff"; ctx.lineWidth = 1.5; const sx = peaks[0].x * w, sy = peaks[0].y * h;
-      ctx.beginPath(); ctx.moveTo(sx - 7, sy); ctx.lineTo(sx + 7, sy); ctx.moveTo(sx, sy - 7); ctx.lineTo(sx, sy + 7); ctx.stroke();
-    };
-  },
-  // a broad prior density sharpens into a posterior as data arrive
+  bo: c => gpScene(c, true),
   uq(canvas) {
     const r = rng(11), data = Array.from({ length: 14 }, () => 1.1 + 0.55 * gauss(r));
     const N = (x, m, s) => Math.exp(-((x - m) ** 2) / (2 * s * s)) / (s * Math.sqrt(2 * Math.PI));
@@ -775,35 +860,7 @@ const AREA_ANIMS = {
     };
   },
   // a causal graph with signals flowing along directed edges
-  causal(canvas) {
-    const nodes = [{ x: .14, y: .5, l: "X₁" }, { x: .38, y: .22, l: "X₂" }, { x: .38, y: .78, l: "X₃" }, { x: .64, y: .5, l: "X₄" }, { x: .87, y: .3, l: "Y" }, { x: .87, y: .74, l: "X₅" }];
-    const edges = [[0, 1], [0, 2], [1, 3], [2, 3], [3, 4], [1, 4], [3, 5]];
-    const query = 3; // edge under expert query
-    return t => {
-      const { ctx, w, h } = fitCanvas(canvas);
-      ctx.fillStyle = "#0b1626"; ctx.fillRect(0, 0, w, h);
-      const R = Math.min(22, h * .09), P = n => [n.x * w, n.y * h];
-      edges.forEach(([a, b], i) => {
-        const [x1, y1] = P(nodes[a]), [x2, y2] = P(nodes[b]), ang = Math.atan2(y2 - y1, x2 - x1);
-        const sx = x1 + R * Math.cos(ang), sy = y1 + R * Math.sin(ang), ex = x2 - (R + 4) * Math.cos(ang), ey = y2 - (R + 4) * Math.sin(ang);
-        const q = i === query, on = (Math.sin(t * 1.2) + 1) / 2;
-        ctx.strokeStyle = q ? `rgba(240,162,59,${.4 + .6 * on})` : "rgba(95,211,223,.55)"; ctx.lineWidth = 2;
-        if (q) ctx.setLineDash([5, 5]); ctx.beginPath(); ctx.moveTo(sx, sy); ctx.lineTo(ex, ey); ctx.stroke(); ctx.setLineDash([]);
-        ctx.fillStyle = ctx.strokeStyle; ctx.beginPath(); ctx.moveTo(ex + 6 * Math.cos(ang), ey + 6 * Math.sin(ang));
-        ctx.lineTo(ex - 6 * Math.cos(ang - .5), ey - 6 * Math.sin(ang - .5)); ctx.lineTo(ex - 6 * Math.cos(ang + .5), ey - 6 * Math.sin(ang + .5)); ctx.fill();
-        if (!q) { const p = ((t * .45 + i * .37) % 1); ctx.fillStyle = "#fff"; ctx.beginPath(); ctx.arc(sx + (ex - sx) * p, sy + (ey - sy) * p, 2.6, 0, 7); ctx.fill(); }
-        if (q) { ctx.font = "600 12px Inter, sans-serif"; ctx.fillStyle = `rgba(240,162,59,${.5 + .5 * on})`; ctx.fillText("?", (sx + ex) / 2 + 8, (sy + ey) / 2 - 6); }
-      });
-      nodes.forEach((n, i) => {
-        const [x, y] = P(n), glow = (Math.sin(t * 2 - i) + 1) / 2;
-        ctx.fillStyle = "#12233a"; ctx.strokeStyle = i === 4 ? "#f0a23b" : "#5fd3df"; ctx.lineWidth = 2;
-        ctx.shadowColor = ctx.strokeStyle; ctx.shadowBlur = 8 + 10 * glow;
-        ctx.beginPath(); ctx.arc(x, y, R, 0, 7); ctx.fill(); ctx.stroke(); ctx.shadowBlur = 0;
-        ctx.fillStyle = "#fff"; ctx.font = "500 13px 'JetBrains Mono', monospace"; ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.fillText(n.l, x, y + 1);
-      });
-      ctx.textAlign = "start"; ctx.textBaseline = "alphabetic";
-    };
-  },
+  causal: c => causalScene(c, false),
 };
 document.querySelectorAll("canvas[data-anim]").forEach(c => animateWhenVisible(c, AREA_ANIMS[c.dataset.anim](c)));
 
@@ -866,38 +923,13 @@ const ILLUS = {
       ctx.fillStyle = "#f0a23b"; ctx.beginPath(); ctx.moveTo(X(d), h - 22); ctx.lineTo(X(d) - 5, h - 12); ctx.lineTo(X(d) + 5, h - 12); ctx.fill(); });
     ctx.font = "500 11px 'JetBrains Mono', monospace"; ctx.fillStyle = "#5b6676"; ctx.fillText("simulator runs · calibrated θ* · designs ▲", 24, 20);
   },
-  karrikins(ctx, w, h) { // globe + causal arrows
-    ctx.fillStyle = "#0b1626"; ctx.fillRect(0, 0, w, h);
-    const cx = w * .4, cy = h * .52, R = Math.min(w, h) * .38;
-    const g = ctx.createRadialGradient(cx - R * .3, cy - R * .3, R * .1, cx, cy, R); g.addColorStop(0, "#1f5e7a"); g.addColorStop(1, "#0e2a40");
-    ctx.fillStyle = g; ctx.beginPath(); ctx.arc(cx, cy, R, 0, 7); ctx.fill();
-    ctx.strokeStyle = "rgba(95,211,223,.28)"; ctx.lineWidth = 1;
-    for (let i = -3; i <= 3; i++) { const yy = cy + i * R / 4; const hw = Math.sqrt(Math.max(0, R * R - (yy - cy) ** 2)); ctx.beginPath(); ctx.moveTo(cx - hw, yy); ctx.lineTo(cx + hw, yy); ctx.stroke(); }
-    for (let i = -3; i <= 3; i++) { ctx.beginPath(); ctx.ellipse(cx, cy, Math.abs(R * i / 3.4) + .5, R, 0, 0, 7); ctx.stroke(); }
-    const nodes = [[w * .78, h * .24, "driver"], [w * .84, h * .55, "event"], [w * .72, h * .82, "impact"]];
-    ctx.strokeStyle = "#f0a23b"; ctx.lineWidth = 2;
-    const arrow = (a, b) => { ctx.beginPath(); ctx.moveTo(a[0], a[1] + 10); ctx.lineTo(b[0], b[1] - 12); ctx.stroke(); };
-    arrow(nodes[0], nodes[1]); arrow(nodes[1], nodes[2]);
-    ctx.setLineDash([4, 4]); ctx.strokeStyle = "rgba(240,162,59,.6)"; ctx.beginPath(); ctx.moveTo(cx + R * .5, cy - R * .4); ctx.lineTo(nodes[0][0] - 30, nodes[0][1]); ctx.stroke(); ctx.setLineDash([]);
-    ctx.font = "500 11px 'JetBrains Mono', monospace";
-    nodes.forEach(n => { ctx.fillStyle = "#12233a"; ctx.strokeStyle = "#5fd3df"; ctx.beginPath(); ctx.roundRect(n[0] - 32, n[1] - 11, 64, 22, 11); ctx.fill(); ctx.stroke(); ctx.fillStyle = "#fff"; ctx.textAlign = "center"; ctx.fillText(n[2], n[0], n[1] + 4); });
-    ctx.textAlign = "start";
-  },
 };
 
 /* =====================================================================
-   RENDER: stats, chips, timeline, publications, people
+   RENDER: chips, timeline, publications, people
    ===================================================================== */
 (function render() {
   const papers = PUBS.filter(p => p.venue !== "Project");
-  const venues = new Set(papers.map(p => p.venue));
-  $("#stats").innerHTML = [
-    [papers.length, "papers since 2024"],
-    [[...venues].length, "top venues: " + [...venues].join(", ")],
-    [Object.keys(AREAS).length, "research directions"],
-    [new Set(PUBS.map(p => p.repo)).size, "open-source repositories"],
-  ].map(([n, l]) => `<div class="stat"><div class="n">${n}</div><div class="l">${esc(l)}</div></div>`).join("");
-
   // chips under each area
   document.querySelectorAll("[data-chips]").forEach(box => {
     PUBS.filter(p => p.areas.includes(box.dataset.chips)).forEach(p => {
@@ -927,7 +959,7 @@ const ILLUS = {
   PUBS.forEach(p => {
     const card = el("article", { class: "pub reveal", id: "pub-" + p.id, "data-areas": p.areas.join(" ") });
     const isPaperFig = p.fig.tag === "paper";
-    const dark = p.fig.draw === "karrikins";
+    const dark = false;
     const fig = el("div", { class: "fig" + (dark ? " dark" : "") });
     if (p.fig.img) fig.appendChild(el("img", { src: p.fig.img, alt: "Figure from " + p.title, loading: "lazy" }));
     else if (p.fig.video) {
