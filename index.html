@@ -3,256 +3,1005 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>CSIRO FunML — Fundamental Machine Learning</title>
-<meta name="description" content="CSIRO Fundamental Machine Learning: research in Bayesian optimisation, probabilistic inference, operator learning and causal AI.">
+<title>CSIRO FunML · Fundamental Machine Learning</title>
+<meta name="description" content="CSIRO Fundamental Machine Learning: Bayesian optimisation and experimental design, uncertainty quantification, scientific machine learning and causal AI.">
+<meta property="og:title" content="CSIRO FunML · Fundamental Machine Learning">
+<meta property="og:description" content="Principled machine learning for decisions under uncertainty.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #fbfaf7;
-    --ink: #1c1f24;
-    --muted: #5d6470;
-    --line: #e3e0d8;
-    --accent: #00678a;
-    --accent-soft: #e4f1f5;
+    --night: #0b1626;
+    --night-2: #12233a;
+    --paper: #f7f5f0;
     --card: #ffffff;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #14171b;
-      --ink: #e9e7e2;
-      --muted: #9aa1ab;
-      --line: #2a2f36;
-      --accent: #5cc2e0;
-      --accent-soft: #1b2a31;
-      --card: #1a1e23;
-    }
+    --ink: #172231;
+    --muted: #5b6676;
+    --line: #e4e0d6;
+    --teal: #1fa5b3;
+    --teal-deep: #0e7c88;
+    --amber: #f0a23b;
+    --rose: #e0605a;
+    --violet: #7b6fd6;
+    --serif: "Fraunces", Georgia, "Times New Roman", serif;
+    --sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
   }
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--ink);
-    font: 17px/1.6 "Source Serif 4", Georgia, "Times New Roman", serif;
-  }
-  .sans { font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif; }
-  a { color: var(--accent); text-decoration: none; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font: 16px/1.6 var(--sans); -webkit-font-smoothing: antialiased; }
+  a { color: var(--teal-deep); text-decoration: none; }
   a:hover { text-decoration: underline; }
-  .wrap { max-width: 980px; margin: 0 auto; padding: 0 24px; }
+  img, video { max-width: 100%; display: block; }
+  .wrap { max-width: 1160px; margin: 0 auto; padding: 0 28px; }
 
-  header.nav {
-    position: sticky; top: 0; z-index: 10;
-    background: color-mix(in srgb, var(--bg) 88%, transparent);
-    backdrop-filter: blur(8px);
-    border-bottom: 1px solid var(--line);
+  /* ---------- nav ---------- */
+  .nav { position: fixed; inset: 0 0 auto 0; z-index: 50; transition: background .3s, box-shadow .3s; }
+  .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .brand { display: flex; align-items: center; gap: 10px; color: #fff; font-weight: 700; letter-spacing: .02em; font-size: 15px; }
+  .brand:hover { text-decoration: none; }
+  .brand-mark { width: 26px; height: 26px; }
+  .brand b { color: var(--teal); font-weight: 700; }
+  .nav nav a { color: rgba(255,255,255,.75); font-size: 14px; font-weight: 500; margin-left: 26px; }
+  .nav nav a:hover { color: #fff; text-decoration: none; }
+  .nav.scrolled { background: rgba(247,245,240,.92); backdrop-filter: blur(10px); box-shadow: 0 1px 0 var(--line); }
+  .nav.scrolled .brand { color: var(--ink); }
+  .nav.scrolled nav a { color: var(--muted); }
+  .nav.scrolled nav a:hover { color: var(--ink); }
+  @media (max-width: 720px) { .nav nav a:not(:last-child) { display: none; } }
+
+  /* ---------- hero ---------- */
+  .hero { position: relative; min-height: 92vh; min-height: 92svh; background: radial-gradient(1200px 600px at 75% 40%, #16304d 0%, var(--night) 60%); color: #fff; overflow: hidden; display: flex; align-items: center; }
+  #gp-canvas { position: absolute; inset: 0; width: 100%; height: 100%; cursor: crosshair; }
+  .hero .wrap { position: relative; width: 100%; pointer-events: none; }
+  .hero-text { max-width: 480px; padding: 110px 0 60px; }
+  .eyebrow { font-size: 12px; letter-spacing: .18em; text-transform: uppercase; font-weight: 600; color: var(--teal); }
+  .hero h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(40px, 5.6vw, 72px); line-height: 1.02; margin: 18px 0 22px; letter-spacing: -.015em; }
+  .hero h1 em { font-style: italic; color: var(--amber); }
+  .hero p.lede { font-size: 19px; color: rgba(255,255,255,.74); margin: 0 0 30px; }
+  .hero .cta { display: flex; gap: 12px; flex-wrap: wrap; pointer-events: auto; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 11px 20px; border-radius: 999px; font-size: 14px; font-weight: 600; border: 1px solid rgba(255,255,255,.25); color: #fff; }
+  .btn:hover { text-decoration: none; background: rgba(255,255,255,.08); }
+  .btn.primary { background: var(--teal); border-color: var(--teal); }
+  .btn.primary:hover { background: var(--teal-deep); }
+  .hero-hint { position: absolute; right: 28px; bottom: 22px; font-size: 12px; color: rgba(255,255,255,.5); font-family: var(--mono); pointer-events: none; }
+  .legend { display: flex; gap: 18px; flex-wrap: wrap; margin-top: 34px; font-size: 12px; color: rgba(255,255,255,.6); }
+  .legend span { display: inline-flex; align-items: center; gap: 7px; }
+  .legend i { display: inline-block; width: 16px; height: 3px; border-radius: 2px; }
+  @media (max-width: 900px) {
+    .hero { align-items: flex-start; min-height: 100svh; }
+    .hero-text { padding-top: 96px; }
+    .hero-hint { left: 20px; right: auto; bottom: 14px; }
+    .legend { display: none; }
   }
-  header.nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; }
-  .brand { font-weight: 700; letter-spacing: .02em; color: var(--ink); font-size: 15px; }
-  .brand span { color: var(--accent); }
-  nav a { margin-left: 22px; color: var(--muted); font-size: 14px; }
-  nav a:hover { color: var(--ink); text-decoration: none; }
 
-  .hero { padding: 96px 0 72px; border-bottom: 1px solid var(--line); }
-  .eyebrow { font-size: 13px; text-transform: uppercase; letter-spacing: .14em; color: var(--accent); font-weight: 600; }
-  .hero h1 { font-size: clamp(38px, 6vw, 60px); line-height: 1.08; margin: 14px 0 20px; font-weight: 600; letter-spacing: -.01em; }
-  .hero p { font-size: 20px; color: var(--muted); max-width: 680px; margin: 0; }
-  .cta { margin-top: 32px; display: flex; gap: 12px; flex-wrap: wrap; }
-  .btn { display: inline-block; padding: 10px 18px; border-radius: 6px; font-size: 14px; font-weight: 600; border: 1px solid var(--line); color: var(--ink); }
-  .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
-  .btn:hover { text-decoration: none; opacity: .9; }
+  /* ---------- stats ---------- */
+  .stats { background: var(--night-2); color: #fff; }
+  .stats .wrap { display: grid; grid-template-columns: repeat(4, 1fr); }
+  .stat { padding: 30px 0 30px 24px; border-left: 1px solid rgba(255,255,255,.1); }
+  .stat:first-child { border-left: 0; padding-left: 0; }
+  .stat .n { font-family: var(--serif); font-size: 38px; line-height: 1; }
+  .stat .l { font-size: 13px; color: rgba(255,255,255,.6); margin-top: 8px; }
+  @media (max-width: 720px) { .stats .wrap { grid-template-columns: 1fr 1fr; } .stat { padding: 22px 0 22px 18px; } .stat:nth-child(3) { border-left: 0; padding-left: 0; } }
 
-  section { padding: 72px 0; border-bottom: 1px solid var(--line); }
-  section h2 { font-size: 30px; margin: 0 0 8px; font-weight: 600; }
-  section .lede { color: var(--muted); margin: 0 0 36px; max-width: 640px; }
+  /* ---------- sections ---------- */
+  section { padding: 104px 0; }
+  .section-head { display: flex; justify-content: space-between; align-items: end; gap: 24px; flex-wrap: wrap; margin-bottom: 48px; }
+  .section-head h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(34px, 4vw, 48px); line-height: 1.05; margin: 10px 0 0; letter-spacing: -.01em; }
+  .section-head p { max-width: 460px; color: var(--muted); margin: 0; }
 
-  .areas { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 28px; }
-  .area h3 { font-size: 15px; margin: 0 0 6px; font-weight: 600; }
-  .area p { margin: 0; color: var(--muted); font-size: 15px; }
-  .area::before { content: ""; display: block; width: 28px; height: 3px; background: var(--accent); margin-bottom: 14px; }
+  /* ---------- research areas ---------- */
+  .areas { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  @media (max-width: 860px) { .areas { grid-template-columns: 1fr; } }
+  .area { background: var(--card); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; display: flex; flex-direction: column; transition: transform .25s, box-shadow .25s; }
+  .area:hover { transform: translateY(-3px); box-shadow: 0 18px 40px -20px rgba(11,22,38,.35); }
+  .area canvas { width: 100%; height: 230px; display: block; background: var(--night); }
+  .area .body { padding: 26px 28px 28px; display: flex; flex-direction: column; flex: 1; }
+  .area .num { font-family: var(--mono); font-size: 12px; color: var(--teal-deep); }
+  .area h3 { font-family: var(--serif); font-weight: 600; font-size: 24px; margin: 6px 0 10px; line-height: 1.2; }
+  .area p { color: var(--muted); margin: 0 0 18px; font-size: 15px; }
+  .area .chips { margin-top: auto; display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip { font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 999px; background: #eef6f7; color: var(--teal-deep); border: 0; cursor: pointer; font-family: var(--sans); }
+  .chip:hover { background: #dcEFF1; text-decoration: none; }
 
-  .repos { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
-  .repo {
-    display: block; background: var(--card); border: 1px solid var(--line); border-radius: 10px;
-    padding: 20px; color: var(--ink); transition: border-color .15s, transform .15s;
+  /* ---------- timeline ---------- */
+  .timeline-sec { background: var(--night); color: #fff; padding: 84px 0; }
+  .timeline-sec .section-head p { color: rgba(255,255,255,.6); }
+  .timeline { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+  .timeline::before { content: ""; position: absolute; left: 0; right: 0; top: 23px; height: 2px; background: linear-gradient(90deg, rgba(31,165,179,.2), var(--teal), var(--amber)); }
+  .year .y { position: relative; display: inline-block; font-family: var(--serif); font-size: 30px; background: var(--night); padding-right: 14px; line-height: 48px; }
+  .year .y::before { content: ""; position: absolute; left: -2px; bottom: -14px; width: 10px; height: 10px; border-radius: 50%; background: var(--amber); box-shadow: 0 0 0 5px rgba(240,162,59,.18); }
+  .year ul { list-style: none; padding: 0; margin: 28px 0 0; display: grid; gap: 10px; }
+  .year li a { display: flex; gap: 12px; align-items: baseline; padding: 12px 14px; border-radius: 12px; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); color: #fff; transition: background .2s, border-color .2s; }
+  .year li a:hover { background: rgba(31,165,179,.12); border-color: rgba(31,165,179,.5); text-decoration: none; }
+  .venue { font-family: var(--mono); font-size: 11px; font-weight: 500; padding: 3px 8px; border-radius: 6px; white-space: nowrap; }
+  .v-neurips { background: rgba(123,111,214,.22); color: #b9b1ff; }
+  .v-icml { background: rgba(31,165,179,.2); color: #74d9e3; }
+  .v-iclr { background: rgba(240,162,59,.2); color: #ffc77a; }
+  .v-proj { background: rgba(224,96,90,.2); color: #ff9e98; }
+  .year li .t { font-size: 14px; line-height: 1.35; }
+  @media (max-width: 820px) { .timeline { grid-template-columns: 1fr; } .timeline::before { display: none; } }
+
+  /* ---------- publications ---------- */
+  .filters { display: flex; flex-wrap: wrap; gap: 8px; }
+  .filter { font: 600 13px var(--sans); padding: 8px 16px; border-radius: 999px; border: 1px solid var(--line); background: var(--card); color: var(--muted); cursor: pointer; transition: all .2s; }
+  .filter:hover { color: var(--ink); border-color: #c9c3b5; }
+  .filter.on { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .pubs { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 22px; }
+  .pub { background: var(--card); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; transition: transform .25s, box-shadow .25s, opacity .3s; scroll-margin-top: 90px; }
+  .pub:hover { transform: translateY(-3px); box-shadow: 0 18px 40px -22px rgba(11,22,38,.4); }
+  .pub.hide { display: none; }
+  .pub.flash { animation: flash 1.6s ease; }
+  @keyframes flash { 0%,100% { box-shadow: 0 0 0 0 rgba(31,165,179,0); } 25% { box-shadow: 0 0 0 4px rgba(31,165,179,.55); } }
+  .fig { position: relative; aspect-ratio: 16 / 9; background: #fbfaf7; border-bottom: 1px solid var(--line); overflow: hidden; }
+  .fig img, .fig video, .fig canvas { width: 100%; height: 100%; object-fit: contain; }
+  .fig.dark { background: var(--night); }
+  .fig .figtag { position: absolute; right: 10px; bottom: 10px; font: 500 10px var(--mono); letter-spacing: .04em; text-transform: uppercase; padding: 3px 7px; border-radius: 5px; background: rgba(255,255,255,.88); color: var(--muted); border: 1px solid var(--line); }
+  .fig.dark .figtag { background: rgba(11,22,38,.7); color: rgba(255,255,255,.7); border-color: rgba(255,255,255,.15); }
+  .pub .body { padding: 20px 22px 22px; display: flex; flex-direction: column; flex: 1; }
+  .pub .meta { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; flex-wrap: wrap; }
+  .pub .venue { font-size: 11px; }
+  .pub .v-neurips { background: #eeecfb; color: #5a4fc0; }
+  .pub .v-icml { background: #e4f4f6; color: var(--teal-deep); }
+  .pub .v-iclr { background: #fdf0dc; color: #a8650f; }
+  .pub .v-proj { background: #fbe7e6; color: #b4433d; }
+  .award { font: 600 11px var(--sans); color: #a8650f; }
+  .pub h3 { font-family: var(--serif); font-weight: 600; font-size: 19px; line-height: 1.28; margin: 0 0 8px; }
+  .pub .authors { font-size: 13.5px; color: var(--muted); margin: 0 0 18px; }
+  .pub .authors b { color: var(--ink); font-weight: 600; }
+  .pub .links { margin-top: auto; display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  .lk { display: inline-flex; align-items: center; gap: 6px; font: 600 12.5px var(--sans); padding: 7px 12px; border-radius: 8px; border: 1px solid var(--line); color: var(--ink); background: #fff; cursor: pointer; }
+  .lk:hover { border-color: var(--teal); color: var(--teal-deep); text-decoration: none; }
+  .lk svg { width: 14px; height: 14px; }
+  .stars { margin-left: auto; font: 500 12px var(--mono); color: var(--muted); }
+
+  /* ---------- people ---------- */
+  .people { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 22px; }
+  .person { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 28px 24px 24px; text-align: center; transition: transform .25s, box-shadow .25s; }
+  .person:hover { transform: translateY(-3px); box-shadow: 0 18px 40px -22px rgba(11,22,38,.4); }
+  .avatar { width: 112px; height: 112px; border-radius: 50%; margin: 0 auto 18px; display: grid; place-items: center; font-family: var(--serif); font-size: 36px; color: #fff; position: relative; overflow: hidden; }
+  .avatar img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
+  .person .pname { font-family: var(--serif); font-size: 20px; font-weight: 600; }
+  .person .role { font-size: 13.5px; color: var(--muted); margin: 4px 0 16px; min-height: 42px; }
+  .person .plinks { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
+  .person .plinks a { font: 600 12px var(--sans); padding: 6px 11px; border-radius: 999px; background: #f1efe9; color: var(--ink); }
+  .person .plinks a:hover { background: var(--teal); color: #fff; text-decoration: none; }
+
+  /* ---------- contact ---------- */
+  .contact { background: linear-gradient(135deg, var(--night) 0%, #10324a 100%); color: #fff; border-radius: 24px; padding: 64px 56px; display: grid; grid-template-columns: 1.4fr 1fr; gap: 40px; align-items: center; position: relative; overflow: hidden; }
+  .contact h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(32px, 3.6vw, 44px); line-height: 1.08; margin: 10px 0 14px; }
+  .contact p { color: rgba(255,255,255,.7); margin: 0; }
+  .contact .actions { display: flex; flex-direction: column; gap: 12px; align-items: flex-start; }
+  .contact .mail { font-family: var(--mono); font-size: 15px; color: #fff; }
+  @media (max-width: 820px) { .contact { grid-template-columns: 1fr; padding: 44px 28px; } }
+
+  footer { padding: 48px 0 56px; color: var(--muted); font-size: 13.5px; }
+  footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .area, .pub, .person { transition: none; }
   }
-  .repo:hover { border-color: var(--accent); transform: translateY(-2px); text-decoration: none; }
-  .repo .name { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 14px; color: var(--accent); }
-  .repo .desc { margin: 8px 0 14px; font-size: 15px; }
-  .tag { display: inline-block; font-size: 12px; font-weight: 600; padding: 3px 9px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); }
-
-  .people { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 24px; }
-  .person .avatar { width: 72px; height: 72px; border-radius: 50%; background: var(--accent-soft); margin-bottom: 10px; }
-  .person .pname { font-weight: 600; font-size: 15px; }
-  .person .role { color: var(--muted); font-size: 14px; }
-
-  footer { padding: 40px 0 56px; color: var(--muted); font-size: 14px; }
-  footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+  .toast { position: fixed; left: 50%; bottom: 28px; transform: translateX(-50%) translateY(20px); background: var(--ink); color: #fff; padding: 10px 18px; border-radius: 999px; font-size: 13.5px; font-weight: 600; opacity: 0; transition: all .25s; z-index: 100; pointer-events: none; }
+  .toast.show { opacity: 1; transform: translateX(-50%); }
 </style>
 </head>
 <body>
 
-<header class="nav sans">
+<header class="nav" id="nav">
   <div class="wrap">
-    <a class="brand" href="#">CSIRO <span>FunML</span></a>
+    <a class="brand" href="#top" aria-label="CSIRO FunML home">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M2 22 C 8 22, 10 8, 16 8 S 24 20, 30 14" fill="none" stroke="#1fa5b3" stroke-width="2.6" stroke-linecap="round"/><circle cx="16" cy="8" r="3.2" fill="#f0a23b"/></svg>
+      <span>CSIRO <b>FunML</b></span>
+    </a>
     <nav>
       <a href="#research">Research</a>
-      <a href="#code">Code</a>
+      <a href="#publications">Publications</a>
       <a href="#people">People</a>
       <a href="#contact">Contact</a>
     </nav>
   </div>
 </header>
 
-<main>
+<main id="top">
+  <!-- ================= HERO ================= -->
   <div class="hero">
+    <canvas id="gp-canvas" aria-label="Animated Bayesian optimisation: a Gaussian process learns a hidden function while an acquisition function chooses where to sample next. Click to add an observation."></canvas>
     <div class="wrap">
-      <div class="eyebrow sans">CSIRO · Australia</div>
-      <h1>Fundamental Machine Learning</h1>
-      <p>We develop principled methods for learning and decision-making under uncertainty, from Bayesian optimisation and probabilistic inference to operator learning and causal AI.</p>
-      <div class="cta sans">
-        <a class="btn primary" href="#code">Explore our code</a>
-        <a class="btn" href="https://github.com/csiro-funml">GitHub</a>
+      <div class="hero-text">
+        <div class="eyebrow">CSIRO · Data61 · Australia</div>
+        <h1>Fundamental <em>Machine Learning</em></h1>
+        <p class="lede">Principled methods for learning and deciding under uncertainty, from Bayesian optimisation to causal AI.</p>
+        <div class="cta">
+          <a class="btn primary" href="#research">Explore our research</a>
+          <a class="btn" href="https://github.com/csiro-funml">
+            <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38v-1.34c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.06-.49.06-.49.8.06 1.23.83 1.23.83.72 1.22 1.87.87 2.33.66.07-.52.28-.87.5-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+            GitHub
+          </a>
+        </div>
+        <div class="legend">
+          <span><i style="background:#fff"></i>GP posterior mean</span>
+          <span><i style="background:rgba(31,165,179,.6);height:8px"></i>Uncertainty</span>
+          <span><i style="background:#f0a23b"></i>Acquisition (EI)</span>
+        </div>
       </div>
     </div>
+    <div class="hero-hint">click anywhere on the plot to add an observation</div>
   </div>
 
+  <!-- ================= STATS ================= -->
+  <div class="stats">
+    <div class="wrap" id="stats"></div>
+  </div>
+
+  <!-- ================= RESEARCH ================= -->
   <section id="research">
     <div class="wrap">
-      <h2>Research</h2>
-      <p class="lede">Our work spans theory and practice, with a focus on methods that come with guarantees and scale to real scientific problems.</p>
-      <div class="areas sans">
-        <div class="area">
-          <h3>Bayesian optimisation</h3>
-          <p>Generative and variational approaches, Thompson sampling with neural operators, and theory for nonlinear models.</p>
+      <div class="section-head reveal">
+        <div>
+          <div class="eyebrow">Research</div>
+          <h2>Four directions,<br>one principle: uncertainty matters.</h2>
         </div>
-        <div class="area">
-          <h3>Probabilistic inference</h3>
-          <p>Variational learning of fractional posteriors, Rényi neural processes and search distributions.</p>
-        </div>
-        <div class="area">
-          <h3>Operator learning</h3>
-          <p>Multi-scale wavelet transformers for learning the dynamics of physical systems.</p>
-        </div>
-        <div class="area">
-          <h3>Causal AI</h3>
-          <p>Causal preference elicitation, climate attribution and decision intelligence.</p>
-        </div>
-        <div class="area">
-          <h3>Experimental design</h3>
-          <p>Bayesian adaptive calibration, optimal design and active learning.</p>
-        </div>
+        <p>Our methods come with guarantees and work on real scientific problems, where data is scarce, experiments are expensive and decisions carry weight.</p>
+      </div>
+      <div class="areas">
+        <article class="area reveal" data-area="bo">
+          <canvas data-anim="bo" aria-hidden="true"></canvas>
+          <div class="body">
+            <div class="num">01</div>
+            <h3>Bayesian Optimisation &amp; Experimental Design</h3>
+            <p>Choosing the next experiment wisely, with generative and variational search, Thompson sampling in function spaces, adaptive calibration of simulators, and theory for neural surrogates.</p>
+            <div class="chips" data-chips="bo"></div>
+          </div>
+        </article>
+        <article class="area reveal" data-area="uq">
+          <canvas data-anim="uq" aria-hidden="true"></canvas>
+          <div class="body">
+            <div class="num">02</div>
+            <h3>Uncertainty Quantification &amp; Probabilistic Inference</h3>
+            <p>Knowing what a model doesn't know, with new variational objectives, fractional posteriors, robust neural processes and scalable approximate Bayesian inference.</p>
+            <div class="chips" data-chips="uq"></div>
+          </div>
+        </article>
+        <article class="area reveal" data-area="sciml">
+          <canvas data-anim="sciml" aria-hidden="true"></canvas>
+          <div class="body">
+            <div class="num">03</div>
+            <h3>Scientific Machine Learning</h3>
+            <p>Learning the operators behind physical systems, from turbulent flows and shallow water to global climate, with multi-scale architectures built for long, stable rollouts.</p>
+            <div class="chips" data-chips="sciml"></div>
+          </div>
+        </article>
+        <article class="area reveal" data-area="causal">
+          <canvas data-anim="causal" aria-hidden="true"></canvas>
+          <div class="body">
+            <div class="num">04</div>
+            <h3>Causal AI</h3>
+            <p>Moving from correlation to cause, with causal discovery that brings human experts into the loop and causal attribution for climate and decision intelligence.</p>
+            <div class="chips" data-chips="causal"></div>
+          </div>
+        </article>
       </div>
     </div>
   </section>
 
-  <section id="code">
+  <!-- ================= TIMELINE ================= -->
+  <section class="timeline-sec">
     <div class="wrap">
-      <h2>Code &amp; publications</h2>
-      <p class="lede">Open-source implementations accompanying our papers.</p>
-      <div class="repos sans">
-        <a class="repo" href="https://github.com/csiro-funml/nonlinear-bo-theory">
-          <div class="name">nonlinear-bo-theory</div>
-          <div class="desc">Kernel-based guarantees for nonlinear parametric models in Bayesian optimisation.</div>
-          <span class="tag">NeurIPS 2026</span>
-        </a>
-        <a class="repo" href="https://github.com/csiro-funml/generativebo">
-          <div class="name">generativebo</div>
-          <div class="desc">Generative Bayesian optimisation.</div>
-          <span class="tag">ICLR 2026</span>
-        </a>
-        <a class="repo" href="https://github.com/csiro-funml/nots">
-          <div class="name">nots</div>
-          <div class="desc">Neural Operator Thompson Sampling.</div>
-          <span class="tag">NeurIPS 2025</span>
-        </a>
-        <a class="repo" href="https://github.com/csiro-funml/renyineuralprocesses">
-          <div class="name">renyineuralprocesses</div>
-          <div class="desc">Official implementation of Rényi Neural Processes.</div>
-          <span class="tag">ICML 2025</span>
-        </a>
-        <a class="repo" href="https://github.com/csiro-funml/bacon">
-          <div class="name">bacon</div>
-          <div class="desc">Bayesian adaptive calibration and optimal design.</div>
-          <span class="tag">NeurIPS 2024</span>
-        </a>
-        <a class="repo" href="https://github.com/csiro-funml/PPAL">
-          <div class="name">PPAL</div>
-          <div class="desc">Plug-and-play active learning for object detection (fork).</div>
-          <span class="tag">CVPR 2024</span>
-        </a>
-        <a class="repo" href="https://github.com/csiro-funml/MSWT">
-          <div class="name">MSWT</div>
-          <div class="desc">Multi-scale wavelet transformers for operator learning of dynamical systems.</div>
-          <span class="tag">Operator learning</span>
-        </a>
-        <a class="repo" href="https://github.com/csiro-funml/CaPE">
-          <div class="name">CaPE</div>
-          <div class="desc">Causal preference elicitation.</div>
-          <span class="tag">Causal AI</span>
-        </a>
-        <a class="repo" href="https://github.com/csiro-funml/karrikins">
-          <div class="name">karrikins</div>
-          <div class="desc">Causal AI for climate attribution and decision intelligence.</div>
-          <span class="tag">Causal AI</span>
-        </a>
-        <a class="repo" href="https://github.com/csiro-funml/Variational-learning-of-Fractional-Posteriors">
-          <div class="name">Variational-learning-of-Fractional-Posteriors</div>
-          <div class="desc">Variational learning of fractional posteriors.</div>
-          <span class="tag">Inference</span>
-        </a>
-        <a class="repo" href="https://github.com/csiro-funml/variationalsearch">
-          <div class="name">variationalsearch</div>
-          <div class="desc">Variational search distributions.</div>
-          <span class="tag">Inference</span>
-        </a>
+      <div class="section-head reveal">
+        <div>
+          <div class="eyebrow">Track record</div>
+          <h2>Recent work at top venues</h2>
+        </div>
+        <p>Click a paper to jump to its figure, code and citation.</p>
       </div>
+      <div class="timeline reveal" id="timeline"></div>
     </div>
   </section>
 
-  <section id="people">
+  <!-- ================= PUBLICATIONS ================= -->
+  <section id="publications">
     <div class="wrap">
-      <h2>People</h2>
-      <p class="lede">Replace these placeholders with your team members.</p>
-      <div class="people sans">
-        <!-- Copy this block for each person. Swap the avatar div for <img class="avatar" src="images/name.jpg" alt="Name"> -->
-        <div class="person">
-          <div class="avatar"></div>
-          <div class="pname">Team Member</div>
-          <div class="role">Group Leader</div>
+      <div class="section-head reveal">
+        <div>
+          <div class="eyebrow">Publications &amp; code</div>
+          <h2>Papers you can run</h2>
         </div>
-        <div class="person">
-          <div class="avatar"></div>
-          <div class="pname">Team Member</div>
-          <div class="role">Research Scientist</div>
-        </div>
-        <div class="person">
-          <div class="avatar"></div>
-          <div class="pname">Team Member</div>
-          <div class="role">Postdoctoral Fellow</div>
-        </div>
-        <div class="person">
-          <div class="avatar"></div>
-          <div class="pname">Team Member</div>
-          <div class="role">PhD Student</div>
-        </div>
+        <div class="filters" id="filters" role="toolbar" aria-label="Filter publications by research area"></div>
       </div>
+      <div class="pubs" id="pubs"></div>
     </div>
   </section>
 
-  <section id="contact">
+  <!-- ================= PEOPLE ================= -->
+  <section id="people" style="padding-top:40px">
     <div class="wrap">
-      <h2>Contact</h2>
-      <p class="lede">Interested in collaborating, a PhD or a postdoc with us? Get in touch.</p>
-      <p class="sans"><a href="mailto:you@csiro.au">you@csiro.au</a> · <a href="https://github.com/csiro-funml">github.com/csiro-funml</a></p>
+      <div class="section-head reveal">
+        <div>
+          <div class="eyebrow">People</div>
+          <h2>The team</h2>
+        </div>
+        <p>Researchers at CSIRO's Data61 working with collaborators, postdocs and students across Australia and beyond.</p>
+      </div>
+      <div class="people" id="people-grid"></div>
+    </div>
+  </section>
+
+  <!-- ================= CONTACT ================= -->
+  <section id="contact" style="padding-top:40px">
+    <div class="wrap">
+      <div class="contact reveal">
+        <div>
+          <div class="eyebrow">Get in touch</div>
+          <h2>Collaborate with us</h2>
+          <p>We're always keen to hear from research partners, prospective PhD students and postdocs interested in principled machine learning for science and decision-making.</p>
+        </div>
+        <div class="actions">
+          <a class="btn primary" href="mailto:edwin.bonilla@csiro.au">Email Edwin Bonilla</a>
+          <span class="mail">edwin.bonilla@csiro.au</span>
+          <a class="btn" href="https://github.com/csiro-funml">Follow us on GitHub</a>
+        </div>
+      </div>
     </div>
   </section>
 </main>
 
-<footer class="sans">
+<footer>
   <div class="wrap">
     <span>© CSIRO Fundamental Machine Learning</span>
-    <span>Hosted on GitHub Pages</span>
+    <span>Figures marked "From the paper" are reproduced from our publications and repositories.</span>
   </div>
 </footer>
 
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* =====================================================================
+   DATA: edit these lists to update the site
+   ===================================================================== */
+const TEAM = new Set(["Edwin V. Bonilla", "Daniel M. Steinberg", "He Zhao", "Rafael Oliveira"]);
+
+const AREAS = {
+  bo:     "BO & Experimental Design",
+  uq:     "UQ & Inference",
+  sciml:  "Scientific ML",
+  causal: "Causal AI",
+};
+
+// fig: {img|video|draw, tag}  · tag "paper" = real figure, otherwise a generated illustration
+const PUBS = [
+  {
+    id: "nonlinear-bo", short: "Nonlinear BO theory", year: 2026, venue: "NeurIPS", areas: ["bo"],
+    title: "Kernel-based Guarantees for Nonlinear Parametric Models in Bayesian Optimization",
+    authors: ["Rafael Oliveira"],
+    paper: "https://arxiv.org/abs/2605.13160", code: "https://github.com/csiro-funml/nonlinear-bo-theory", repo: "nonlinear-bo-theory",
+    fig: { img: "images/nonlinear-bo.png", tag: "paper" },
+    bib: `@inproceedings{oliveira2026kernel,
+  author    = {Oliveira, Rafael},
+  title     = {Kernel-based guarantees for nonlinear parametric models in Bayesian optimization},
+  booktitle = {Advances in Neural Information Processing Systems 39},
+  year      = {2026}
+}`
+  },
+  {
+    id: "cape", short: "CaPE", year: 2026, venue: "ICML", areas: ["causal"],
+    title: "Causal Preference Elicitation",
+    authors: ["Edwin V. Bonilla", "He Zhao", "Daniel M. Steinberg"],
+    paper: "https://arxiv.org/abs/2602.01483", code: "https://github.com/csiro-funml/CaPE", repo: "CaPE",
+    fig: { img: "images/cape.svg", tag: "paper" },
+    bib: `@inproceedings{bonilla2026cape,
+  title     = {Causal Preference Elicitation},
+  author    = {Bonilla, Edwin V. and Zhao, He and Steinberg, Daniel M.},
+  booktitle = {International Conference on Machine Learning},
+  year      = {2026},
+  doi       = {10.48550/arXiv.2602.01483}
+}`
+  },
+  {
+    id: "mswt", short: "Multi-scale wavelet transformers", year: 2026, venue: "ICML", areas: ["sciml"],
+    title: "Multi-Scale Wavelet Transformers for Operator Learning of Dynamical Systems",
+    authors: ["Xuesong Wang", "Michael Groom", "Rafael Oliveira", "He Zhao", "Terence O'Kane", "Edwin V. Bonilla"],
+    paper: "https://arxiv.org/abs/2602.01486", code: "https://github.com/csiro-funml/MSWT", repo: "MSWT",
+    fig: { video: "images/mswt-rollout.mp4", poster: "images/mswt-poster.jpg", tag: "paper" },
+    bib: `@inproceedings{wang2026mswt,
+  title     = {Multi-Scale Wavelet Transformers for Operator Learning of Dynamical Systems},
+  author    = {Wang, Xuesong and Groom, Michael and Oliveira, Rafael and Zhao, He and O'Kane, Terence and Bonilla, Edwin V.},
+  booktitle = {International Conference on Machine Learning},
+  year      = {2026}
+}`
+  },
+  {
+    id: "genbo", short: "Generative BO", year: 2026, venue: "ICLR", areas: ["bo"],
+    title: "Generative Bayesian Optimization: Generative Models as Acquisition Functions",
+    authors: ["Rafael Oliveira", "Daniel M. Steinberg", "Edwin V. Bonilla"],
+    paper: "https://openreview.net/forum?id=GBWkRRJrdu", code: "https://github.com/csiro-funml/generativebo", repo: "generativebo",
+    fig: { draw: "genbo" },
+    bib: `@inproceedings{oliveira2026generative,
+  title     = {Generative Bayesian Optimization: Generative Models as Acquisition Functions},
+  author    = {Oliveira, Rafael and Steinberg, Daniel M. and Bonilla, Edwin V.},
+  booktitle = {International Conference on Learning Representations},
+  year      = {2026},
+  url       = {https://openreview.net/forum?id=GBWkRRJrdu}
+}`
+  },
+  {
+    id: "nots", short: "Neural Operator Thompson Sampling", year: 2025, venue: "NeurIPS", areas: ["bo", "sciml"],
+    title: "Thompson Sampling in Function Spaces via Neural Operators",
+    authors: ["Rafael Oliveira", "Xuesong Wang", "Kian Ming A. Chai", "Edwin V. Bonilla"],
+    paper: "https://arxiv.org/abs/2506.21894", code: "https://github.com/csiro-funml/nots", repo: "nots",
+    fig: { draw: "nots" },
+    bib: `@inproceedings{oliveira2025thompson,
+  title     = {Thompson Sampling in Function Spaces via Neural Operators},
+  author    = {Rafael Oliveira and Xuesong Wang and Kian Ming A. Chai and Edwin V. Bonilla},
+  booktitle = {The Thirty-ninth Annual Conference on Neural Information Processing Systems},
+  year      = {2025},
+  url       = {https://openreview.net/forum?id=F54u4NkFvS}
+}`
+  },
+  {
+    id: "agps", short: "Active generation of Pareto sets", year: 2025, venue: "NeurIPS", areas: ["bo"],
+    title: "Amortized Active Generation of Pareto Sets",
+    authors: ["Daniel M. Steinberg", "Asiri Wijesinghe", "Rafael Oliveira", "Piotr Koniusz", "Cheng Soon Ong", "Edwin V. Bonilla"],
+    paper: "https://arxiv.org/abs/2510.21052", code: "https://github.com/csiro-funml/variationalsearch", repo: "variationalsearch",
+    fig: { draw: "agps" },
+    bib: `@inproceedings{steinberg2025amortized,
+  title     = {Amortized Active Generation of Pareto Sets},
+  author    = {Steinberg, Daniel M and Wijesinghe, Asiri and Oliveira, Rafael and Koniusz, Piotr and Ong, Cheng Soon and Bonilla, Edwin V},
+  booktitle = {Neural Information Processing Systems (NeurIPS)},
+  year      = {2025}
+}`
+  },
+  {
+    id: "rnp", short: "Rényi Neural Processes", year: 2025, venue: "ICML", award: "Oral", areas: ["uq"],
+    title: "Rényi Neural Processes",
+    authors: ["Xuesong Wang", "He Zhao", "Edwin V. Bonilla"],
+    paper: "https://arxiv.org/abs/2405.15991", code: "https://github.com/csiro-funml/renyineuralprocesses", repo: "renyineuralprocesses",
+    fig: { img: "images/renyi-np.png", tag: "paper" },
+    bib: `@inproceedings{wang2025rnp,
+  title     = {R{\\'e}nyi Neural Processes},
+  author    = {Wang, Xuesong and Zhao, He and Bonilla, Edwin V},
+  booktitle = {International Conference on Machine Learning},
+  year      = {2025}
+}`
+  },
+  {
+    id: "vfp", short: "Fractional posteriors", year: 2025, venue: "ICML", areas: ["uq"],
+    title: "Variational Learning of Fractional Posteriors",
+    authors: ["Kian Ming A. Chai", "Edwin V. Bonilla"],
+    paper: "https://proceedings.mlr.press/v267/chai25a.html", code: "https://github.com/csiro-funml/Variational-learning-of-Fractional-Posteriors", repo: "Variational-learning-of-Fractional-Posteriors",
+    fig: { img: "images/fractional-posteriors.png", tag: "paper" },
+    bib: `@inproceedings{chai2025variational,
+  title     = {Variational Learning of Fractional Posteriors},
+  author    = {Chai, Kian Ming A. and Bonilla, Edwin V.},
+  booktitle = {International Conference on Machine Learning},
+  series    = {Proceedings of Machine Learning Research},
+  volume    = {267},
+  year      = {2025}
+}`
+  },
+  {
+    id: "vsd", short: "Variational search distributions", year: 2025, venue: "ICLR", areas: ["bo"],
+    title: "Variational Search Distributions",
+    authors: ["Daniel M. Steinberg", "Rafael Oliveira", "Cheng Soon Ong", "Edwin V. Bonilla"],
+    paper: "https://arxiv.org/abs/2409.06142", code: "https://github.com/csiro-funml/variationalsearch", repo: "variationalsearch",
+    fig: { draw: "vsd" },
+    bib: `@inproceedings{steinberg2025variational,
+  title     = {Variational Search Distributions},
+  author    = {Steinberg, Daniel M and Oliveira, Rafael and Ong, Cheng Soon and Bonilla, Edwin V},
+  booktitle = {The Thirteenth International Conference on Learning Representations (ICLR)},
+  year      = {2025}
+}`
+  },
+  {
+    id: "bacon", short: "BACON", year: 2024, venue: "NeurIPS", areas: ["bo", "uq"],
+    title: "Bayesian Adaptive Calibration and Optimal Design",
+    authors: ["Rafael Oliveira", "Dino Sejdinovic", "David Howard", "Edwin V. Bonilla"],
+    paper: "https://papers.neurips.cc/paper_files/paper/2024/hash/673b9f8cba4ee9f15b88656a69761631-Abstract-Conference.html", code: "https://github.com/csiro-funml/bacon", repo: "bacon",
+    fig: { draw: "bacon" },
+    bib: `@inproceedings{NEURIPS2024_673b9f8c,
+  author    = {Oliveira, Rafael and Sejdinovic, Dino and Howard, David and Bonilla, Edwin V},
+  booktitle = {Advances in Neural Information Processing Systems},
+  pages     = {56526--56551},
+  title     = {Bayesian Adaptive Calibration and Optimal Design},
+  volume    = {37},
+  year      = {2024}
+}`
+  },
+  {
+    id: "karrikins", short: "Karrikins", year: 2026, venue: "Project", areas: ["causal"],
+    title: "Karrikins: Causal AI for Climate Attribution and Decision Intelligence",
+    authors: [],
+    code: "https://github.com/csiro-funml/karrikins", repo: "karrikins",
+    fig: { draw: "karrikins" },
+  },
+];
+
+const PEOPLE = [
+  { name: "Edwin V. Bonilla", role: "Senior Principal Research Scientist & Science Leader", grad: ["#1fa5b3", "#0b1626"],
+    photo: "", links: { Homepage: "https://ebonilla.github.io", Scholar: "https://scholar.google.com/citations?user=uDLRZQMAAAAJ", GitHub: "https://github.com/ebonilla" } },
+  { name: "Daniel M. Steinberg", role: "Senior Research Scientist", grad: ["#f0a23b", "#7a3e12"],
+    photo: "", links: { Homepage: "https://dsteinberg.github.io", Scholar: "https://scholar.google.com/citations?user=w0oqSe8AAAAJ" } },
+  { name: "He Zhao", role: "Senior Research Scientist", grad: ["#7b6fd6", "#241b5c"],
+    photo: "", links: { Homepage: "https://hezgit.github.io", Scholar: "https://scholar.google.com/citations?user=pkn0NPsAAAAJ" } },
+  { name: "Rafael Oliveira", role: "Senior Research Scientist", grad: ["#e0605a", "#5a1714"],
+    photo: "", links: { Homepage: "https://rafaeloliveira.me", Scholar: "https://scholar.google.com/citations?user=vdGqGjQAAAAJ", GitHub: "https://github.com/rafaol" } },
+];
+// To add a photo: put e.g. images/people/edwin.jpg in the repo and set photo: "images/people/edwin.jpg"
+
+/* =====================================================================
+   Helpers
+   ===================================================================== */
+const REDUCED = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const $ = (s, el = document) => el.querySelector(s);
+const el = (tag, attrs = {}, html = "") => { const e = document.createElement(tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (html) e.innerHTML = html; return e; };
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+function rng(seed) { let s = seed >>> 0; return () => { s = (s * 1664525 + 1013904223) >>> 0; return s / 4294967296; }; }
+function gauss(r) { let u = 0, v = 0; while (!u) u = r(); while (!v) v = r(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v); }
+function fitCanvas(c) {
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  const w = c.clientWidth, h = c.clientHeight;
+  if (c.width !== Math.round(w * dpr) || c.height !== Math.round(h * dpr)) { c.width = Math.round(w * dpr); c.height = Math.round(h * dpr); }
+  const ctx = c.getContext("2d"); ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  return { ctx, w, h };
+}
+function toast(msg) { const t = $("#toast"); t.textContent = msg; t.classList.add("show"); clearTimeout(t._h); t._h = setTimeout(() => t.classList.remove("show"), 1600); }
+const venueClass = v => ({ NeurIPS: "v-neurips", ICML: "v-icml", ICLR: "v-iclr" }[v] || "v-proj");
+
+// Run an animation only while its canvas is on screen
+function animateWhenVisible(canvas, drawFn) {
+  let visible = false, raf = 0, t0 = performance.now();
+  const loop = now => { if (!visible) return; drawFn((now - t0) / 1000); raf = requestAnimationFrame(loop); };
+  if (REDUCED) { const render = () => drawFn(3.2); render(); window.addEventListener("resize", render); return; }
+  new IntersectionObserver(([e]) => {
+    visible = e.isIntersecting;
+    cancelAnimationFrame(raf);
+    if (visible) raf = requestAnimationFrame(loop);
+  }, { rootMargin: "80px" }).observe(canvas);
+}
+
+/* =====================================================================
+   HERO: live Gaussian process + expected improvement
+   ===================================================================== */
+(function hero() {
+  const canvas = $("#gp-canvas");
+  const N = 160, xs = Array.from({ length: N }, (_, i) => i / (N - 1));
+  const ell = 0.085, sf2 = 1, noise = 1e-4;
+  const k = (a, b) => sf2 * Math.exp(-((a - b) ** 2) / (2 * ell * ell));
+  let r = rng(7), f, X = [], Y = [], shown = null, target = null, tTrans = 0, lastStep = 0, nextX = null, fade = 1, resetAt = 0;
+
+  function newFunction() {
+    const bumps = Array.from({ length: 5 }, () => ({ c: r(), w: 0.04 + 0.1 * r(), a: (r() - 0.35) * 1.6 }));
+    const ph = r() * 6, fr = 3 + 4 * r();
+    f = x => 0.35 * Math.sin(fr * x * Math.PI + ph) + bumps.reduce((s, b) => s + b.a * Math.exp(-((x - b.c) ** 2) / (2 * b.w * b.w)), 0);
+    X = []; Y = [];
+    for (const x0 of [0.15 + 0.1 * r(), 0.72 + 0.15 * r()]) { X.push(x0); Y.push(f(x0)); }
+  }
+  function cholesky(A) {
+    const n = A.length, L = A.map(() => new Float64Array(n));
+    for (let i = 0; i < n; i++) for (let j = 0; j <= i; j++) {
+      let s = A[i][j]; for (let p = 0; p < j; p++) s -= L[i][p] * L[j][p];
+      L[i][j] = i === j ? Math.sqrt(Math.max(s, 1e-12)) : s / L[j][j];
+    }
+    return L;
+  }
+  const fwd = (L, b) => { const n = b.length, z = new Float64Array(n); for (let i = 0; i < n; i++) { let s = b[i]; for (let p = 0; p < i; p++) s -= L[i][p] * z[p]; z[i] = s / L[i][i]; } return z; };
+  const bwd = (L, b) => { const n = b.length, z = new Float64Array(n); for (let i = n - 1; i >= 0; i--) { let s = b[i]; for (let p = i + 1; p < n; p++) s -= L[p][i] * z[p]; z[i] = s / L[i][i]; } return z; };
+  const Phi = z => 0.5 * (1 + erf(z / Math.SQRT2));
+  function erf(x) { const s = Math.sign(x); x = Math.abs(x); const t = 1 / (1 + 0.3275911 * x); const y = 1 - (((((1.061405429 * t - 1.453152027) * t) + 1.421413741) * t - 0.284496736) * t + 0.254829592) * t * Math.exp(-x * x); return s * y; }
+  function posterior() {
+    const n = X.length, K = X.map((a, i) => X.map((b, j) => k(a, b) + (i === j ? noise : 0)));
+    const L = cholesky(K), alpha = bwd(L, fwd(L, Y));
+    const best = Math.max(...Y), mu = new Float64Array(N), sd = new Float64Array(N), ei = new Float64Array(N);
+    for (let g = 0; g < N; g++) {
+      const ks = X.map(a => k(a, xs[g]));
+      let m = 0; for (let i = 0; i < n; i++) m += ks[i] * alpha[i];
+      const v = fwd(L, ks); let q = 0; for (let i = 0; i < n; i++) q += v[i] * v[i];
+      const s = Math.sqrt(Math.max(sf2 - q, 1e-10)); mu[g] = m; sd[g] = s;
+      const z = (m - best - 0.01) / s; ei[g] = (m - best - 0.01) * Phi(z) + s * Math.exp(-z * z / 2) / Math.sqrt(2 * Math.PI);
+    }
+    let am = 0; for (let g = 1; g < N; g++) if (ei[g] > ei[am]) am = g;
+    return { mu, sd, ei, next: xs[am], eiMax: ei[am] };
+  }
+  function setTarget() { const p = posterior(); shown = target ? lerpPost(shown, target, 1) : p; target = p; tTrans = 0; nextX = p.next; }
+  const lerpPost = (a, b, t) => ({ mu: a.mu.map((v, i) => v + (b.mu[i] - v) * t), sd: a.sd.map((v, i) => v + (b.sd[i] - v) * t), ei: a.ei.map((v, i) => v + (b.ei[i] - v) * t), next: b.next });
+  function addPoint(x) { X.push(x); Y.push(f(x)); const before = shown ? lerpPost(shown, target, ease(tTrans)) : null; target = null; setTarget(); if (before) shown = before; tTrans = 0; }
+  const ease = t => t < 0 ? 0 : t > 1 ? 1 : 1 - Math.pow(1 - t, 3);
+
+  function plotRect(w, h) {
+    return w > 900 ? { x: w * 0.47, y: h * 0.16, w: w * 0.49, h: h * 0.70 } : { x: 20, y: h * 0.6, w: w - 40, h: h * 0.32 };
+  }
+  canvas.addEventListener("click", e => {
+    const b = canvas.getBoundingClientRect(), R = plotRect(b.width, b.height), x = (e.clientX - b.left - R.x) / R.w;
+    if (x >= 0 && x <= 1) { addPoint(x); lastStep = performance.now() / 1000 + 1.5; resetAt = 0; }
+  });
+
+  newFunction(); setTarget();
+  function draw(now) {
+    const { ctx, w, h } = fitCanvas(canvas), R = plotRect(w, h);
+    ctx.clearRect(0, 0, w, h);
+    if (!REDUCED) {
+      if (now - lastStep > 1.6 && tTrans >= 1) {
+        lastStep = now;
+        if (X.length >= 11 || target.eiMax < 1e-4) { if (!resetAt) resetAt = now; }
+        else addPoint(nextX);
+      }
+      if (resetAt) { fade = Math.max(0, 1 - (now - resetAt) / 0.8); if (fade === 0) { newFunction(); target = null; setTarget(); shown = target; resetAt = 0; lastStep = now; } }
+      else fade = Math.min(1, fade + 0.04);
+      tTrans = Math.min(1, tTrans + 0.025);
+    } else tTrans = 1;
+    const P = lerpPost(shown, target, ease(tTrans));
+    const fRange = [-1.6, 1.8];
+    const X2 = x => R.x + x * R.w, fH = R.h * 0.74, Yf = y => R.y + fH * (1 - (y - fRange[0]) / (fRange[1] - fRange[0]));
+    ctx.globalAlpha = fade;
+    // grid
+    ctx.strokeStyle = "rgba(255,255,255,.06)"; ctx.lineWidth = 1;
+    for (let i = 0; i <= 8; i++) { const x = R.x + i * R.w / 8; ctx.beginPath(); ctx.moveTo(x, R.y); ctx.lineTo(x, R.y + R.h); ctx.stroke(); }
+    // uncertainty band (2σ and 1σ), clipped to the plot area
+    ctx.save(); ctx.beginPath(); ctx.rect(R.x, R.y, R.w, fH); ctx.clip();
+    for (const [m, a] of [[2, .16], [1, .22]]) {
+      ctx.beginPath();
+      for (let g = 0; g < N; g++) ctx.lineTo(X2(xs[g]), Yf(P.mu[g] + m * P.sd[g]));
+      for (let g = N - 1; g >= 0; g--) ctx.lineTo(X2(xs[g]), Yf(P.mu[g] - m * P.sd[g]));
+      ctx.closePath(); ctx.fillStyle = `rgba(31,165,179,${a})`; ctx.fill();
+    }
+    ctx.restore();
+    // true function
+    ctx.setLineDash([3, 5]); ctx.strokeStyle = "rgba(255,255,255,.28)"; ctx.lineWidth = 1.2; ctx.beginPath();
+    xs.forEach((x, g) => ctx.lineTo(X2(x), Yf(f(x)))); ctx.stroke(); ctx.setLineDash([]);
+    // mean
+    ctx.strokeStyle = "#fff"; ctx.lineWidth = 2.2; ctx.beginPath(); xs.forEach((x, g) => ctx.lineTo(X2(x), Yf(P.mu[g]))); ctx.stroke();
+    // acquisition
+    const aY = R.y + R.h, aH = R.h * 0.2, eMax = Math.max(...P.ei) || 1;
+    ctx.beginPath(); ctx.moveTo(X2(0), aY);
+    xs.forEach((x, g) => ctx.lineTo(X2(x), aY - aH * P.ei[g] / eMax)); ctx.lineTo(X2(1), aY); ctx.closePath();
+    const grd = ctx.createLinearGradient(0, aY - aH, 0, aY); grd.addColorStop(0, "rgba(240,162,59,.55)"); grd.addColorStop(1, "rgba(240,162,59,.02)");
+    ctx.fillStyle = grd; ctx.fill();
+    ctx.strokeStyle = "#f0a23b"; ctx.lineWidth = 1.6; ctx.beginPath(); xs.forEach((x, g) => ctx.lineTo(X2(x), aY - aH * P.ei[g] / eMax)); ctx.stroke();
+    ctx.strokeStyle = "rgba(255,255,255,.18)"; ctx.beginPath(); ctx.moveTo(R.x, aY); ctx.lineTo(R.x + R.w, aY); ctx.stroke();
+    // next query marker
+    if (nextX != null && !resetAt) {
+      const nx = X2(nextX), pulse = REDUCED ? 0 : (Math.sin(now * 5) + 1) / 2;
+      ctx.strokeStyle = `rgba(240,162,59,${0.35 + 0.35 * pulse})`; ctx.setLineDash([4, 4]); ctx.beginPath(); ctx.moveTo(nx, R.y); ctx.lineTo(nx, aY); ctx.stroke(); ctx.setLineDash([]);
+      ctx.fillStyle = "#f0a23b"; ctx.beginPath(); ctx.moveTo(nx, aY + 4); ctx.lineTo(nx - 5, aY + 12); ctx.lineTo(nx + 5, aY + 12); ctx.fill();
+    }
+    // observations
+    X.forEach((x, i) => {
+      const age = i === X.length - 1 ? ease(tTrans) : 1;
+      ctx.fillStyle = "#0b1626"; ctx.strokeStyle = i === X.length - 1 ? "#f0a23b" : "#fff"; ctx.lineWidth = 2.2;
+      ctx.beginPath(); ctx.arc(X2(x), Yf(Y[i]), 3 + 2.5 * age, 0, 7); ctx.fill(); ctx.stroke();
+      if (i === X.length - 1 && age < 1) { ctx.strokeStyle = `rgba(240,162,59,${1 - age})`; ctx.beginPath(); ctx.arc(X2(x), Yf(Y[i]), 6 + 22 * age, 0, 7); ctx.stroke(); }
+    });
+    // labels
+    ctx.font = "500 11px 'JetBrains Mono', monospace"; ctx.fillStyle = "rgba(255,255,255,.45)";
+    ctx.fillText(`f(x) ~ GP   ·   n = ${X.length}`, R.x, R.y - 10);
+    ctx.fillText("expected improvement", R.x, aY - aH - 6);
+    ctx.globalAlpha = 1;
+  }
+  if (REDUCED) { for (let i = 0; i < 4; i++) addPoint(nextX); const r2 = () => draw(0); r2(); window.addEventListener("resize", r2); }
+  else { const loop = () => { draw(performance.now() / 1000); requestAnimationFrame(loop); }; requestAnimationFrame(loop); }
+})();
+
+/* =====================================================================
+   RESEARCH AREA ANIMATIONS
+   ===================================================================== */
+const AREA_ANIMS = {
+  // 2D objective landscape; a search population concentrates on the optimum
+  bo(canvas) {
+    let bg = null, bgKey = "";
+    const peaks = [{ x: .72, y: .35, s: .11, a: 1 }, { x: .28, y: .62, s: .14, a: .7 }, { x: .55, y: .8, s: .08, a: .5 }];
+    const F = (x, y) => peaks.reduce((s, p) => s + p.a * Math.exp(-((x - p.x) ** 2 + (y - p.y) ** 2) / (2 * p.s * p.s)), 0);
+    const r = rng(3); let pts = [], cycle = -1;
+    function makeBg(w, h) {
+      const c = document.createElement("canvas"); c.width = Math.ceil(w / 3); c.height = Math.ceil(h / 3);
+      const g = c.getContext("2d"), im = g.createImageData(c.width, c.height);
+      for (let j = 0; j < c.height; j++) for (let i = 0; i < c.width; i++) {
+        const v = F(i / c.width, j / c.height), band = Math.abs((v * 9) % 1 - .5) < .06 ? 1 : 0, o = 4 * (j * c.width + i);
+        im.data[o] = 11 + 20 * v + 40 * band; im.data[o + 1] = 22 + 110 * v + 40 * band; im.data[o + 2] = 38 + 120 * v + 40 * band; im.data[o + 3] = 255;
+      }
+      g.putImageData(im, 0, 0); return c;
+    }
+    return t => {
+      const { ctx, w, h } = fitCanvas(canvas);
+      if (bgKey !== w + "x" + h) { bg = makeBg(w, h); bgKey = w + "x" + h; }
+      ctx.imageSmoothingEnabled = true; ctx.drawImage(bg, 0, 0, w, h);
+      const c = Math.floor(t / 7), p = (t % 7) / 7;
+      if (c !== cycle) { cycle = c; pts = Array.from({ length: 30 }, () => ({ x: r(), y: r(), jx: gauss(r), jy: gauss(r) })); }
+      const sh = Math.min(1, p * 1.4), spread = 0.03 + 0.25 * (1 - sh);
+      ctx.globalAlpha = p > .9 ? (1 - p) * 10 : 1;
+      pts.forEach(q => {
+        const x = q.x + (peaks[0].x + q.jx * spread - q.x) * sh, y = q.y + (peaks[0].y + q.jy * spread * .8 - q.y) * sh;
+        ctx.fillStyle = "#f0a23b"; ctx.beginPath(); ctx.arc(x * w, y * h, 3, 0, 7); ctx.fill();
+      });
+      ctx.globalAlpha = 1;
+      ctx.strokeStyle = "#fff"; ctx.lineWidth = 1.5; const sx = peaks[0].x * w, sy = peaks[0].y * h;
+      ctx.beginPath(); ctx.moveTo(sx - 7, sy); ctx.lineTo(sx + 7, sy); ctx.moveTo(sx, sy - 7); ctx.lineTo(sx, sy + 7); ctx.stroke();
+    };
+  },
+  // a broad prior density sharpens into a posterior as data arrive
+  uq(canvas) {
+    const r = rng(11), data = Array.from({ length: 14 }, () => 1.1 + 0.55 * gauss(r));
+    const N = (x, m, s) => Math.exp(-((x - m) ** 2) / (2 * s * s)) / (s * Math.sqrt(2 * Math.PI));
+    return t => {
+      const { ctx, w, h } = fitCanvas(canvas);
+      ctx.fillStyle = "#0b1626"; ctx.fillRect(0, 0, w, h);
+      const ph = (t % 8) / 8, n = Math.min(data.length, Math.floor(ph * 1.35 * data.length));
+      const prec = 1 / 4 + n / 1.5, m = n ? (data.slice(0, n).reduce((a, b) => a + b, 0) / 1.5) / prec : 0, s = Math.sqrt(1 / prec);
+      const X = x => (x + 4) / 8 * w, base = h - 34, Y = v => base - v * (h - 70) / 1.3;
+      // prior
+      ctx.setLineDash([4, 5]); ctx.strokeStyle = "rgba(255,255,255,.35)"; ctx.lineWidth = 1.4; ctx.beginPath();
+      for (let i = 0; i <= 200; i++) { const x = -4 + 8 * i / 200; ctx.lineTo(X(x), Y(N(x, 0, 2))); } ctx.stroke(); ctx.setLineDash([]);
+      // posterior
+      const grd = ctx.createLinearGradient(0, 30, 0, base); grd.addColorStop(0, "rgba(31,165,179,.65)"); grd.addColorStop(1, "rgba(31,165,179,.05)");
+      ctx.beginPath(); ctx.moveTo(X(-4), base);
+      for (let i = 0; i <= 300; i++) { const x = -4 + 8 * i / 300; ctx.lineTo(X(x), Y(N(x, m, s))); }
+      ctx.lineTo(X(4), base); ctx.closePath(); ctx.fillStyle = grd; ctx.fill();
+      ctx.strokeStyle = "#5fd3df"; ctx.lineWidth = 2; ctx.beginPath();
+      for (let i = 0; i <= 300; i++) { const x = -4 + 8 * i / 300; ctx.lineTo(X(x), Y(N(x, m, s))); } ctx.stroke();
+      // credible interval
+      ctx.fillStyle = "rgba(240,162,59,.9)"; ctx.fillRect(X(m - 2 * s), base + 10, X(m + 2 * s) - X(m - 2 * s), 3);
+      // data
+      data.slice(0, n).forEach((d, i) => { ctx.fillStyle = i === n - 1 ? "#f0a23b" : "rgba(255,255,255,.8)"; ctx.fillRect(X(d) - 1, base - 10, 2, 10); });
+      ctx.strokeStyle = "rgba(255,255,255,.2)"; ctx.beginPath(); ctx.moveTo(0, base); ctx.lineTo(w, base); ctx.stroke();
+      ctx.font = "500 11px 'JetBrains Mono', monospace"; ctx.fillStyle = "rgba(255,255,255,.5)";
+      ctx.fillText(`prior → posterior   ·   n = ${n}`, 14, 22);
+    };
+  },
+  // particles advected by a field of vortices (flow-like dynamics)
+  sciml(canvas) {
+    const r = rng(5), V = Array.from({ length: 7 }, () => ({ x: r(), y: r(), g: (r() > .5 ? 1 : -1) * (0.6 + r()) }));
+    let P = [], key = "";
+    const vel = (x, y, t) => {
+      let u = 0.12, v = 0;
+      V.forEach((c, i) => { const cx = c.x + 0.05 * Math.sin(t * .3 + i), dx = x - cx, dy = y - c.y, d2 = dx * dx + dy * dy + 0.004; u += -c.g * dy / d2 * 0.004; v += c.g * dx / d2 * 0.004; });
+      return [u, v];
+    };
+    return t => {
+      const { ctx, w, h } = fitCanvas(canvas);
+      let steps = REDUCED ? 60 : 1;
+      if (key !== w + "x" + h) { key = w + "x" + h; ctx.fillStyle = "#0b1626"; ctx.fillRect(0, 0, w, h); P = Array.from({ length: 900 }, () => ({ x: r(), y: r(), a: r() * 4 })); steps = 30; }
+      ctx.fillStyle = REDUCED ? "#0b1626" : "rgba(11,22,38,.06)"; ctx.fillRect(0, 0, w, h);
+      for (let s = 0; s < steps; s++) P.forEach(p => {
+        const [u, v] = vel(p.x, p.y, t), nx = p.x + u * 0.012 * (w / h > 1 ? 1 : 1), ny = p.y + v * 0.012;
+        const sp = Math.hypot(u, v), hue = v > 0 ? "224,96,90" : "95,211,223";
+        ctx.strokeStyle = `rgba(${hue},${Math.min(1, .55 + sp * .6)})`; ctx.lineWidth = 1.6;
+        ctx.beginPath(); ctx.moveTo(p.x * w, p.y * h); ctx.lineTo(nx * w, ny * h); ctx.stroke();
+        p.x = nx; p.y = ny; p.a += 0.01;
+        if (p.x > 1.02 || p.x < -0.02 || p.y > 1.02 || p.y < -0.02 || p.a > 4) { p.x = r() * .2 - .02; p.y = r(); p.a = r() * 2; }
+      });
+    };
+  },
+  // a causal graph with signals flowing along directed edges
+  causal(canvas) {
+    const nodes = [{ x: .14, y: .5, l: "X₁" }, { x: .38, y: .22, l: "X₂" }, { x: .38, y: .78, l: "X₃" }, { x: .64, y: .5, l: "X₄" }, { x: .87, y: .3, l: "Y" }, { x: .87, y: .74, l: "X₅" }];
+    const edges = [[0, 1], [0, 2], [1, 3], [2, 3], [3, 4], [1, 4], [3, 5]];
+    const query = 3; // edge under expert query
+    return t => {
+      const { ctx, w, h } = fitCanvas(canvas);
+      ctx.fillStyle = "#0b1626"; ctx.fillRect(0, 0, w, h);
+      const R = Math.min(22, h * .09), P = n => [n.x * w, n.y * h];
+      edges.forEach(([a, b], i) => {
+        const [x1, y1] = P(nodes[a]), [x2, y2] = P(nodes[b]), ang = Math.atan2(y2 - y1, x2 - x1);
+        const sx = x1 + R * Math.cos(ang), sy = y1 + R * Math.sin(ang), ex = x2 - (R + 4) * Math.cos(ang), ey = y2 - (R + 4) * Math.sin(ang);
+        const q = i === query, on = (Math.sin(t * 1.2) + 1) / 2;
+        ctx.strokeStyle = q ? `rgba(240,162,59,${.4 + .6 * on})` : "rgba(95,211,223,.55)"; ctx.lineWidth = 2;
+        if (q) ctx.setLineDash([5, 5]); ctx.beginPath(); ctx.moveTo(sx, sy); ctx.lineTo(ex, ey); ctx.stroke(); ctx.setLineDash([]);
+        ctx.fillStyle = ctx.strokeStyle; ctx.beginPath(); ctx.moveTo(ex + 6 * Math.cos(ang), ey + 6 * Math.sin(ang));
+        ctx.lineTo(ex - 6 * Math.cos(ang - .5), ey - 6 * Math.sin(ang - .5)); ctx.lineTo(ex - 6 * Math.cos(ang + .5), ey - 6 * Math.sin(ang + .5)); ctx.fill();
+        if (!q) { const p = ((t * .45 + i * .37) % 1); ctx.fillStyle = "#fff"; ctx.beginPath(); ctx.arc(sx + (ex - sx) * p, sy + (ey - sy) * p, 2.6, 0, 7); ctx.fill(); }
+        if (q) { ctx.font = "600 12px Inter, sans-serif"; ctx.fillStyle = `rgba(240,162,59,${.5 + .5 * on})`; ctx.fillText("?", (sx + ex) / 2 + 8, (sy + ey) / 2 - 6); }
+      });
+      nodes.forEach((n, i) => {
+        const [x, y] = P(n), glow = (Math.sin(t * 2 - i) + 1) / 2;
+        ctx.fillStyle = "#12233a"; ctx.strokeStyle = i === 4 ? "#f0a23b" : "#5fd3df"; ctx.lineWidth = 2;
+        ctx.shadowColor = ctx.strokeStyle; ctx.shadowBlur = 8 + 10 * glow;
+        ctx.beginPath(); ctx.arc(x, y, R, 0, 7); ctx.fill(); ctx.stroke(); ctx.shadowBlur = 0;
+        ctx.fillStyle = "#fff"; ctx.font = "500 13px 'JetBrains Mono', monospace"; ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.fillText(n.l, x, y + 1);
+      });
+      ctx.textAlign = "start"; ctx.textBaseline = "alphabetic";
+    };
+  },
+};
+document.querySelectorAll("canvas[data-anim]").forEach(c => animateWhenVisible(c, AREA_ANIMS[c.dataset.anim](c)));
+
+/* =====================================================================
+   ILLUSTRATIONS for papers without an extracted figure
+   ===================================================================== */
+const ILLUS = {
+  genbo(ctx, w, h) { // generative proposals shift toward high-utility regions
+    const f = x => .55 * Math.exp(-((x - .7) ** 2) / .006) + .3 * Math.exp(-((x - .3) ** 2) / .01) + .08 * Math.sin(x * 20);
+    const X = x => 20 + x * (w - 40), base = h - 26, Y = v => base - v * (h - 60);
+    const r = rng(21);
+    const hist = (mu, sd, col, nS) => { const bins = new Array(40).fill(0); for (let i = 0; i < nS; i++) { const v = mu + sd * gauss(r); if (v > 0 && v < 1) bins[Math.floor(v * 40)]++; } const mx = Math.max(...bins); bins.forEach((b, i) => { ctx.fillStyle = col; const bh = b / mx * (h * .38); ctx.fillRect(X(i / 40) + 1, base - bh, (w - 40) / 40 - 2, bh); }); };
+    hist(.5, .28, "rgba(150,160,175,.35)", 600); hist(.7, .05, "rgba(31,165,179,.75)", 600);
+    ctx.strokeStyle = "#172231"; ctx.lineWidth = 2; ctx.beginPath(); for (let i = 0; i <= 200; i++) ctx.lineTo(X(i / 200), Y(f(i / 200) + .25)); ctx.stroke();
+    ctx.font = "500 11px 'JetBrains Mono', monospace"; ctx.fillStyle = "#5b6676"; ctx.fillText("objective", X(.02), 22);
+    ctx.fillStyle = "rgba(120,130,145,.9)"; ctx.fillText("round 1", X(.05), base - h * .42); ctx.fillStyle = "#0e7c88"; ctx.fillText("round T", X(.76), base - h * .4);
+  },
+  nots(ctx, w, h) { // random function samples over a 2D domain (function space)
+    const r = rng(9), comps = Array.from({ length: 14 }, () => ({ kx: 1 + 5 * r(), ky: 1 + 5 * r(), p: 6 * r(), a: gauss(r) / 3 }));
+    const im = ctx.createImageData(Math.ceil(w / 2), Math.ceil(h / 2)), W = im.width, H = im.height;
+    for (let j = 0; j < H; j++) for (let i = 0; i < W; i++) {
+      const x = i / W, y = j / H; let v = comps.reduce((s, c) => s + c.a * Math.sin(c.kx * x * 3 + c.ky * y * 2 + c.p), 0);
+      v = Math.max(-1, Math.min(1, v)); const o = 4 * (j * W + i), band = Math.abs((v * 6) % 1) < .07;
+      const [rC, gC, bC] = v > 0 ? [255, 255 - 150 * v, 255 - 160 * v] : [255 + 200 * v, 255 + 110 * v, 255 + 40 * v];
+      im.data[o] = band ? rC * .8 : rC; im.data[o + 1] = band ? gC * .8 : gC; im.data[o + 2] = band ? bC * .8 : bC; im.data[o + 3] = 255;
+    }
+    const c = document.createElement("canvas"); c.width = W; c.height = H; c.getContext("2d").putImageData(im, 0, 0);
+    ctx.drawImage(c, 0, 0, w, h);
+    ctx.fillStyle = "rgba(11,22,38,.75)"; ctx.fillRect(12, h - 36, 210, 24); ctx.fillStyle = "#fff"; ctx.font = "500 11px 'JetBrains Mono', monospace"; ctx.fillText("sampled function u(x) ~ posterior", 20, h - 20);
+  },
+  agps(ctx, w, h) { // multi-objective scatter with a Pareto front
+    const r = rng(17), pts = Array.from({ length: 110 }, () => { const a = r() * Math.PI / 2, rad = .25 + .65 * Math.sqrt(r()); return [Math.cos(a) * rad, Math.sin(a) * rad]; });
+    const X = v => 40 + v * (w - 70), Y = v => h - 30 - v * (h - 60);
+    const front = pts.filter(p => !pts.some(q => q[0] >= p[0] && q[1] >= p[1] && (q[0] > p[0] || q[1] > p[1]))).sort((a, b) => a[0] - b[0]);
+    ctx.strokeStyle = "#c9c3b5"; ctx.beginPath(); ctx.moveTo(X(0), Y(1)); ctx.lineTo(X(0), Y(0)); ctx.lineTo(X(1), Y(0)); ctx.stroke();
+    pts.forEach(p => { ctx.fillStyle = "rgba(91,102,118,.35)"; ctx.beginPath(); ctx.arc(X(p[0]), Y(p[1]), 3, 0, 7); ctx.fill(); });
+    ctx.strokeStyle = "#f0a23b"; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(X(0), Y(front[0][1]));
+    front.forEach((p, i) => { ctx.lineTo(X(p[0]), Y(p[1])); if (front[i + 1]) ctx.lineTo(X(p[0]), Y(front[i + 1][1])); }); ctx.lineTo(X(front.at(-1)[0]), Y(0)); ctx.stroke();
+    front.forEach(p => { ctx.fillStyle = "#0e7c88"; ctx.beginPath(); ctx.arc(X(p[0]), Y(p[1]), 5, 0, 7); ctx.fill(); });
+    ctx.font = "500 11px 'JetBrains Mono', monospace"; ctx.fillStyle = "#5b6676"; ctx.fillText("objective 1 →", X(.72), Y(0) + 20); ctx.save(); ctx.translate(X(0) - 18, Y(.45)); ctx.rotate(-Math.PI / 2); ctx.fillText("objective 2 →", 0, 0); ctx.restore();
+    ctx.fillStyle = "#a8650f"; ctx.fillText("Pareto set", X(.78), Y(.86));
+  },
+  vsd(ctx, w, h) { // a search distribution over sequences (per-position token probabilities)
+    const r = rng(33), cols = ["#1fa5b3", "#f0a23b", "#7b6fd6", "#e0605a", "#3d8b5f"], L = 18, rows = 4;
+    const cw = (w - 40) / L;
+    for (let i = 0; i < L; i++) {
+      let probs = cols.map(() => r() ** 3); const s = probs.reduce((a, b) => a + b, 0); probs = probs.map(p => p / s);
+      let y = h - 26; const H = h - 60;
+      probs.map((p, k) => [p, k]).sort((a, b) => a[0] - b[0]).forEach(([p, k]) => { ctx.fillStyle = cols[k]; ctx.globalAlpha = .25 + .75 * p; ctx.fillRect(20 + i * cw + 1.5, y - p * H, cw - 3, p * H - 1.5); y -= p * H; });
+    }
+    ctx.globalAlpha = 1; ctx.font = "500 11px 'JetBrains Mono', monospace"; ctx.fillStyle = "#5b6676"; ctx.fillText("q(x) over sequence positions", 20, 20);
+  },
+  bacon(ctx, w, h) { // simulator runs for different parameters; calibrated run fits data; designs chosen adaptively
+    const r = rng(4), sim = (x, th) => Math.sin(x * 6 * th + 0.4) * (0.5 + 0.3 * th);
+    const X = x => 24 + x * (w - 48), Y = v => h / 2 - v * (h * .38);
+    for (let k = 0; k < 9; k++) { const th = .55 + .8 * r(); ctx.strokeStyle = "rgba(91,102,118,.25)"; ctx.lineWidth = 1.2; ctx.beginPath(); for (let i = 0; i <= 120; i++) ctx.lineTo(X(i / 120), Y(sim(i / 120, th))); ctx.stroke(); }
+    const thStar = 1; ctx.strokeStyle = "#1fa5b3"; ctx.lineWidth = 2.4; ctx.beginPath(); for (let i = 0; i <= 120; i++) ctx.lineTo(X(i / 120), Y(sim(i / 120, thStar))); ctx.stroke();
+    const designs = [.08, .2, .37, .51, .66, .83, .94];
+    designs.forEach((d, i) => { const y = sim(d, thStar) + .06 * gauss(r); ctx.fillStyle = "#172231"; ctx.beginPath(); ctx.arc(X(d), Y(y), 4, 0, 7); ctx.fill();
+      ctx.fillStyle = "#f0a23b"; ctx.beginPath(); ctx.moveTo(X(d), h - 22); ctx.lineTo(X(d) - 5, h - 12); ctx.lineTo(X(d) + 5, h - 12); ctx.fill(); });
+    ctx.font = "500 11px 'JetBrains Mono', monospace"; ctx.fillStyle = "#5b6676"; ctx.fillText("simulator runs · calibrated θ* · designs ▲", 24, 20);
+  },
+  karrikins(ctx, w, h) { // globe + causal arrows
+    ctx.fillStyle = "#0b1626"; ctx.fillRect(0, 0, w, h);
+    const cx = w * .4, cy = h * .52, R = Math.min(w, h) * .38;
+    const g = ctx.createRadialGradient(cx - R * .3, cy - R * .3, R * .1, cx, cy, R); g.addColorStop(0, "#1f5e7a"); g.addColorStop(1, "#0e2a40");
+    ctx.fillStyle = g; ctx.beginPath(); ctx.arc(cx, cy, R, 0, 7); ctx.fill();
+    ctx.strokeStyle = "rgba(95,211,223,.28)"; ctx.lineWidth = 1;
+    for (let i = -3; i <= 3; i++) { const yy = cy + i * R / 4; const hw = Math.sqrt(Math.max(0, R * R - (yy - cy) ** 2)); ctx.beginPath(); ctx.moveTo(cx - hw, yy); ctx.lineTo(cx + hw, yy); ctx.stroke(); }
+    for (let i = -3; i <= 3; i++) { ctx.beginPath(); ctx.ellipse(cx, cy, Math.abs(R * i / 3.4) + .5, R, 0, 0, 7); ctx.stroke(); }
+    const nodes = [[w * .78, h * .24, "driver"], [w * .84, h * .55, "event"], [w * .72, h * .82, "impact"]];
+    ctx.strokeStyle = "#f0a23b"; ctx.lineWidth = 2;
+    const arrow = (a, b) => { ctx.beginPath(); ctx.moveTo(a[0], a[1] + 10); ctx.lineTo(b[0], b[1] - 12); ctx.stroke(); };
+    arrow(nodes[0], nodes[1]); arrow(nodes[1], nodes[2]);
+    ctx.setLineDash([4, 4]); ctx.strokeStyle = "rgba(240,162,59,.6)"; ctx.beginPath(); ctx.moveTo(cx + R * .5, cy - R * .4); ctx.lineTo(nodes[0][0] - 30, nodes[0][1]); ctx.stroke(); ctx.setLineDash([]);
+    ctx.font = "500 11px 'JetBrains Mono', monospace";
+    nodes.forEach(n => { ctx.fillStyle = "#12233a"; ctx.strokeStyle = "#5fd3df"; ctx.beginPath(); ctx.roundRect(n[0] - 32, n[1] - 11, 64, 22, 11); ctx.fill(); ctx.stroke(); ctx.fillStyle = "#fff"; ctx.textAlign = "center"; ctx.fillText(n[2], n[0], n[1] + 4); });
+    ctx.textAlign = "start";
+  },
+};
+
+/* =====================================================================
+   RENDER: stats, chips, timeline, publications, people
+   ===================================================================== */
+(function render() {
+  const papers = PUBS.filter(p => p.venue !== "Project");
+  const venues = new Set(papers.map(p => p.venue));
+  $("#stats").innerHTML = [
+    [papers.length, "papers since 2024"],
+    [[...venues].length, "top venues: " + [...venues].join(", ")],
+    [Object.keys(AREAS).length, "research directions"],
+    [new Set(PUBS.map(p => p.repo)).size, "open-source repositories"],
+  ].map(([n, l]) => `<div class="stat"><div class="n">${n}</div><div class="l">${esc(l)}</div></div>`).join("");
+
+  // chips under each area
+  document.querySelectorAll("[data-chips]").forEach(box => {
+    PUBS.filter(p => p.areas.includes(box.dataset.chips)).forEach(p => {
+      const b = el("button", { class: "chip", type: "button" }, esc(p.short)); b.onclick = () => focusPub(p.id); box.appendChild(b);
+    });
+  });
+
+  // timeline
+  const years = [...new Set(papers.map(p => p.year))].sort();
+  $("#timeline").innerHTML = years.map(y => `<div class="year"><span class="y">${y}</span><ul>${
+    papers.filter(p => p.year === y).map(p => `<li><a href="#pub-${p.id}" data-focus="${p.id}"><span class="venue ${venueClass(p.venue)}">${esc(p.venue)}${p.award ? " · " + esc(p.award) : ""}</span><span class="t">${esc(p.short)}</span></a></li>`).join("")
+  }</ul></div>`).join("");
+  $("#timeline").addEventListener("click", e => { const a = e.target.closest("[data-focus]"); if (a) { e.preventDefault(); focusPub(a.dataset.focus); } });
+
+  // filters
+  const filters = $("#filters");
+  [["all", "All"], ...Object.entries(AREAS)].forEach(([k, label]) => {
+    const b = el("button", { class: "filter" + (k === "all" ? " on" : ""), type: "button", "data-k": k, "aria-pressed": k === "all" }, esc(label));
+    b.onclick = () => setFilter(k); filters.appendChild(b);
+  });
+
+  // publication cards
+  const icon = { paper: '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 1.5h5l3 3v10H4z"/><path d="M9 1.5v3h3M6 8h4M6 11h4"/></svg>',
+    code: '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5.5 4 1.5 8l4 4M10.5 4l4 4-4 4"/></svg>',
+    bib: '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4.5" y="4.5" width="9" height="10" rx="1.5"/><path d="M2.5 11V2.5a1 1 0 0 1 1-1H10"/></svg>' };
+  const grid = $("#pubs");
+  PUBS.forEach(p => {
+    const card = el("article", { class: "pub reveal", id: "pub-" + p.id, "data-areas": p.areas.join(" ") });
+    const isPaperFig = p.fig.tag === "paper";
+    const dark = p.fig.draw === "karrikins";
+    const fig = el("div", { class: "fig" + (dark ? " dark" : "") });
+    if (p.fig.img) fig.appendChild(el("img", { src: p.fig.img, alt: "Figure from " + p.title, loading: "lazy" }));
+    else if (p.fig.video) {
+      const v = el("video", { src: p.fig.video, poster: p.fig.poster, muted: "", loop: "", playsinline: "", preload: "none", "aria-label": "Rollout: ground truth, prediction and error" });
+      v.muted = true; fig.appendChild(v);
+      if (!REDUCED) new IntersectionObserver(([e]) => e.isIntersecting ? v.play().catch(() => {}) : v.pause(), { threshold: .3 }).observe(v);
+    } else {
+      const c = el("canvas", { "aria-hidden": "true" }); fig.appendChild(c);
+      const paint = () => { const { ctx, w, h } = fitCanvas(c); if (!w) return; ctx.clearRect(0, 0, w, h); ILLUS[p.fig.draw](ctx, w, h); };
+      new IntersectionObserver(([e], o) => { if (e.isIntersecting) { paint(); } }, { rootMargin: "200px" }).observe(c);
+      window.addEventListener("resize", paint);
+    }
+    fig.appendChild(el("span", { class: "figtag" }, isPaperFig ? "From the paper" : "Illustration"));
+    card.appendChild(fig);
+    const authors = p.authors.map(a => TEAM.has(a) ? `<b>${esc(a)}</b>` : esc(a)).join(", ");
+    const body = el("div", { class: "body" }, `
+      <div class="meta"><span class="venue ${venueClass(p.venue)}">${esc(p.venue)} ${p.venue !== "Project" ? p.year : ""}</span>${p.award ? `<span class="award">★ ${esc(p.award)}</span>` : ""}</div>
+      <h3>${esc(p.title)}</h3>
+      ${authors ? `<p class="authors">${authors}</p>` : `<p class="authors">Open-source platform for climate attribution, forecasting and decision intelligence.</p>`}
+      <div class="links">
+        ${p.paper ? `<a class="lk" href="${p.paper}">${icon.paper}Paper</a>` : ""}
+        ${p.code ? `<a class="lk" href="${p.code}">${icon.code}Code</a>` : ""}
+        ${p.bib ? `<button class="lk" type="button" data-bib="${p.id}">${icon.bib}BibTeX</button>` : ""}
+        <span class="stars" data-repo="${p.repo}"></span>
+      </div>`);
+    card.appendChild(body); grid.appendChild(card);
+  });
+  grid.addEventListener("click", e => {
+    const b = e.target.closest("[data-bib]"); if (!b) return;
+    const text = PUBS.find(p => p.id === b.dataset.bib).bib;
+    const done = () => toast("BibTeX copied to clipboard");
+    if (navigator.clipboard) navigator.clipboard.writeText(text).then(done, () => fallbackCopy(text, done)); else fallbackCopy(text, done);
+  });
+  function fallbackCopy(text, done) { const t = el("textarea"); t.value = text; document.body.appendChild(t); t.select(); try { document.execCommand("copy"); done(); } catch (e) { prompt("Copy BibTeX:", text); } t.remove(); }
+
+  // people
+  $("#people-grid").innerHTML = PEOPLE.map(m => {
+    const initials = m.name.split(" ").filter(s => !s.endsWith(".")).map(s => s[0]).join("").slice(0, 2);
+    return `<div class="person reveal">
+      <div class="avatar" style="background:linear-gradient(135deg, ${m.grad[0]}, ${m.grad[1]})">${initials}${m.photo ? `<img src="${m.photo}" alt="${esc(m.name)}" loading="lazy">` : ""}</div>
+      <div class="pname">${esc(m.name)}</div>
+      <div class="role">${esc(m.role)}</div>
+      <div class="plinks">${Object.entries(m.links).map(([k, u]) => `<a href="${u}">${esc(k)}</a>`).join("")}</div>
+    </div>`;
+  }).join("");
+})();
+
+function setFilter(k) {
+  document.querySelectorAll(".filter").forEach(b => { const on = b.dataset.k === k; b.classList.toggle("on", on); b.setAttribute("aria-pressed", on); });
+  document.querySelectorAll(".pub").forEach(c => c.classList.toggle("hide", k !== "all" && !c.dataset.areas.split(" ").includes(k)));
+}
+function focusPub(id) {
+  setFilter("all");
+  const c = document.getElementById("pub-" + id); if (!c) return;
+  c.classList.add("in"); c.scrollIntoView({ behavior: REDUCED ? "auto" : "smooth", block: "center" });
+  c.classList.remove("flash"); void c.offsetWidth; c.classList.add("flash");
+}
+
+/* GitHub stars (public API, cached for the session) */
+(async function stars() {
+  const repos = [...new Set(PUBS.map(p => p.repo))];
+  let cache = {}; try { cache = JSON.parse(sessionStorage.getItem("funml-stars") || "{}"); } catch (e) {}
+  await Promise.all(repos.map(async r => {
+    if (cache[r] == null) { try { const res = await fetch("https://api.github.com/repos/csiro-funml/" + r); if (res.ok) cache[r] = (await res.json()).stargazers_count; } catch (e) {} }
+  }));
+  try { sessionStorage.setItem("funml-stars", JSON.stringify(cache)); } catch (e) {}
+  document.querySelectorAll(".stars").forEach(s => { const n = cache[s.dataset.repo]; if (n) s.textContent = "★ " + n; });
+})();
+
+/* nav + scroll reveal */
+const nav = $("#nav"); const onScroll = () => nav.classList.toggle("scrolled", window.scrollY > window.innerHeight * 0.6);
+window.addEventListener("scroll", onScroll, { passive: true }); onScroll();
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { threshold: .12 });
+document.querySelectorAll(".reveal").forEach(e => io.observe(e));
+</script>
 </body>
 </html>
