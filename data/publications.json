@@ -1,0 +1,3808 @@
+{
+ "updated": "2026-11-25",
+ "since": 2021,
+ "source": "DBLP (https://dblp.org), CC0",
+ "members": [
+  {
+   "name": "Edwin V. Bonilla",
+   "pid": "23/1754"
+  },
+  {
+   "name": "Daniel M. Steinberg",
+   "pid": "155/1887"
+  },
+  {
+   "name": "He Zhao",
+   "pid": "98/3487-1"
+  },
+  {
+   "name": "Rafael Oliveira",
+   "pid": "62/7803"
+  }
+ ],
+ "publications": [
+  {
+   "key": "conf/acl/WangLYZZG26",
+   "title": "Safeguarding LLM Fine-tuning via Push-Pull Distributional Alignment",
+   "year": 2026,
+   "venue": "ACL",
+   "venueFull": "ACL (1)",
+   "type": "conference",
+   "authors": [
+    {
+     "name": "Haozhong Wang",
+     "team": false
+    },
+    {
+     "name": "Zhuo Li",
+     "team": false
+    },
+    {
+     "name": "Yibo Yang",
+     "team": false
+    },
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Hongyuan Zha",
+     "team": false
+    },
+    {
+     "name": "Dandan Guo",
+     "team": false
+    }
+   ],
+   "url": "https://doi.org/10.18653/V1/2026.ACL-LONG.1083",
+   "arxiv": "https://arxiv.org/abs/2601.07200",
+   "bib": "https://dblp.org/rec/conf/acl/WangLYZZG26.bib"
+  },
+  {
+   "key": "conf/iclr/OliveiraSB26",
+   "title": "Generative Bayesian Optimization: Generative Models as Acquisition Functions",
+   "year": 2026,
+   "venue": "ICLR",
+   "venueFull": "ICLR",
+   "type": "conference",
+   "authors": [
+    {
+     "name": "Rafael Oliveira",
+     "team": true
+    },
+    {
+     "name": "Daniel M. Steinberg",
+     "team": true
+    },
+    {
+     "name": "Edwin V. Bonilla",
+     "team": true
+    }
+   ],
+   "url": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/cd5dbc3c149723c417c2dc2d0f575cd7-Abstract-Conference.html",
+   "arxiv": "https://arxiv.org/abs/2510.25240",
+   "bib": "https://dblp.org/rec/conf/iclr/OliveiraSB26.bib"
+  },
+  {
+   "key": "conf/iclr/RenWYZTGC26",
+   "title": "Imitating the Truth: Attention-aware Truth-Guided Enhancement for Hallucination Mitigation in Large Vision-Language Models",
+   "year": 2026,
+   "venue": "ICLR",
+   "venueFull": "ICLR",
+   "type": "conference",
+   "authors": [
+    {
+     "name": "Hairui Ren",
+     "team": false
+    },
+    {
+     "name": "Zixuan Wang",
+     "team": false
+    },
+    {
+     "name": "Yibo Yang",
+     "team": false
+    },
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Fan Tang",
+     "team": false
+    },
+    {
+     "name": "Dandan Guo",
+     "team": false
+    },
+    {
+     "name": "Yi Chang",
+     "team": false
+    }
+   ],
+   "url": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/48d467d310502791a97d05d1631c5b0f-Abstract-Conference.html",
+   "arxiv": null,
+   "bib": "https://dblp.org/rec/conf/iclr/RenWYZTGC26.bib"
+  },
+  {
+   "key": "conf/iclr/YeLZZGCZ26",
+   "title": "LLM as an Algorithmist: Enhancing Anomaly Detectors via Programmatic Synthesis",
+   "year": 2026,
+   "venue": "ICLR",
+   "venueFull": "ICLR",
+   "type": "conference",
+   "authors": [
+    {
+     "name": "Hangting Ye",
+     "team": false
+    },
+    {
+     "name": "Jinmeng Li",
+     "team": false
+    },
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Mingchen Zhuge",
+     "team": false
+    },
+    {
+     "name": "Dandan Guo",
+     "team": false
+    },
+    {
+     "name": "Yi Chang",
+     "team": false
+    },
+    {
+     "name": "Hongyuan Zha",
+     "team": false
+    }
+   ],
+   "url": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/da1a97b53eec1c763c6d06835538fe3e-Abstract-Conference.html",
+   "arxiv": "https://arxiv.org/abs/2510.03904",
+   "bib": "https://dblp.org/rec/conf/iclr/YeLZZGCZ26.bib"
+  },
+  {
+   "key": "conf/iclr/HeQZWWYL26",
+   "title": "Unifying Stable Optimization and Reference Regularization in RLHF",
+   "year": 2026,
+   "venue": "ICLR",
+   "venueFull": "ICLR",
+   "type": "conference",
+   "authors": [
+    {
+     "name": "Li He",
+     "team": false
+    },
+    {
+     "name": "Qiang Qu",
+     "team": false
+    },
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Stephen Wan",
+     "team": false
+    },
+    {
+     "name": "Dadong Wang",
+     "team": false
+    },
+    {
+     "name": "Lina Yao",
+     "team": false
+    },
+    {
+     "name": "Tongliang Liu",
+     "team": false
+    }
+   ],
+   "url": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/4290cccf23be59e42a575d026ccbeeb8-Abstract-Conference.html",
+   "arxiv": "https://arxiv.org/abs/2602.11523",
+   "bib": "https://dblp.org/rec/conf/iclr/HeQZWWYL26.bib"
+  },
+  {
+   "key": "journals/tac/BishopBM26",
+   "title": "Recurrent Neural Networks and (Time-Uniform) Universal Approximation of Bayesian Filters",
+   "year": 2026,
+   "venue": "IEEE TAC",
+   "venueFull": "IEEE Trans. Autom. Control.",
+   "type": "journal",
+   "authors": [
+    {
+     "name": "Adrian N. Bishop",
+     "team": false
+    },
+    {
+     "name": "Edwin V. Bonilla",
+     "team": true
+    },
+    {
+     "name": "Pierre Del Moral",
+     "team": false
+    }
+   ],
+   "url": "https://doi.org/10.1109/TAC.2026.3655312",
+   "arxiv": "https://arxiv.org/abs/2211.00335",
+   "bib": "https://dblp.org/rec/journals/tac/BishopBM26.bib"
+  },
+  {
+   "key": "journals/ijcv/JungDGZ26",
+   "title": "Near OOD Detection for Vision-Language Prompt Learning with Contrastive Logit Score",
+   "year": 2026,
+   "venue": "IJCV",
+   "venueFull": "Int. J. Comput. Vis.",
+   "type": "journal",
+   "authors": [
+    {
+     "name": "Myong Chol Jung",
+     "team": false
+    },
+    {
+     "name": "Joanna Dipnall",
+     "team": false
+    },
+    {
+     "name": "Belinda Gabbe",
+     "team": false
+    },
+    {
+     "name": "He Zhao",
+     "team": true
+    }
+   ],
+   "url": "https://doi.org/10.1007/S11263-026-02760-Z",
+   "arxiv": null,
+   "bib": "https://dblp.org/rec/journals/ijcv/JungDGZ26.bib"
+  },
+  {
+   "key": "conf/kdd/VoLZBP26",
+   "title": "Ordering-based Causal Discovery via Generalized Score Matching",
+   "year": 2026,
+   "venue": "KDD",
+   "venueFull": "KDD (2)",
+   "type": "conference",
+   "authors": [
+    {
+     "name": "Vy Vo",
+     "team": false
+    },
+    {
+     "name": "Trung Le",
+     "team": false
+    },
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Edwin V. Bonilla",
+     "team": true
+    },
+    {
+     "name": "Dinh Q. Phung",
+     "team": false
+    }
+   ],
+   "url": "https://doi.org/10.1145/3770855.3817672",
+   "arxiv": "https://arxiv.org/abs/2601.16249",
+   "bib": "https://dblp.org/rec/conf/kdd/VoLZBP26.bib"
+  },
+  {
+   "key": "journals/pr/NiZYG26",
+   "title": "Deep neural network calibration by reducing classifier shift with stochastic masking",
+   "year": 2026,
+   "venue": "Pattern Recognition",
+   "venueFull": "Pattern Recognit.",
+   "type": "journal",
+   "authors": [
+    {
+     "name": "Jiani Ni",
+     "team": false
+    },
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Yibo Yang",
+     "team": false
+    },
+    {
+     "name": "Dandan Guo",
+     "team": false
+    }
+   ],
+   "url": "https://doi.org/10.1016/J.PATCOG.2026.113217",
+   "arxiv": "https://arxiv.org/abs/2508.09116",
+   "bib": "https://dblp.org/rec/journals/pr/NiZYG26.bib"
+  },
+  {
+   "key": "journals/tmlr/ZhaoKOB26",
+   "title": "HiBaNG: Hierarchical Bayesian Nonparametric Granger Causal Discovery in Low-Data Regimes",
+   "year": 2026,
+   "venue": "TMLR",
+   "venueFull": "Trans. Mach. Learn. Res.",
+   "type": "journal",
+   "authors": [
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Vassili Kitsios",
+     "team": false
+    },
+    {
+     "name": "Terence J. O'Kane",
+     "team": false
+    },
+    {
+     "name": "Edwin V. Bonilla",
+     "team": true
+    }
+   ],
+   "url": "https://openreview.net/forum?id=e4VO3YlRBr",
+   "arxiv": null,
+   "bib": "https://dblp.org/rec/journals/tmlr/ZhaoKOB26.bib"
+  },
+  {
+   "key": "journals/tmlr/ZhangLSRZWGW26",
+   "title": "Merging Smarter, Generalizing Better: Enhancing Model Merging on OOD Data",
+   "year": 2026,
+   "venue": "TMLR",
+   "venueFull": "Trans. Mach. Learn. Res.",
+   "type": "journal",
+   "authors": [
+    {
+     "name": "Bingjie Zhang",
+     "team": false
+    },
+    {
+     "name": "Hongkang Li",
+     "team": false
+    },
+    {
+     "name": "Changlong Shi",
+     "team": false
+    },
+    {
+     "name": "Guowei Rong",
+     "team": false
+    },
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Dongsheng Wang",
+     "team": false
+    },
+    {
+     "name": "Dandan Guo",
+     "team": false
+    },
+    {
+     "name": "Meng Wang",
+     "team": false
+    }
+   ],
+   "url": "https://openreview.net/forum?id=msiXRyQgxO",
+   "arxiv": "https://arxiv.org/abs/2506.09093",
+   "bib": "https://dblp.org/rec/journals/tmlr/ZhangLSRZWGW26.bib"
+  },
+  {
+   "key": "journals/tmlr/WangYZLGZ26",
+   "title": "TreeSMOTE: Structure-Aware Data Augmentation for Imbalanced Tabular Learning",
+   "year": 2026,
+   "venue": "TMLR",
+   "venueFull": "Trans. Mach. Learn. Res.",
+   "type": "journal",
+   "authors": [
+    {
+     "name": "Peng Wang",
+     "team": false
+    },
+    {
+     "name": "Hangting Ye",
+     "team": false
+    },
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Jinhan Liu",
+     "team": false
+    },
+    {
+     "name": "Dandan Guo",
+     "team": false
+    },
+    {
+     "name": "Quan Zhang",
+     "team": false
+    }
+   ],
+   "url": "https://openreview.net/forum?id=OelOS8cbBY",
+   "arxiv": null,
+   "bib": "https://dblp.org/rec/journals/tmlr/WangYZLGZ26.bib"
+  },
+  {
+   "key": "journals/pami/YeWFSZGC26",
+   "title": "Deep Tabular Representation Corrector",
+   "year": 2026,
+   "venue": "TPAMI",
+   "venueFull": "IEEE Trans. Pattern Anal. Mach. Intell.",
+   "type": "journal",
+   "authors": [
+    {
+     "name": "Hangting Ye",
+     "team": false
+    },
+    {
+     "name": "Peng Wang",
+     "team": false
+    },
+    {
+     "name": "Wei Fan",
+     "team": false
+    },
+    {
+     "name": "Xiaozhuang Song",
+     "team": false
+    },
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Dandan Guo",
+     "team": false
+    },
+    {
+     "name": "Yi Chang",
+     "team": false
+    }
+   ],
+   "url": "https://doi.org/10.1109/TPAMI.2025.3637810",
+   "arxiv": "https://arxiv.org/abs/2603.16569",
+   "bib": "https://dblp.org/rec/journals/pami/YeWFSZGC26.bib"
+  },
+  {
+   "key": "journals/corr/abs-2603-00877",
+   "title": "Active Flow Matching",
+   "year": 2026,
+   "venue": "arXiv",
+   "venueFull": "CoRR",
+   "type": "preprint",
+   "authors": [
+    {
+     "name": "Yashvir S. Grewal",
+     "team": false
+    },
+    {
+     "name": "Daniel M. Steinberg",
+     "team": true
+    },
+    {
+     "name": "Thang D. Bui",
+     "team": false
+    },
+    {
+     "name": "Cheng Soon Ong",
+     "team": false
+    },
+    {
+     "name": "Edwin V. Bonilla",
+     "team": true
+    }
+   ],
+   "url": "https://arxiv.org/abs/2603.00877",
+   "arxiv": "https://arxiv.org/abs/2603.00877",
+   "bib": "https://dblp.org/rec/journals/corr/abs-2603-00877.bib"
+  },
+  {
+   "key": "journals/corr/abs-2605-07204",
+   "title": "Arrow: A Foundation Model for Causal Discovery",
+   "year": 2026,
+   "venue": "arXiv",
+   "venueFull": "CoRR",
+   "type": "preprint",
+   "authors": [
+    {
+     "name": "Ryan Thompson",
+     "team": false
+    },
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Daniel M. Steinberg",
+     "team": true
+    },
+    {
+     "name": "Edwin V. Bonilla",
+     "team": true
+    }
+   ],
+   "url": "https://arxiv.org/abs/2605.07204",
+   "arxiv": "https://arxiv.org/abs/2605.07204",
+   "bib": "https://dblp.org/rec/journals/corr/abs-2605-07204.bib"
+  },
+  {
+   "key": "journals/corr/abs-2602-06810",
+   "title": "Calibrating Tabular Anomaly Detection via Optimal Transport",
+   "year": 2026,
+   "venue": "arXiv",
+   "venueFull": "CoRR",
+   "type": "preprint",
+   "authors": [
+    {
+     "name": "Hangting Ye",
+     "team": false
+    },
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Wei Fan",
+     "team": false
+    },
+    {
+     "name": "Xiaozhuang Song",
+     "team": false
+    },
+    {
+     "name": "Dandan Guo",
+     "team": false
+    },
+    {
+     "name": "Yi Chang",
+     "team": false
+    },
+    {
+     "name": "Hongyuan Zha",
+     "team": false
+    }
+   ],
+   "url": "https://arxiv.org/abs/2602.06810",
+   "arxiv": "https://arxiv.org/abs/2602.06810",
+   "bib": "https://dblp.org/rec/journals/corr/abs-2602-06810.bib"
+  },
+  {
+   "key": "journals/corr/abs-2606-31126",
+   "title": "Can Tabular In-Context Learners Generalize to Biomolecular Property Prediction?",
+   "year": 2026,
+   "venue": "arXiv",
+   "venueFull": "CoRR",
+   "type": "preprint",
+   "authors": [
+    {
+     "name": "Davy Guan",
+     "team": false
+    },
+    {
+     "name": "Lu Zhang",
+     "team": false
+    },
+    {
+     "name": "Asiri Wijesinghe",
+     "team": false
+    },
+    {
+     "name": "Allen Zhu",
+     "team": false
+    },
+    {
+     "name": "He Zhao",
+     "team": false
+    },
+    {
+     "name": "Helen Power",
+     "team": false
+    },
+    {
+     "name": "F. Hafna Ahmed",
+     "team": false
+    },
+    {
+     "name": "Andrew Warden",
+     "team": false
+    },
+    {
+     "name": "Cheng Soon Ong",
+     "team": false
+    },
+    {
+     "name": "Daniel M. Steinberg",
+     "team": true
+    }
+   ],
+   "url": "https://arxiv.org/abs/2606.31126",
+   "arxiv": "https://arxiv.org/abs/2606.31126",
+   "bib": "https://dblp.org/rec/journals/corr/abs-2606-31126.bib"
+  },
+  {
+   "key": "journals/corr/abs-2602-01483",
+   "title": "Causal Preference Elicitation",
+   "year": 2026,
+   "venue": "arXiv",
+   "venueFull": "CoRR",
+   "type": "preprint",
+   "authors": [
+    {
+     "name": "Edwin V. Bonilla",
+     "team": true
+    },
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Daniel M. Steinberg",
+     "team": true
+    }
+   ],
+   "url": "https://arxiv.org/abs/2602.01483",
+   "arxiv": "https://arxiv.org/abs/2602.01483",
+   "bib": "https://dblp.org/rec/journals/corr/abs-2602-01483.bib"
+  },
+  {
+   "key": "journals/corr/abs-2608-29674",
+   "title": "Creation begins with understanding: LLMs as strategy designers for privacy-preserving tabular data synthesis",
+   "year": 2026,
+   "venue": "arXiv",
+   "venueFull": "CoRR",
+   "type": "preprint",
+   "authors": [
+    {
+     "name": "Jinmeng Li",
+     "team": false
+    },
+    {
+     "name": "Quan Zhang",
+     "team": false
+    },
+    {
+     "name": "Hangting Ye",
+     "team": false
+    },
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Firas Laakom",
+     "team": false
+    },
+    {
+     "name": "Dandan Guo",
+     "team": false
+    },
+    {
+     "name": "Jürgen Schmidhuber",
+     "team": false
+    }
+   ],
+   "url": "https://arxiv.org/abs/2608.29674",
+   "arxiv": "https://arxiv.org/abs/2608.29674",
+   "bib": "https://dblp.org/rec/journals/corr/abs-2608-29674.bib"
+  },
+  {
+   "key": "journals/corr/abs-2602-23566",
+   "title": "Flowette: Flow Matching with Graphette Priors for Graph Generation",
+   "year": 2026,
+   "venue": "arXiv",
+   "venueFull": "CoRR",
+   "type": "preprint",
+   "authors": [
+    {
+     "name": "Asiri Wijesinghe",
+     "team": false
+    },
+    {
+     "name": "Sevvandi Kandanaarachchi",
+     "team": false
+    },
+    {
+     "name": "Daniel M. Steinberg",
+     "team": true
+    },
+    {
+     "name": "Cheng Soon Ong",
+     "team": false
+    }
+   ],
+   "url": "https://arxiv.org/abs/2602.23566",
+   "arxiv": "https://arxiv.org/abs/2602.23566",
+   "bib": "https://dblp.org/rec/journals/corr/abs-2602-23566.bib"
+  },
+  {
+   "key": "journals/corr/abs-2609-06912",
+   "title": "From Synthetic Priors to Model Behavior: Structural Coverage in Tabular Foundation Models",
+   "year": 2026,
+   "venue": "arXiv",
+   "venueFull": "CoRR",
+   "type": "preprint",
+   "authors": [
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Ryan Thompson",
+     "team": false
+    },
+    {
+     "name": "Daniel M. Steinberg",
+     "team": true
+    },
+    {
+     "name": "Ashfaqur Rahman",
+     "team": false
+    },
+    {
+     "name": "Edwin V. Bonilla",
+     "team": true
+    },
+    {
+     "name": "Cheng Soon Ong",
+     "team": false
+    }
+   ],
+   "url": "https://arxiv.org/abs/2609.06912",
+   "arxiv": "https://arxiv.org/abs/2609.06912",
+   "bib": "https://dblp.org/rec/journals/corr/abs-2609-06912.bib"
+  },
+  {
+   "key": "journals/corr/abs-2609-25049",
+   "title": "Mitigating LLM Over-Refusal via Dynamic Semantic Routing Calibration",
+   "year": 2026,
+   "venue": "arXiv",
+   "venueFull": "CoRR",
+   "type": "preprint",
+   "authors": [
+    {
+     "name": "Zixuan Wang",
+     "team": false
+    },
+    {
+     "name": "Bingjie Zhang",
+     "team": false
+    },
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Dandan Guo",
+     "team": false
+    }
+   ],
+   "url": "https://arxiv.org/abs/2609.25049",
+   "arxiv": "https://arxiv.org/abs/2609.25049",
+   "bib": "https://dblp.org/rec/journals/corr/abs-2609-25049.bib"
+  },
+  {
+   "key": "journals/corr/abs-2602-01486",
+   "title": "Multi-Scale Wavelet Transformers for Operator Learning of Dynamical Systems",
+   "year": 2026,
+   "venue": "arXiv",
+   "venueFull": "CoRR",
+   "type": "preprint",
+   "authors": [
+    {
+     "name": "Xuesong Wang",
+     "team": false
+    },
+    {
+     "name": "Michael Groom",
+     "team": false
+    },
+    {
+     "name": "Rafael Oliveira",
+     "team": true
+    },
+    {
+     "name": "He Zhao",
+     "team": false
+    },
+    {
+     "name": "Terence J. O'Kane",
+     "team": false
+    },
+    {
+     "name": "Edwin V. Bonilla",
+     "team": true
+    }
+   ],
+   "url": "https://arxiv.org/abs/2602.01486",
+   "arxiv": "https://arxiv.org/abs/2602.01486",
+   "bib": "https://dblp.org/rec/journals/corr/abs-2602-01486.bib"
+  },
+  {
+   "key": "conf/acl/Yang0XQL0025",
+   "title": "Neural Topic Modeling with Large Language Models in the Loop",
+   "year": 2025,
+   "venue": "ACL",
+   "venueFull": "ACL (1)",
+   "type": "conference",
+   "authors": [
+    {
+     "name": "Xiaohao Yang",
+     "team": false
+    },
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Weijie Xu",
+     "team": false
+    },
+    {
+     "name": "Yuanyuan Qi",
+     "team": false
+    },
+    {
+     "name": "Jueqing Lu",
+     "team": false
+    },
+    {
+     "name": "Dinh Phung",
+     "team": false
+    },
+    {
+     "name": "Lan Du",
+     "team": false
+    }
+   ],
+   "url": "https://doi.org/10.18653/V1/2025.ACL-LONG.70",
+   "arxiv": "https://arxiv.org/abs/2411.08534",
+   "bib": "https://dblp.org/rec/conf/acl/Yang0XQL0025.bib"
+  },
+  {
+   "key": "conf/aistats/ZhuSK25",
+   "title": "Protein Fitness Landscape: Spectral Graph Theory Perspective",
+   "year": 2025,
+   "venue": "AISTATS",
+   "venueFull": "AISTATS",
+   "type": "conference",
+   "authors": [
+    {
+     "name": "Hao Zhu",
+     "team": false
+    },
+    {
+     "name": "Daniel M. Steinberg",
+     "team": true
+    },
+    {
+     "name": "Piotr Koniusz",
+     "team": false
+    }
+   ],
+   "url": "https://proceedings.mlr.press/v258/zhu25c.html",
+   "arxiv": null,
+   "bib": "https://dblp.org/rec/conf/aistats/ZhuSK25.bib"
+  },
+  {
+   "key": "conf/cvpr/NiZGGZ25",
+   "title": "Balancing Two Classifiers via A Simplex ETF Structure for Model Calibration",
+   "year": 2025,
+   "venue": "CVPR",
+   "venueFull": "CVPR",
+   "type": "conference",
+   "authors": [
+    {
+     "name": "Jiani Ni",
+     "team": false
+    },
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Jintong Gao",
+     "team": false
+    },
+    {
+     "name": "Dandan Guo",
+     "team": false
+    },
+    {
+     "name": "Hongyuan Zha",
+     "team": false
+    }
+   ],
+   "url": "https://openaccess.thecvf.com/content/CVPR2025/html/Ni_Balancing_Two_Classifiers_via_A_Simplex_ETF_Structure_for_Model_CVPR_2025_paper.html",
+   "arxiv": "https://arxiv.org/abs/2504.10007",
+   "bib": "https://dblp.org/rec/conf/cvpr/NiZGGZ25.bib"
+  },
+  {
+   "key": "conf/cvpr/RenTZWG025",
+   "title": "Beyond Words: Augmenting Discriminative Richness via Diffusions in Unsupervised Prompt Learning",
+   "year": 2025,
+   "venue": "CVPR",
+   "venueFull": "CVPR",
+   "type": "conference",
+   "authors": [
+    {
+     "name": "Hairui Ren",
+     "team": false
+    },
+    {
+     "name": "Fan Tang",
+     "team": false
+    },
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Zixuan Wang",
+     "team": false
+    },
+    {
+     "name": "Dandan Guo",
+     "team": false
+    },
+    {
+     "name": "Yi Chang",
+     "team": false
+    }
+   ],
+   "url": "https://openaccess.thecvf.com/content/CVPR2025/html/Ren_Beyond_Words_Augmenting_Discriminative_Richness_via_Diffusions_in_Unsupervised_Prompt_CVPR_2025_paper.html",
+   "arxiv": "https://arxiv.org/abs/2504.11930",
+   "bib": "https://dblp.org/rec/conf/cvpr/RenTZWG025.bib"
+  },
+  {
+   "key": "conf/cvpr/ShiZZZG025",
+   "title": "FedAWA: Adaptive Optimization of Aggregation Weights in Federated Learning Using Client Vectors",
+   "year": 2025,
+   "venue": "CVPR",
+   "venueFull": "CVPR",
+   "type": "conference",
+   "authors": [
+    {
+     "name": "Changlong Shi",
+     "team": false
+    },
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Bingjie Zhang",
+     "team": false
+    },
+    {
+     "name": "Mingyuan Zhou",
+     "team": false
+    },
+    {
+     "name": "Dandan Guo",
+     "team": false
+    },
+    {
+     "name": "Yi Chang",
+     "team": false
+    }
+   ],
+   "url": "https://openaccess.thecvf.com/content/CVPR2025/html/Shi_FedAWA_Adaptive_Optimization_of_Aggregation_Weights_in_Federated_Learning_Using_CVPR_2025_paper.html",
+   "arxiv": "https://arxiv.org/abs/2503.15842",
+   "bib": "https://dblp.org/rec/conf/cvpr/ShiZZZG025.bib"
+  },
+  {
+   "key": "conf/iclr/Ye00ZG025",
+   "title": "DRL: Decomposed Representation Learning for Tabular Anomaly Detection",
+   "year": 2025,
+   "venue": "ICLR",
+   "venueFull": "ICLR",
+   "type": "conference",
+   "authors": [
+    {
+     "name": "Hangting Ye",
+     "team": false
+    },
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Wei Fan",
+     "team": false
+    },
+    {
+     "name": "Mingyuan Zhou",
+     "team": false
+    },
+    {
+     "name": "Dandan Guo",
+     "team": false
+    },
+    {
+     "name": "Yi Chang",
+     "team": false
+    }
+   ],
+   "url": "https://openreview.net/forum?id=CJnceDksRd",
+   "arxiv": null,
+   "bib": "https://dblp.org/rec/conf/iclr/Ye00ZG025.bib"
+  },
+  {
+   "key": "conf/iclr/ShiL0G025",
+   "title": "FedLWS: Federated Learning with Adaptive Layer-wise Weight Shrinking",
+   "year": 2025,
+   "venue": "ICLR",
+   "venueFull": "ICLR",
+   "type": "conference",
+   "authors": [
+    {
+     "name": "Changlong Shi",
+     "team": false
+    },
+    {
+     "name": "Jinmeng Li",
+     "team": false
+    },
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Dandan Guo",
+     "team": false
+    },
+    {
+     "name": "Yi Chang",
+     "team": false
+    }
+   ],
+   "url": "https://openreview.net/forum?id=6RjQ54M1rM",
+   "arxiv": "https://arxiv.org/abs/2503.15111",
+   "bib": "https://dblp.org/rec/conf/iclr/ShiL0G025.bib"
+  },
+  {
+   "key": "conf/iclr/Steinberg0OB25",
+   "title": "Variational Search Distributions",
+   "year": 2025,
+   "venue": "ICLR",
+   "venueFull": "ICLR",
+   "type": "conference",
+   "authors": [
+    {
+     "name": "Daniel M. Steinberg",
+     "team": true
+    },
+    {
+     "name": "Rafael Oliveira",
+     "team": true
+    },
+    {
+     "name": "Cheng Soon Ong",
+     "team": false
+    },
+    {
+     "name": "Edwin V. Bonilla",
+     "team": true
+    }
+   ],
+   "url": "https://openreview.net/forum?id=1vrpdV9U3i",
+   "arxiv": "https://arxiv.org/abs/2409.06142",
+   "bib": "https://dblp.org/rec/conf/iclr/Steinberg0OB25.bib"
+  },
+  {
+   "key": "conf/icml/00020B25",
+   "title": "Rényi Neural Processes",
+   "year": 2025,
+   "venue": "ICML",
+   "venueFull": "ICML",
+   "type": "conference",
+   "authors": [
+    {
+     "name": "Xuesong Wang",
+     "team": false
+    },
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Edwin V. Bonilla",
+     "team": true
+    }
+   ],
+   "url": "https://proceedings.mlr.press/v267/wang25ew.html",
+   "arxiv": "https://arxiv.org/abs/2405.15991",
+   "bib": "https://dblp.org/rec/conf/icml/00020B25.bib"
+  },
+  {
+   "key": "conf/icml/ChaiB25",
+   "title": "Variational Learning of Fractional Posteriors",
+   "year": 2025,
+   "venue": "ICML",
+   "venueFull": "ICML",
+   "type": "conference",
+   "authors": [
+    {
+     "name": "Kian Ming A. Chai",
+     "team": false
+    },
+    {
+     "name": "Edwin V. Bonilla",
+     "team": true
+    }
+   ],
+   "url": "https://proceedings.mlr.press/v267/chai25a.html",
+   "arxiv": "https://arxiv.org/abs/2603.27488",
+   "bib": "https://dblp.org/rec/conf/icml/ChaiB25.bib"
+  },
+  {
+   "key": "conf/icpr/ChenZHPC24",
+   "title": "Neural Topic Model with Distance Awareness",
+   "year": 2025,
+   "venue": "ICPR",
+   "venueFull": "ICPR (9)",
+   "type": "conference",
+   "authors": [
+    {
+     "name": "Shangyu Chen",
+     "team": false
+    },
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Viet H. Huynh",
+     "team": false
+    },
+    {
+     "name": "Dinh Q. Phung",
+     "team": false
+    },
+    {
+     "name": "Jianfei Cai",
+     "team": false
+    }
+   ],
+   "url": "https://doi.org/10.1007/978-3-031-78189-6_22",
+   "arxiv": null,
+   "bib": "https://dblp.org/rec/conf/icpr/ChenZHPC24.bib"
+  },
+  {
+   "key": "journals/tcsv/RenTZZGC25",
+   "title": "Modality-Consistent Prompt Tuning With Optimal Transport",
+   "year": 2025,
+   "venue": "IEEE TCSVT",
+   "venueFull": "IEEE Trans. Circuits Syst. Video Technol.",
+   "type": "journal",
+   "authors": [
+    {
+     "name": "Hairui Ren",
+     "team": false
+    },
+    {
+     "name": "Fan Tang",
+     "team": false
+    },
+    {
+     "name": "Huangjie Zheng",
+     "team": false
+    },
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Dandan Guo",
+     "team": false
+    },
+    {
+     "name": "Yi Chang",
+     "team": false
+    }
+   ],
+   "url": "https://doi.org/10.1109/TCSVT.2024.3489024",
+   "arxiv": null,
+   "bib": "https://dblp.org/rec/journals/tcsv/RenTZZGC25.bib"
+  },
+  {
+   "key": "journals/tcsv/LiZGGCW25",
+   "title": "Prototype-Oriented Clean Subset Extraction for Noisy Long-Tailed Classification",
+   "year": 2025,
+   "venue": "IEEE TCSVT",
+   "venueFull": "IEEE Trans. Circuits Syst. Video Technol.",
+   "type": "journal",
+   "authors": [
+    {
+     "name": "Zhuo Li",
+     "team": false
+    },
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Anningzhe Gao",
+     "team": false
+    },
+    {
+     "name": "Dandan Guo",
+     "team": false
+    },
+    {
+     "name": "Tsung-Hui Chang",
+     "team": false
+    },
+    {
+     "name": "Xiang Wan",
+     "team": false
+    }
+   ],
+   "url": "https://doi.org/10.1109/TCSVT.2025.3546031",
+   "arxiv": null,
+   "bib": "https://dblp.org/rec/journals/tcsv/LiZGGCW25.bib"
+  },
+  {
+   "key": "conf/nips/SteinbergWOKOB25",
+   "title": "Amortized Active Generation of Pareto Sets",
+   "year": 2025,
+   "venue": "NeurIPS",
+   "venueFull": "NeurIPS",
+   "type": "conference",
+   "authors": [
+    {
+     "name": "Daniel M. Steinberg",
+     "team": true
+    },
+    {
+     "name": "Asiri Wijesinghe",
+     "team": false
+    },
+    {
+     "name": "Rafael Oliveira",
+     "team": true
+    },
+    {
+     "name": "Piotr Koniusz",
+     "team": false
+    },
+    {
+     "name": "Cheng Soon Ong",
+     "team": false
+    },
+    {
+     "name": "Edwin V. Bonilla",
+     "team": true
+    }
+   ],
+   "url": "http://papers.nips.cc/paper_files/paper/2025/hash/7c180af017258d239bac6248d1eb26ac-Abstract-Conference.html",
+   "arxiv": "https://arxiv.org/abs/2510.21052",
+   "bib": "https://dblp.org/rec/conf/nips/SteinbergWOKOB25.bib"
+  },
+  {
+   "key": "conf/nips/YeLZGC25",
+   "title": "LLM Meeting Decision Trees on Tabular Data",
+   "year": 2025,
+   "venue": "NeurIPS",
+   "venueFull": "NeurIPS",
+   "type": "conference",
+   "authors": [
+    {
+     "name": "Hangting Ye",
+     "team": false
+    },
+    {
+     "name": "Jinmeng Li",
+     "team": false
+    },
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Dandan Guo",
+     "team": false
+    },
+    {
+     "name": "Yi Chang",
+     "team": false
+    }
+   ],
+   "url": "http://papers.nips.cc/paper_files/paper/2025/hash/ab3b2b8d2bb4a1be648a91d150a3b87a-Abstract-Conference.html",
+   "arxiv": "https://arxiv.org/abs/2505.17918",
+   "bib": "https://dblp.org/rec/conf/nips/YeLZGC25.bib"
+  },
+  {
+   "key": "conf/nips/ThompsonBK25",
+   "title": "ProDAG: Projected Variational Inference for Directed Acyclic Graphs",
+   "year": 2025,
+   "venue": "NeurIPS",
+   "venueFull": "NeurIPS",
+   "type": "conference",
+   "authors": [
+    {
+     "name": "Ryan Thompson",
+     "team": false
+    },
+    {
+     "name": "Edwin V. Bonilla",
+     "team": true
+    },
+    {
+     "name": "Robert Kohn",
+     "team": false
+    }
+   ],
+   "url": "http://papers.nips.cc/paper_files/paper/2025/hash/ee42c13f231836e914930925f950fc62-Abstract-Conference.html",
+   "arxiv": "https://arxiv.org/abs/2405.15167",
+   "bib": "https://dblp.org/rec/conf/nips/ThompsonBK25.bib"
+  },
+  {
+   "key": "conf/nips/OliveiraWCB25",
+   "title": "Thompson Sampling in Function Spaces via Neural Operators",
+   "year": 2025,
+   "venue": "NeurIPS",
+   "venueFull": "NeurIPS",
+   "type": "conference",
+   "authors": [
+    {
+     "name": "Rafael Oliveira",
+     "team": true
+    },
+    {
+     "name": "Xuesong Wang",
+     "team": false
+    },
+    {
+     "name": "Kian Ming A. Chai",
+     "team": false
+    },
+    {
+     "name": "Edwin V. Bonilla",
+     "team": true
+    }
+   ],
+   "url": "http://papers.nips.cc/paper_files/paper/2025/hash/2f5fb82b8b593c548ed538a8d336d800-Abstract-Conference.html",
+   "arxiv": "https://arxiv.org/abs/2506.21894",
+   "bib": "https://dblp.org/rec/conf/nips/OliveiraWCB25.bib"
+  },
+  {
+   "key": "conf/nips/DaviesMOS25",
+   "title": "Variational Transdimensional Inference",
+   "year": 2025,
+   "venue": "NeurIPS",
+   "venueFull": "NeurIPS",
+   "type": "conference",
+   "authors": [
+    {
+     "name": "Laurence Davies",
+     "team": false
+    },
+    {
+     "name": "Daniel MacKinlay",
+     "team": false
+    },
+    {
+     "name": "Rafael Oliveira",
+     "team": true
+    },
+    {
+     "name": "Scott A. Sisson",
+     "team": false
+    }
+   ],
+   "url": "http://papers.nips.cc/paper_files/paper/2025/hash/2cd2e3213d3a1c942758a75ea3e8e6d7-Abstract-Conference.html",
+   "arxiv": null,
+   "bib": "https://dblp.org/rec/conf/nips/DaviesMOS25.bib"
+  },
+  {
+   "key": "journals/tacl/YangZPBD25",
+   "title": "LLM Reading Tea Leaves: Automatically Evaluating Topic Models with Large Language Models",
+   "year": 2025,
+   "venue": "TACL",
+   "venueFull": "Trans. Assoc. Comput. Linguistics",
+   "type": "journal",
+   "authors": [
+    {
+     "name": "Xiaohao Yang",
+     "team": false
+    },
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Dinh Q. Phung",
+     "team": false
+    },
+    {
+     "name": "Wray L. Buntine",
+     "team": false
+    },
+    {
+     "name": "Lan Du",
+     "team": false
+    }
+   ],
+   "url": "https://doi.org/10.1162/TACL_A_00744",
+   "arxiv": "https://arxiv.org/abs/2406.09008",
+   "bib": "https://dblp.org/rec/journals/tacl/YangZPBD25.bib"
+  },
+  {
+   "key": "journals/tmlr/GuoLZZZ25",
+   "title": "Diverse Condensed Data Generation via Class Preserving Distribution Matching",
+   "year": 2025,
+   "venue": "TMLR",
+   "venueFull": "Trans. Mach. Learn. Res.",
+   "type": "journal",
+   "authors": [
+    {
+     "name": "Dandan Guo",
+     "team": false
+    },
+    {
+     "name": "Zhuo Li",
+     "team": false
+    },
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Mingyuan Zhou",
+     "team": false
+    },
+    {
+     "name": "Hongyuan Zha",
+     "team": false
+    }
+   ],
+   "url": "https://openreview.net/forum?id=QOrzmDQYou",
+   "arxiv": null,
+   "bib": "https://dblp.org/rec/journals/tmlr/GuoLZZZ25.bib"
+  },
+  {
+   "key": "journals/tmlr/Li0RGGWZ25",
+   "title": "Synthesizing Minority Samples for Long-tailed Classification via Distribution Matching",
+   "year": 2025,
+   "venue": "TMLR",
+   "venueFull": "Trans. Mach. Learn. Res.",
+   "type": "journal",
+   "authors": [
+    {
+     "name": "Zhuo Li",
+     "team": false
+    },
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Jinke Ren",
+     "team": false
+    },
+    {
+     "name": "Anningzhe Gao",
+     "team": false
+    },
+    {
+     "name": "Dandan Guo",
+     "team": false
+    },
+    {
+     "name": "Xiang Wan",
+     "team": false
+    },
+    {
+     "name": "Hongyuan Zha",
+     "team": false
+    }
+   ],
+   "url": "https://openreview.net/forum?id=VqLe8tPbZn",
+   "arxiv": null,
+   "bib": "https://dblp.org/rec/journals/tmlr/Li0RGGWZ25.bib"
+  },
+  {
+   "key": "journals/corr/abs-2504-14177",
+   "title": "Direct Advantage Regression: Aligning LLMs with Online AI Reward",
+   "year": 2025,
+   "venue": "arXiv",
+   "venueFull": "CoRR",
+   "type": "preprint",
+   "authors": [
+    {
+     "name": "Li He",
+     "team": false
+    },
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Stephen Wan",
+     "team": false
+    },
+    {
+     "name": "Dadong Wang",
+     "team": false
+    },
+    {
+     "name": "Lina Yao",
+     "team": false
+    },
+    {
+     "name": "Tongliang Liu",
+     "team": false
+    }
+   ],
+   "url": "https://arxiv.org/abs/2504.14177",
+   "arxiv": "https://arxiv.org/abs/2504.14177",
+   "bib": "https://dblp.org/rec/journals/corr/abs-2504-14177.bib"
+  },
+  {
+   "key": "journals/corr/abs-2508-09263",
+   "title": "LLM Empowered Prototype Learning for Zero and Few-Shot Tasks on Tabular Data",
+   "year": 2025,
+   "venue": "arXiv",
+   "venueFull": "CoRR",
+   "type": "preprint",
+   "authors": [
+    {
+     "name": "Peng Wang",
+     "team": false
+    },
+    {
+     "name": "Dongsheng Wang",
+     "team": false
+    },
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Hangting Ye",
+     "team": false
+    },
+    {
+     "name": "Dandan Guo",
+     "team": false
+    },
+    {
+     "name": "Yi Chang",
+     "team": false
+    }
+   ],
+   "url": "https://arxiv.org/abs/2508.09263",
+   "arxiv": "https://arxiv.org/abs/2508.09263",
+   "bib": "https://dblp.org/rec/journals/corr/abs-2508-09263.bib"
+  },
+  {
+   "key": "conf/aistats/ThompsonBK24",
+   "title": "Contextual Directed Acyclic Graphs",
+   "year": 2024,
+   "venue": "AISTATS",
+   "venueFull": "AISTATS",
+   "type": "conference",
+   "authors": [
+    {
+     "name": "Ryan Thompson",
+     "team": false
+    },
+    {
+     "name": "Edwin V. Bonilla",
+     "team": true
+    },
+    {
+     "name": "Robert Kohn",
+     "team": false
+    }
+   ],
+   "url": "https://proceedings.mlr.press/v238/thompson24a.html",
+   "arxiv": "https://arxiv.org/abs/2310.15627",
+   "bib": "https://dblp.org/rec/conf/aistats/ThompsonBK24.bib"
+  },
+  {
+   "key": "conf/iclr/Ye0SZZG024",
+   "title": "PTaRL: Prototype-based Tabular Representation Learning via Space Calibration",
+   "year": 2024,
+   "venue": "ICLR",
+   "venueFull": "ICLR",
+   "type": "conference",
+   "authors": [
+    {
+     "name": "Hangting Ye",
+     "team": false
+    },
+    {
+     "name": "Wei Fan",
+     "team": false
+    },
+    {
+     "name": "Xiaozhuang Song",
+     "team": false
+    },
+    {
+     "name": "Shun Zheng",
+     "team": false
+    },
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Dandan Guo",
+     "team": false
+    },
+    {
+     "name": "Yi Chang",
+     "team": false
+    }
+   ],
+   "url": "https://openreview.net/forum?id=G32oY4Vnm8",
+   "arxiv": "https://arxiv.org/abs/2407.05364",
+   "bib": "https://dblp.org/rec/conf/iclr/Ye0SZZG024.bib"
+  },
+  {
+   "key": "conf/icml/Gao0GZ24",
+   "title": "Distribution Alignment Optimization through Neural Collapse for Long-tailed Classification",
+   "year": 2024,
+   "venue": "ICML",
+   "venueFull": "ICML",
+   "type": "conference",
+   "authors": [
+    {
+     "name": "Jintong Gao",
+     "team": false
+    },
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Dandan Guo",
+     "team": false
+    },
+    {
+     "name": "Hongyuan Zha",
+     "team": false
+    }
+   ],
+   "url": "https://proceedings.mlr.press/v235/gao24s.html",
+   "arxiv": null,
+   "bib": "https://dblp.org/rec/conf/icml/Gao0GZ24.bib"
+  },
+  {
+   "key": "conf/icml/Vo0LB024",
+   "title": "Optimal Transport for Structure Learning Under Missing Data",
+   "year": 2024,
+   "venue": "ICML",
+   "venueFull": "ICML",
+   "type": "conference",
+   "authors": [
+    {
+     "name": "Vy Vo",
+     "team": false
+    },
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Trung Le",
+     "team": false
+    },
+    {
+     "name": "Edwin V. Bonilla",
+     "team": true
+    },
+    {
+     "name": "Dinh Phung",
+     "team": false
+    }
+   ],
+   "url": "https://proceedings.mlr.press/v235/vo24b.html",
+   "arxiv": "https://arxiv.org/abs/2402.15255",
+   "bib": "https://dblp.org/rec/conf/icml/Vo0LB024.bib"
+  },
+  {
+   "key": "conf/icml/VoLV0B024",
+   "title": "Parameter Estimation in DAGs from Incomplete Data via Optimal Transport",
+   "year": 2024,
+   "venue": "ICML",
+   "venueFull": "ICML",
+   "type": "conference",
+   "authors": [
+    {
+     "name": "Vy Vo",
+     "team": false
+    },
+    {
+     "name": "Trung Le",
+     "team": false
+    },
+    {
+     "name": "Long Tung Vuong",
+     "team": false
+    },
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Edwin V. Bonilla",
+     "team": true
+    },
+    {
+     "name": "Dinh Phung",
+     "team": false
+    }
+   ],
+   "url": "https://proceedings.mlr.press/v235/vo24a.html",
+   "arxiv": null,
+   "bib": "https://dblp.org/rec/conf/icml/VoLV0B024.bib"
+  },
+  {
+   "key": "conf/nips/0001SHB24",
+   "title": "Bayesian Adaptive Calibration and Optimal Design",
+   "year": 2024,
+   "venue": "NeurIPS",
+   "venueFull": "NeurIPS",
+   "type": "conference",
+   "authors": [
+    {
+     "name": "Rafael Oliveira",
+     "team": true
+    },
+    {
+     "name": "Dino Sejdinovic",
+     "team": false
+    },
+    {
+     "name": "David Howard",
+     "team": false
+    },
+    {
+     "name": "Edwin V. Bonilla",
+     "team": true
+    }
+   ],
+   "url": "http://papers.nips.cc/paper_files/paper/2024/hash/673b9f8cba4ee9f15b88656a69761631-Abstract-Conference.html",
+   "arxiv": "https://arxiv.org/abs/2405.14440",
+   "bib": "https://dblp.org/rec/conf/nips/0001SHB24.bib"
+  },
+  {
+   "key": "conf/uai/Warren0024",
+   "title": "Stein Random Feature Regression",
+   "year": 2024,
+   "venue": "UAI",
+   "venueFull": "UAI",
+   "type": "conference",
+   "authors": [
+    {
+     "name": "Houston Warren",
+     "team": false
+    },
+    {
+     "name": "Rafael Oliveira",
+     "team": true
+    },
+    {
+     "name": "Fabio T. Ramos",
+     "team": false
+    }
+   ],
+   "url": "https://proceedings.mlr.press/v244/warren24a.html",
+   "arxiv": "https://arxiv.org/abs/2406.00438",
+   "bib": "https://dblp.org/rec/conf/uai/Warren0024.bib"
+  },
+  {
+   "key": "journals/corr/abs-2401-15952",
+   "title": "A Class-aware Optimal Transport Approach with Higher-Order Moment Matching for Unsupervised Domain Adaptation",
+   "year": 2024,
+   "venue": "arXiv",
+   "venueFull": "CoRR",
+   "type": "preprint",
+   "authors": [
+    {
+     "name": "Tuan Nguyen",
+     "team": false
+    },
+    {
+     "name": "Van Nguyen",
+     "team": false
+    },
+    {
+     "name": "Trung Le",
+     "team": false
+    },
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Quan Hung Tran",
+     "team": false
+    },
+    {
+     "name": "Dinh Q. Phung",
+     "team": false
+    }
+   ],
+   "url": "https://arxiv.org/abs/2401.15952",
+   "arxiv": "https://arxiv.org/abs/2401.15952",
+   "bib": "https://dblp.org/rec/journals/corr/abs-2401-15952.bib"
+  },
+  {
+   "key": "journals/corr/abs-2402-03614",
+   "title": "Bayesian Factorised Granger-Causal Graphs For Multivariate Time-series Data",
+   "year": 2024,
+   "venue": "arXiv",
+   "venueFull": "CoRR",
+   "type": "preprint",
+   "authors": [
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Edwin V. Bonilla",
+     "team": true
+    }
+   ],
+   "url": "https://arxiv.org/abs/2402.03614",
+   "arxiv": "https://arxiv.org/abs/2402.03614",
+   "bib": "https://dblp.org/rec/journals/corr/abs-2402-03614.bib"
+  },
+  {
+   "key": "journals/corr/abs-2405-16091",
+   "title": "Enhancing Near OOD Detection in Prompt Learning: Maximum Gains, Minimal Costs",
+   "year": 2024,
+   "venue": "arXiv",
+   "venueFull": "CoRR",
+   "type": "preprint",
+   "authors": [
+    {
+     "name": "Myong Chol Jung",
+     "team": false
+    },
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Joanna Dipnall",
+     "team": false
+    },
+    {
+     "name": "Belinda Gabbe",
+     "team": false
+    },
+    {
+     "name": "Lan Du",
+     "team": false
+    }
+   ],
+   "url": "https://arxiv.org/abs/2405.16091",
+   "arxiv": "https://arxiv.org/abs/2405.16091",
+   "bib": "https://dblp.org/rec/journals/corr/abs-2405-16091.bib"
+  },
+  {
+   "key": "journals/corr/abs-2404-06795",
+   "title": "Extracting Clean and Balanced Subset for Noisy Long-tailed Classification",
+   "year": 2024,
+   "venue": "arXiv",
+   "venueFull": "CoRR",
+   "type": "preprint",
+   "authors": [
+    {
+     "name": "Zhuo Li",
+     "team": false
+    },
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Zhen Li",
+     "team": false
+    },
+    {
+     "name": "Tongliang Liu",
+     "team": false
+    },
+    {
+     "name": "Dandan Guo",
+     "team": false
+    },
+    {
+     "name": "Xiang Wan",
+     "team": false
+    }
+   ],
+   "url": "https://arxiv.org/abs/2404.06795",
+   "arxiv": "https://arxiv.org/abs/2404.06795",
+   "bib": "https://dblp.org/rec/journals/corr/abs-2404-06795.bib"
+  },
+  {
+   "key": "journals/corr/abs-2410-22685",
+   "title": "Improving Uncertainty Quantification in Large Language Models via Semantic Embeddings",
+   "year": 2024,
+   "venue": "arXiv",
+   "venueFull": "CoRR",
+   "type": "preprint",
+   "authors": [
+    {
+     "name": "Yashvir S. Grewal",
+     "team": false
+    },
+    {
+     "name": "Edwin V. Bonilla",
+     "team": true
+    },
+    {
+     "name": "Thang D. Bui",
+     "team": false
+    }
+   ],
+   "url": "https://arxiv.org/abs/2410.22685",
+   "arxiv": "https://arxiv.org/abs/2410.22685",
+   "bib": "https://dblp.org/rec/journals/corr/abs-2410-22685.bib"
+  },
+  {
+   "key": "journals/corr/abs-2402-02644",
+   "title": "Variational DAG Estimation via State Augmentation With Stochastic Permutations",
+   "year": 2024,
+   "venue": "arXiv",
+   "venueFull": "CoRR",
+   "type": "preprint",
+   "authors": [
+    {
+     "name": "Edwin V. Bonilla",
+     "team": true
+    },
+    {
+     "name": "Pantelis Elinas",
+     "team": false
+    },
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Maurizio Filippone",
+     "team": false
+    },
+    {
+     "name": "Vassili Kitsios",
+     "team": false
+    },
+    {
+     "name": "Terry O'Kane",
+     "team": false
+    }
+   ],
+   "url": "https://arxiv.org/abs/2402.02644",
+   "arxiv": "https://arxiv.org/abs/2402.02644",
+   "bib": "https://dblp.org/rec/journals/corr/abs-2402-02644.bib"
+  },
+  {
+   "key": "conf/icmcs/DaoHZPC23",
+   "title": "Open-Vocabulary Multi-label Image Classification with Pretrained Vision-Language Model",
+   "year": 2023,
+   "venue": "ICME",
+   "venueFull": "ICME",
+   "type": "conference",
+   "authors": [
+    {
+     "name": "Son Duy Dao",
+     "team": false
+    },
+    {
+     "name": "Dat Huynh",
+     "team": false
+    },
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Dinh Phung",
+     "team": false
+    },
+    {
+     "name": "Jianfei Cai",
+     "team": false
+    }
+   ],
+   "url": "https://doi.org/10.1109/ICME55011.2023.00365",
+   "arxiv": null,
+   "bib": "https://dblp.org/rec/conf/icmcs/DaoHZPC23.bib"
+  },
+  {
+   "key": "conf/icml/FanBOS23",
+   "title": "Free-Form Variational Inference for Gaussian Process State-Space Models",
+   "year": 2023,
+   "venue": "ICML",
+   "venueFull": "ICML",
+   "type": "conference",
+   "authors": [
+    {
+     "name": "Xuhui Fan",
+     "team": false
+    },
+    {
+     "name": "Edwin V. Bonilla",
+     "team": true
+    },
+    {
+     "name": "Terence J. O'Kane",
+     "team": false
+    },
+    {
+     "name": "Scott A. Sisson",
+     "team": false
+    }
+   ],
+   "url": "https://proceedings.mlr.press/v202/fan23a.html",
+   "arxiv": "https://arxiv.org/abs/2302.09921",
+   "bib": "https://dblp.org/rec/conf/icml/FanBOS23.bib"
+  },
+  {
+   "key": "conf/icml/0001SDB23",
+   "title": "Transformed Distribution Matching for Missing Value Imputation",
+   "year": 2023,
+   "venue": "ICML",
+   "venueFull": "ICML",
+   "type": "conference",
+   "authors": [
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Ke Sun",
+     "team": false
+    },
+    {
+     "name": "Amir Dezfouli",
+     "team": false
+    },
+    {
+     "name": "Edwin V. Bonilla",
+     "team": true
+    }
+   ],
+   "url": "https://proceedings.mlr.press/v202/zhao23h.html",
+   "arxiv": "https://arxiv.org/abs/2302.10363",
+   "bib": "https://dblp.org/rec/conf/icml/0001SDB23.bib"
+  },
+  {
+   "key": "conf/icml/VuongL0ZH0P23",
+   "title": "Vector Quantized Wasserstein Auto-Encoder",
+   "year": 2023,
+   "venue": "ICML",
+   "venueFull": "ICML",
+   "type": "conference",
+   "authors": [
+    {
+     "name": "Long Tung Vuong",
+     "team": false
+    },
+    {
+     "name": "Trung Le",
+     "team": false
+    },
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Chuanxia Zheng",
+     "team": false
+    },
+    {
+     "name": "Mehrtash Harandi",
+     "team": false
+    },
+    {
+     "name": "Jianfei Cai",
+     "team": false
+    },
+    {
+     "name": "Dinh Q. Phung",
+     "team": false
+    }
+   ],
+   "url": "https://proceedings.mlr.press/v202/vuong23a.html",
+   "arxiv": "https://arxiv.org/abs/2302.05917",
+   "bib": "https://dblp.org/rec/conf/icml/VuongL0ZH0P23.bib"
+  },
+  {
+   "key": "conf/kdd/VoL00BHP23",
+   "title": "Feature-based Learning for Diverse and Privacy-Preserving Counterfactual Explanations",
+   "year": 2023,
+   "venue": "KDD",
+   "venueFull": "KDD",
+   "type": "conference",
+   "authors": [
+    {
+     "name": "Vy Vo",
+     "team": false
+    },
+    {
+     "name": "Trung Le",
+     "team": false
+    },
+    {
+     "name": "Van Nguyen",
+     "team": false
+    },
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Edwin V. Bonilla",
+     "team": true
+    },
+    {
+     "name": "Gholamreza Haffari",
+     "team": false
+    },
+    {
+     "name": "Dinh Q. Phung",
+     "team": false
+    }
+   ],
+   "url": "https://doi.org/10.1145/3580305.3599343",
+   "arxiv": null,
+   "bib": "https://dblp.org/rec/conf/kdd/VoL00BHP23.bib"
+  },
+  {
+   "key": "conf/miccai/NguyenDucLBZCP23",
+   "title": "Cross-Adversarial Local Distribution Regularization for Semi-supervised Medical Image Segmentation",
+   "year": 2023,
+   "venue": "MICCAI",
+   "venueFull": "MICCAI (1)",
+   "type": "conference",
+   "authors": [
+    {
+     "name": "Thanh Nguyen-Duc",
+     "team": false
+    },
+    {
+     "name": "Trung Le",
+     "team": false
+    },
+    {
+     "name": "Roland Bammer",
+     "team": false
+    },
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Jianfei Cai",
+     "team": false
+    },
+    {
+     "name": "Dinh Q. Phung",
+     "team": false
+    }
+   ],
+   "url": "https://doi.org/10.1007/978-3-031-43907-0_18",
+   "arxiv": "https://arxiv.org/abs/2310.01176",
+   "bib": "https://dblp.org/rec/conf/miccai/NguyenDucLBZCP23.bib"
+  },
+  {
+   "key": "conf/nips/Jung0D023",
+   "title": "Beyond Unimodal: Generalising Neural Processes for Multimodal Uncertainty Estimation",
+   "year": 2023,
+   "venue": "NeurIPS",
+   "venueFull": "NeurIPS",
+   "type": "conference",
+   "authors": [
+    {
+     "name": "Myong Chol Jung",
+     "team": false
+    },
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Joanna Dipnall",
+     "team": false
+    },
+    {
+     "name": "Lan Du",
+     "team": false
+    }
+   ],
+   "url": "http://papers.nips.cc/paper_files/paper/2023/hash/839e23e5b1c52cfd1268f4023a3af0d6-Abstract-Conference.html",
+   "arxiv": null,
+   "bib": "https://dblp.org/rec/conf/nips/Jung0D023.bib"
+  },
+  {
+   "key": "conf/nips/GaoZLG23",
+   "title": "Enhancing Minority Classes by Mixing: An Adaptative Optimal Transport Approach for Long-tailed Classification",
+   "year": 2023,
+   "venue": "NeurIPS",
+   "venueFull": "NeurIPS",
+   "type": "conference",
+   "authors": [
+    {
+     "name": "Jintong Gao",
+     "team": false
+    },
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Zhuo Li",
+     "team": false
+    },
+    {
+     "name": "Dandan Guo",
+     "team": false
+    }
+   ],
+   "url": "http://papers.nips.cc/paper_files/paper/2023/hash/bdabb5d4262bcfb6a1d529d690a6c82b-Abstract-Conference.html",
+   "arxiv": null,
+   "bib": "https://dblp.org/rec/conf/nips/GaoZLG23.bib"
+  },
+  {
+   "key": "conf/nips/JhaGZ023",
+   "title": "NPCL: Neural Processes for Uncertainty-Aware Continual Learning",
+   "year": 2023,
+   "venue": "NeurIPS",
+   "venueFull": "NeurIPS",
+   "type": "conference",
+   "authors": [
+    {
+     "name": "Saurav Jha",
+     "team": false
+    },
+    {
+     "name": "Dong Gong",
+     "team": false
+    },
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Lina Yao",
+     "team": false
+    }
+   ],
+   "url": "http://papers.nips.cc/paper_files/paper/2023/hash/6c4a1a3cbe70ef36d7d6332166bba77d-Abstract-Conference.html",
+   "arxiv": "https://arxiv.org/abs/2310.19272",
+   "bib": "https://dblp.org/rec/conf/nips/JhaGZ023.bib"
+  },
+  {
+   "key": "journals/ijon/DaoZPC23",
+   "title": "Contrastively enforcing distinctiveness for multi-label image classification",
+   "year": 2023,
+   "venue": "Neurocomputing",
+   "venueFull": "Neurocomputing",
+   "type": "journal",
+   "authors": [
+    {
+     "name": "Son Duy Dao",
+     "team": false
+    },
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Dinh Q. Phung",
+     "team": false
+    },
+    {
+     "name": "Jianfei Cai",
+     "team": false
+    }
+   ],
+   "url": "https://doi.org/10.1016/J.NEUCOM.2023.126605",
+   "arxiv": null,
+   "bib": "https://dblp.org/rec/journals/ijon/DaoZPC23.bib"
+  },
+  {
+   "key": "journals/tmlr/BuiL0TM023",
+   "title": "Generating Adversarial Examples with Task Oriented Multi-Objective Optimization",
+   "year": 2023,
+   "venue": "TMLR",
+   "venueFull": "Trans. Mach. Learn. Res.",
+   "type": "journal",
+   "authors": [
+    {
+     "name": "Anh Tuan Bui",
+     "team": false
+    },
+    {
+     "name": "Trung Le",
+     "team": false
+    },
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Quan Hung Tran",
+     "team": false
+    },
+    {
+     "name": "Paul Montague",
+     "team": false
+    },
+    {
+     "name": "Dinh Phung",
+     "team": false
+    }
+   ],
+   "url": "https://openreview.net/forum?id=2f81Q622ww",
+   "arxiv": "https://arxiv.org/abs/2304.13229",
+   "bib": "https://dblp.org/rec/journals/tmlr/BuiL0TM023.bib"
+  },
+  {
+   "key": "conf/wacv/NguyenDucLZCP23",
+   "title": "Adversarial local distribution regularization for knowledge distillation",
+   "year": 2023,
+   "venue": "WACV",
+   "venueFull": "WACV",
+   "type": "conference",
+   "authors": [
+    {
+     "name": "Thanh Nguyen-Duc",
+     "team": false
+    },
+    {
+     "name": "Trung Le",
+     "team": false
+    },
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Jianfei Cai",
+     "team": false
+    },
+    {
+     "name": "Dinh Phung",
+     "team": false
+    }
+   ],
+   "url": "https://doi.org/10.1109/WACV56688.2023.00466",
+   "arxiv": null,
+   "bib": "https://dblp.org/rec/conf/wacv/NguyenDucLZCP23.bib"
+  },
+  {
+   "key": "journals/corr/abs-2305-18435",
+   "title": "Cross-Entropy Estimators for Sequential Experiment Design with Reinforcement Learning",
+   "year": 2023,
+   "venue": "arXiv",
+   "venueFull": "CoRR",
+   "type": "preprint",
+   "authors": [
+    {
+     "name": "Tom Blau",
+     "team": false
+    },
+    {
+     "name": "Edwin V. Bonilla",
+     "team": true
+    },
+    {
+     "name": "Iadine Chades",
+     "team": false
+    },
+    {
+     "name": "Amir Dezfouli",
+     "team": false
+    }
+   ],
+   "url": "https://arxiv.org/abs/2305.18435",
+   "arxiv": "https://arxiv.org/abs/2305.18435",
+   "bib": "https://dblp.org/rec/journals/corr/abs-2305-18435.bib"
+  },
+  {
+   "key": "journals/corr/abs-2305-15927",
+   "title": "Learning Directed Graphical Models with Optimal Transport",
+   "year": 2023,
+   "venue": "arXiv",
+   "venueFull": "CoRR",
+   "type": "preprint",
+   "authors": [
+    {
+     "name": "Vy Vo",
+     "team": false
+    },
+    {
+     "name": "Trung Le",
+     "team": false
+    },
+    {
+     "name": "Long Tung Vuong",
+     "team": false
+    },
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Edwin V. Bonilla",
+     "team": true
+    },
+    {
+     "name": "Dinh Q. Phung",
+     "team": false
+    }
+   ],
+   "url": "https://arxiv.org/abs/2305.15927",
+   "arxiv": "https://arxiv.org/abs/2305.15927",
+   "bib": "https://dblp.org/rec/journals/corr/abs-2305-15927.bib"
+  },
+  {
+   "key": "journals/corr/abs-2304-01518",
+   "title": "Multimodal Neural Processes for Uncertainty Estimation",
+   "year": 2023,
+   "venue": "arXiv",
+   "venueFull": "CoRR",
+   "type": "preprint",
+   "authors": [
+    {
+     "name": "Myong Chol Jung",
+     "team": false
+    },
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Joanna Dipnall",
+     "team": false
+    },
+    {
+     "name": "Belinda Gabbe",
+     "team": false
+    },
+    {
+     "name": "Lan Du",
+     "team": false
+    }
+   ],
+   "url": "https://arxiv.org/abs/2304.01518",
+   "arxiv": "https://arxiv.org/abs/2304.01518",
+   "bib": "https://dblp.org/rec/journals/corr/abs-2304-01518.bib"
+  },
+  {
+   "key": "journals/corr/abs-2308-04071",
+   "title": "Path Signatures for Diversity in Probabilistic Trajectory Optimisation",
+   "year": 2023,
+   "venue": "arXiv",
+   "venueFull": "CoRR",
+   "type": "preprint",
+   "authors": [
+    {
+     "name": "Lucas Barcelos",
+     "team": false
+    },
+    {
+     "name": "Tin Lai",
+     "team": false
+    },
+    {
+     "name": "Rafael Oliveira",
+     "team": true
+    },
+    {
+     "name": "Paulo V. K. Borges",
+     "team": false
+    },
+    {
+     "name": "Fabio Ramos",
+     "team": false
+    }
+   ],
+   "url": "https://arxiv.org/abs/2308.04071",
+   "arxiv": "https://arxiv.org/abs/2308.04071",
+   "bib": "https://dblp.org/rec/journals/corr/abs-2308-04071.bib"
+  },
+  {
+   "key": "journals/corr/abs-2307-12564",
+   "title": "Towards Generalising Neural Topical Representations",
+   "year": 2023,
+   "venue": "arXiv",
+   "venueFull": "CoRR",
+   "type": "preprint",
+   "authors": [
+    {
+     "name": "Xiaohao Yang",
+     "team": false
+    },
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Dinh Phung",
+     "team": false
+    },
+    {
+     "name": "Lan Du",
+     "team": false
+    }
+   ],
+   "url": "https://arxiv.org/abs/2307.12564",
+   "arxiv": "https://arxiv.org/abs/2307.12564",
+   "bib": "https://dblp.org/rec/journals/corr/abs-2307-12564.bib"
+  },
+  {
+   "key": "conf/acml/Chowdhury022",
+   "title": "Value Function Approximations via Kernel Embeddings for No-Regret Reinforcement Learning",
+   "year": 2022,
+   "venue": "ACML",
+   "venueFull": "ACML",
+   "type": "conference",
+   "authors": [
+    {
+     "name": "Sayak Ray Chowdhury",
+     "team": false
+    },
+    {
+     "name": "Rafael Oliveira",
+     "team": true
+    }
+   ],
+   "url": "https://proceedings.mlr.press/v189/chowdhury23a.html",
+   "arxiv": null,
+   "bib": "https://dblp.org/rec/conf/acml/Chowdhury022.bib"
+  },
+  {
+   "key": "conf/aistats/LeBT0MTP22",
+   "title": "On Global-view Based Defense via Adversarial Attack and Defense Risk Guaranteed Bounds",
+   "year": 2022,
+   "venue": "AISTATS",
+   "venueFull": "AISTATS",
+   "type": "conference",
+   "authors": [
+    {
+     "name": "Trung Le",
+     "team": false
+    },
+    {
+     "name": "Anh Tuan Bui",
+     "team": false
+    },
+    {
+     "name": "Le Minh Tri Tue",
+     "team": false
+    },
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Paul Montague",
+     "team": false
+    },
+    {
+     "name": "Quan Hung Tran",
+     "team": false
+    },
+    {
+     "name": "Dinh Q. Phung",
+     "team": false
+    }
+   ],
+   "url": "https://proceedings.mlr.press/v151/le22c.html",
+   "arxiv": null,
+   "bib": "https://dblp.org/rec/conf/aistats/LeBT0MTP22.bib"
+  },
+  {
+   "key": "conf/aistats/Nguyen-DucL00P22",
+   "title": "Particle-based Adversarial Local Distribution Regularization",
+   "year": 2022,
+   "venue": "AISTATS",
+   "venueFull": "AISTATS",
+   "type": "conference",
+   "authors": [
+    {
+     "name": "Thanh Nguyen-Duc",
+     "team": false
+    },
+    {
+     "name": "Trung Le",
+     "team": false
+    },
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Jianfei Cai",
+     "team": false
+    },
+    {
+     "name": "Dinh Q. Phung",
+     "team": false
+    }
+   ],
+   "url": "https://proceedings.mlr.press/v151/nguyen-duc22a.html",
+   "arxiv": null,
+   "bib": "https://dblp.org/rec/conf/aistats/Nguyen-DucL00P22.bib"
+  },
+  {
+   "key": "conf/iclr/BuiLT0P22",
+   "title": "A Unified Wasserstein Distributional Robustness Framework for Adversarial Training",
+   "year": 2022,
+   "venue": "ICLR",
+   "venueFull": "ICLR",
+   "type": "conference",
+   "authors": [
+    {
+     "name": "Anh Tuan Bui",
+     "team": false
+    },
+    {
+     "name": "Trung Le",
+     "team": false
+    },
+    {
+     "name": "Quan Hung Tran",
+     "team": false
+    },
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Dinh Q. Phung",
+     "team": false
+    }
+   ],
+   "url": "https://openreview.net/forum?id=Dzpe9C1mpiv",
+   "arxiv": "https://arxiv.org/abs/2202.13437",
+   "bib": "https://dblp.org/rec/conf/iclr/BuiLT0P22.bib"
+  },
+  {
+   "key": "conf/iclr/0003G0ZTCZ22",
+   "title": "Representing Mixtures of Word Embeddings with Mixtures of Topic Embeddings",
+   "year": 2022,
+   "venue": "ICLR",
+   "venueFull": "ICLR",
+   "type": "conference",
+   "authors": [
+    {
+     "name": "Dongsheng Wang",
+     "team": false
+    },
+    {
+     "name": "Dandan Guo",
+     "team": false
+    },
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Huangjie Zheng",
+     "team": false
+    },
+    {
+     "name": "Korawat Tanwisuth",
+     "team": false
+    },
+    {
+     "name": "Bo Chen",
+     "team": false
+    },
+    {
+     "name": "Mingyuan Zhou",
+     "team": false
+    }
+   ],
+   "url": "https://openreview.net/forum?id=IYMuTbGzjFU",
+   "arxiv": "https://arxiv.org/abs/2203.01570",
+   "bib": "https://dblp.org/rec/conf/iclr/0003G0ZTCZ22.bib"
+  },
+  {
+   "key": "conf/icml/ZhiLOBR22",
+   "title": "Learning Efficient and Robust Ordinary Differential Equations via Invertible Neural Networks",
+   "year": 2022,
+   "venue": "ICML",
+   "venueFull": "ICML",
+   "type": "conference",
+   "authors": [
+    {
+     "name": "Weiming Zhi",
+     "team": false
+    },
+    {
+     "name": "Tin Lai",
+     "team": false
+    },
+    {
+     "name": "Lionel Ott",
+     "team": false
+    },
+    {
+     "name": "Edwin V. Bonilla",
+     "team": true
+    },
+    {
+     "name": "Fabio Ramos",
+     "team": false
+    }
+   ],
+   "url": "https://proceedings.mlr.press/v162/zhi22a.html",
+   "arxiv": null,
+   "bib": "https://dblp.org/rec/conf/icml/ZhiLOBR22.bib"
+  },
+  {
+   "key": "conf/icml/BlauBCD22",
+   "title": "Optimizing Sequential Experimental Design with Deep Reinforcement Learning",
+   "year": 2022,
+   "venue": "ICML",
+   "venueFull": "ICML",
+   "type": "conference",
+   "authors": [
+    {
+     "name": "Tom Blau",
+     "team": false
+    },
+    {
+     "name": "Edwin V. Bonilla",
+     "team": true
+    },
+    {
+     "name": "Iadine Chades",
+     "team": false
+    },
+    {
+     "name": "Amir Dezfouli",
+     "team": false
+    }
+   ],
+   "url": "https://proceedings.mlr.press/v162/blau22a.html",
+   "arxiv": "https://arxiv.org/abs/2202.00821",
+   "bib": "https://dblp.org/rec/conf/icml/BlauBCD22.bib"
+  },
+  {
+   "key": "conf/icra/Apaza0R22",
+   "title": "Bayesian Optimisation for Robust Model Predictive Control under Model Parameter Uncertainty",
+   "year": 2022,
+   "venue": "ICRA",
+   "venueFull": "ICRA",
+   "type": "conference",
+   "authors": [
+    {
+     "name": "Rel Guzman Apaza",
+     "team": false
+    },
+    {
+     "name": "Rafael Oliveira",
+     "team": true
+    },
+    {
+     "name": "Fabio Ramos",
+     "team": false
+    }
+   ],
+   "url": "https://doi.org/10.1109/ICRA46639.2022.9812406",
+   "arxiv": "https://arxiv.org/abs/2203.00551",
+   "bib": "https://dblp.org/rec/conf/icra/Apaza0R22.bib"
+  },
+  {
+   "key": "conf/isbi/Nguyen-DucZCP22",
+   "title": "MED-TEX: Transfer and Explain Knowledge with Less Data from Pretrained Medical Imaging Models",
+   "year": 2022,
+   "venue": "ISBI",
+   "venueFull": "ISBI",
+   "type": "conference",
+   "authors": [
+    {
+     "name": "Thanh Nguyen-Duc",
+     "team": false
+    },
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Jianfei Cai",
+     "team": false
+    },
+    {
+     "name": "Dinh Phung",
+     "team": false
+    }
+   ],
+   "url": "https://doi.org/10.1109/ISBI52829.2022.9761709",
+   "arxiv": null,
+   "bib": "https://dblp.org/rec/conf/isbi/Nguyen-DucZCP22.bib"
+  },
+  {
+   "key": "conf/l4dc/Apaza0R22",
+   "title": "Adaptive Model Predictive Control by Learning Classifiers",
+   "year": 2022,
+   "venue": "L4DC",
+   "venueFull": "L4DC",
+   "type": "conference",
+   "authors": [
+    {
+     "name": "Rel Guzman Apaza",
+     "team": false
+    },
+    {
+     "name": "Rafael Oliveira",
+     "team": true
+    },
+    {
+     "name": "Fabio Ramos",
+     "team": false
+    }
+   ],
+   "url": "https://proceedings.mlr.press/v168/guzman22a.html",
+   "arxiv": "https://arxiv.org/abs/2203.06783",
+   "bib": "https://dblp.org/rec/conf/l4dc/Apaza0R22.bib"
+  },
+  {
+   "key": "conf/naacl/HuZGWC22",
+   "title": "A Label-Aware Autoregressive Framework for Cross-Domain NER",
+   "year": 2022,
+   "venue": "NAACL-HLT (Findings)",
+   "venueFull": "NAACL-HLT (Findings)",
+   "type": "conference",
+   "authors": [
+    {
+     "name": "Jinpeng Hu",
+     "team": false
+    },
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Dan Guo",
+     "team": false
+    },
+    {
+     "name": "Xiang Wan",
+     "team": false
+    },
+    {
+     "name": "Tsung-Hui Chang",
+     "team": false
+    }
+   ],
+   "url": "https://doi.org/10.18653/V1/2022.FINDINGS-NAACL.171",
+   "arxiv": null,
+   "bib": "https://dblp.org/rec/conf/naacl/HuZGWC22.bib"
+  },
+  {
+   "key": "conf/nips/GuoT0ZZ22",
+   "title": "Adaptive Distribution Calibration for Few-Shot Learning with Hierarchical Optimal Transport",
+   "year": 2022,
+   "venue": "NeurIPS",
+   "venueFull": "NeurIPS",
+   "type": "conference",
+   "authors": [
+    {
+     "name": "Dandan Guo",
+     "team": false
+    },
+    {
+     "name": "Long Tian",
+     "team": false
+    },
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Mingyuan Zhou",
+     "team": false
+    },
+    {
+     "name": "Hongyuan Zha",
+     "team": false
+    }
+   ],
+   "url": "http://papers.nips.cc/paper_files/paper/2022/hash/2e19dab94882bc95ed094c4399cfda02-Abstract-Conference.html",
+   "arxiv": "https://arxiv.org/abs/2210.04144",
+   "bib": "https://dblp.org/rec/conf/nips/GuoT0ZZ22.bib"
+  },
+  {
+   "key": "conf/nips/0001T022",
+   "title": "Batch Bayesian optimisation via density-ratio estimation with guarantees",
+   "year": 2022,
+   "venue": "NeurIPS",
+   "venueFull": "NeurIPS",
+   "type": "conference",
+   "authors": [
+    {
+     "name": "Rafael Oliveira",
+     "team": true
+    },
+    {
+     "name": "Louis C. Tiao",
+     "team": false
+    },
+    {
+     "name": "Fabio T. Ramos",
+     "team": false
+    }
+   ],
+   "url": "http://papers.nips.cc/paper_files/paper/2022/hash/c0d5a28eb3949efbedbe3e41751e3ffc-Abstract-Conference.html",
+   "arxiv": "https://arxiv.org/abs/2209.10715",
+   "bib": "https://dblp.org/rec/conf/nips/0001T022.bib"
+  },
+  {
+   "key": "conf/nips/GuoLzZZZ22",
+   "title": "Learning to Re-weight Examples with Optimal Transport for Imbalanced Classification",
+   "year": 2022,
+   "venue": "NeurIPS",
+   "venueFull": "NeurIPS",
+   "type": "conference",
+   "authors": [
+    {
+     "name": "Dandan Guo",
+     "team": false
+    },
+    {
+     "name": "Zhuo Li",
+     "team": false
+    },
+    {
+     "name": "Meixi Zheng",
+     "team": false
+    },
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Mingyuan Zhou",
+     "team": false
+    },
+    {
+     "name": "Hongyuan Zha",
+     "team": false
+    }
+   ],
+   "url": "http://papers.nips.cc/paper_files/paper/2022/hash/a39a9aceda771cded859ae7560530e09-Abstract-Conference.html",
+   "arxiv": "https://arxiv.org/abs/2208.02951",
+   "bib": "https://dblp.org/rec/conf/nips/GuoLzZZZ22.bib"
+  },
+  {
+   "key": "conf/nips/Jung0DGD22",
+   "title": "Uncertainty Estimation for Multi-view Data: The Power of Seeing the Whole Picture",
+   "year": 2022,
+   "venue": "NeurIPS",
+   "venueFull": "NeurIPS",
+   "type": "conference",
+   "authors": [
+    {
+     "name": "Myong Chol Jung",
+     "team": false
+    },
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Joanna Dipnall",
+     "team": false
+    },
+    {
+     "name": "Belinda Gabbe",
+     "team": false
+    },
+    {
+     "name": "Lan Du",
+     "team": false
+    }
+   ],
+   "url": "http://papers.nips.cc/paper_files/paper/2022/hash/2ab3163ee384cd46baa7f1abb2b1bf19-Abstract-Conference.html",
+   "arxiv": "https://arxiv.org/abs/2210.02676",
+   "bib": "https://dblp.org/rec/conf/nips/Jung0DGD22.bib"
+  },
+  {
+   "key": "conf/uai/0004NL0TP22",
+   "title": "Cycle class consistency with distributional optimal transport and knowledge distillation for unsupervised domain adaptation",
+   "year": 2022,
+   "venue": "UAI",
+   "venueFull": "UAI",
+   "type": "conference",
+   "authors": [
+    {
+     "name": "Tuan Nguyen",
+     "team": false
+    },
+    {
+     "name": "Van Nguyen",
+     "team": false
+    },
+    {
+     "name": "Trung Le",
+     "team": false
+    },
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Quan Hung Tran",
+     "team": false
+    },
+    {
+     "name": "Dinh Q. Phung",
+     "team": false
+    }
+   ],
+   "url": "https://proceedings.mlr.press/v180/nguyen22c.html",
+   "arxiv": null,
+   "bib": "https://dblp.org/rec/conf/uai/0004NL0TP22.bib"
+  },
+  {
+   "key": "conf/uai/Warren0R22",
+   "title": "Generalized Bayesian quadrature with spectral kernels",
+   "year": 2022,
+   "venue": "UAI",
+   "venueFull": "UAI",
+   "type": "conference",
+   "authors": [
+    {
+     "name": "Houston Warren",
+     "team": false
+    },
+    {
+     "name": "Rafael Oliveira",
+     "team": true
+    },
+    {
+     "name": "Fabio T. Ramos",
+     "team": false
+    }
+   ],
+   "url": "https://proceedings.mlr.press/v180/warren22a.html",
+   "arxiv": null,
+   "bib": "https://dblp.org/rec/conf/uai/Warren0R22.bib"
+  },
+  {
+   "key": "journals/corr/abs-2202-12508",
+   "title": "Addressing Over-Smoothing in Graph Neural Networks via Deep Supervision",
+   "year": 2022,
+   "venue": "arXiv",
+   "venueFull": "CoRR",
+   "type": "preprint",
+   "authors": [
+    {
+     "name": "Pantelis Elinas",
+     "team": false
+    },
+    {
+     "name": "Edwin V. Bonilla",
+     "team": true
+    }
+   ],
+   "url": "https://arxiv.org/abs/2202.12508",
+   "arxiv": "https://arxiv.org/abs/2202.12508",
+   "bib": "https://dblp.org/rec/journals/corr/abs-2202-12508.bib"
+  },
+  {
+   "key": "journals/corr/abs-2209-13446",
+   "title": "Learning to Counter: Stochastic Feature-based Learning for Diverse Counterfactual Explanations",
+   "year": 2022,
+   "venue": "arXiv",
+   "venueFull": "CoRR",
+   "type": "preprint",
+   "authors": [
+    {
+     "name": "Vy Vo",
+     "team": false
+    },
+    {
+     "name": "Trung Le",
+     "team": false
+    },
+    {
+     "name": "Van Nguyen",
+     "team": false
+    },
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Edwin V. Bonilla",
+     "team": true
+    },
+    {
+     "name": "Gholamreza Haffari",
+     "team": false
+    },
+    {
+     "name": "Dinh Q. Phung",
+     "team": false
+    }
+   ],
+   "url": "https://arxiv.org/abs/2209.13446",
+   "arxiv": "https://arxiv.org/abs/2209.13446",
+   "bib": "https://dblp.org/rec/journals/corr/abs-2209-13446.bib"
+  },
+  {
+   "key": "conf/aaai/BuiLZMVA021",
+   "title": "Improving Ensemble Robustness by Collaboratively Promoting and Demoting Adversarial Robustness",
+   "year": 2021,
+   "venue": "AAAI",
+   "venueFull": "AAAI",
+   "type": "conference",
+   "authors": [
+    {
+     "name": "Tuan-Anh Bui",
+     "team": false
+    },
+    {
+     "name": "Trung Le",
+     "team": false
+    },
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Paul Montague",
+     "team": false
+    },
+    {
+     "name": "Olivier Y. de Vel",
+     "team": false
+    },
+    {
+     "name": "Tamas Abraham",
+     "team": false
+    },
+    {
+     "name": "Dinh Phung",
+     "team": false
+    }
+   ],
+   "url": "https://doi.org/10.1609/AAAI.V35I8.16843",
+   "arxiv": null,
+   "bib": "https://dblp.org/rec/conf/aaai/BuiLZMVA021.bib"
+  },
+  {
+   "key": "conf/aistats/LemercierSDBL21",
+   "title": "Distribution Regression for Sequential Data",
+   "year": 2021,
+   "venue": "AISTATS",
+   "venueFull": "AISTATS",
+   "type": "conference",
+   "authors": [
+    {
+     "name": "Maud Lemercier",
+     "team": false
+    },
+    {
+     "name": "Cristopher Salvi",
+     "team": false
+    },
+    {
+     "name": "Theodoros Damoulas",
+     "team": false
+    },
+    {
+     "name": "Edwin V. Bonilla",
+     "team": true
+    },
+    {
+     "name": "Terry J. Lyons",
+     "team": false
+    }
+   ],
+   "url": "http://proceedings.mlr.press/v130/lemercier21a.html",
+   "arxiv": null,
+   "bib": "https://dblp.org/rec/conf/aistats/LemercierSDBL21.bib"
+  },
+  {
+   "key": "conf/aistats/AfsharOC21",
+   "title": "Non-Volume Preserving Hamiltonian Monte Carlo and No-U-TurnSamplers",
+   "year": 2021,
+   "venue": "AISTATS",
+   "venueFull": "AISTATS",
+   "type": "conference",
+   "authors": [
+    {
+     "name": "Hadi Mohasel Afshar",
+     "team": false
+    },
+    {
+     "name": "Rafael Oliveira",
+     "team": true
+    },
+    {
+     "name": "Sally Cripps",
+     "team": false
+    }
+   ],
+   "url": "http://proceedings.mlr.press/v130/mohasel-afshar21a.html",
+   "arxiv": null,
+   "bib": "https://dblp.org/rec/conf/aistats/AfsharOC21.bib"
+  },
+  {
+   "key": "conf/aistats/RossiHBSF21",
+   "title": "Sparse Gaussian Processes Revisited: Bayesian Approaches to Inducing-Variable Approximations",
+   "year": 2021,
+   "venue": "AISTATS",
+   "venueFull": "AISTATS",
+   "type": "conference",
+   "authors": [
+    {
+     "name": "Simone Rossi",
+     "team": false
+    },
+    {
+     "name": "Markus Heinonen",
+     "team": false
+    },
+    {
+     "name": "Edwin V. Bonilla",
+     "team": true
+    },
+    {
+     "name": "Zheyang Shen",
+     "team": false
+    },
+    {
+     "name": "Maurizio Filippone",
+     "team": false
+    }
+   ],
+   "url": "http://proceedings.mlr.press/v130/rossi21a.html",
+   "arxiv": null,
+   "bib": "https://dblp.org/rec/conf/aistats/RossiHBSF21.bib"
+  },
+  {
+   "key": "conf/emnlp/JinZLDB21",
+   "title": "Neural Attention-Aware Hierarchical Topic Model",
+   "year": 2021,
+   "venue": "EMNLP",
+   "venueFull": "EMNLP (1)",
+   "type": "conference",
+   "authors": [
+    {
+     "name": "Yuan Jin",
+     "team": false
+    },
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Ming Liu",
+     "team": false
+    },
+    {
+     "name": "Lan Du",
+     "team": false
+    },
+    {
+     "name": "Wray L. Buntine",
+     "team": false
+    }
+   ],
+   "url": "https://doi.org/10.18653/V1/2021.EMNLP-MAIN.80",
+   "arxiv": "https://arxiv.org/abs/2110.07161",
+   "bib": "https://dblp.org/rec/conf/emnlp/JinZLDB21.bib"
+  },
+  {
+   "key": "conf/iclr/ZhaoPHLB21",
+   "title": "Neural Topic Model via Optimal Transport",
+   "year": 2021,
+   "venue": "ICLR",
+   "venueFull": "ICLR",
+   "type": "conference",
+   "authors": [
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Dinh Phung",
+     "team": false
+    },
+    {
+     "name": "Viet Huynh",
+     "team": false
+    },
+    {
+     "name": "Trung Le",
+     "team": false
+    },
+    {
+     "name": "Wray L. Buntine",
+     "team": false
+    }
+   ],
+   "url": "https://openreview.net/forum?id=Oos98K9Lv-k",
+   "arxiv": null,
+   "bib": "https://dblp.org/rec/conf/iclr/ZhaoPHLB21.bib"
+  },
+  {
+   "key": "conf/icml/TiaoKSBAR21",
+   "title": "BORE: Bayesian Optimization by Density-Ratio Estimation",
+   "year": 2021,
+   "venue": "ICML",
+   "venueFull": "ICML",
+   "type": "conference",
+   "authors": [
+    {
+     "name": "Louis C. Tiao",
+     "team": false
+    },
+    {
+     "name": "Aaron Klein",
+     "team": false
+    },
+    {
+     "name": "Matthias W. Seeger",
+     "team": false
+    },
+    {
+     "name": "Edwin V. Bonilla",
+     "team": true
+    },
+    {
+     "name": "Cédric Archambeau",
+     "team": false
+    },
+    {
+     "name": "Fabio Ramos",
+     "team": false
+    }
+   ],
+   "url": "http://proceedings.mlr.press/v139/tiao21a.html",
+   "arxiv": "https://arxiv.org/abs/2102.09009",
+   "bib": "https://dblp.org/rec/conf/icml/TiaoKSBAR21.bib"
+  },
+  {
+   "key": "conf/icml/LemercierSCBDL21",
+   "title": "SigGPDE: Scaling Sparse Gaussian Processes on Sequential Data",
+   "year": 2021,
+   "venue": "ICML",
+   "venueFull": "ICML",
+   "type": "conference",
+   "authors": [
+    {
+     "name": "Maud Lemercier",
+     "team": false
+    },
+    {
+     "name": "Cristopher Salvi",
+     "team": false
+    },
+    {
+     "name": "Thomas Cass",
+     "team": false
+    },
+    {
+     "name": "Edwin V. Bonilla",
+     "team": true
+    },
+    {
+     "name": "Theodoros Damoulas",
+     "team": false
+    },
+    {
+     "name": "Terry J. Lyons",
+     "team": false
+    }
+   ],
+   "url": "http://proceedings.mlr.press/v139/lemercier21a.html",
+   "arxiv": "https://arxiv.org/abs/2105.04211",
+   "bib": "https://dblp.org/rec/conf/icml/LemercierSCBDL21.bib"
+  },
+  {
+   "key": "conf/icpr/HossamLZP20",
+   "title": "Explain2Attack: Text Adversarial Attacks via Cross-Domain Interpretability",
+   "year": 2021,
+   "venue": "ICPR",
+   "venueFull": "ICPR",
+   "type": "conference",
+   "authors": [
+    {
+     "name": "Mahmoud Hossam",
+     "team": false
+    },
+    {
+     "name": "Trung Le",
+     "team": false
+    },
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Dinh Phung",
+     "team": false
+    }
+   ],
+   "url": "https://doi.org/10.1109/ICPR48806.2021.9412526",
+   "arxiv": null,
+   "bib": "https://dblp.org/rec/conf/icpr/HossamLZP20.bib"
+  },
+  {
+   "key": "journals/ral/ApazaOR21",
+   "title": "Heteroscedastic Bayesian Optimisation for Stochastic Model Predictive Control",
+   "year": 2021,
+   "venue": "IEEE Robotics Autom. Lett.",
+   "venueFull": "IEEE Robotics Autom. Lett.",
+   "type": "journal",
+   "authors": [
+    {
+     "name": "Rel Guzman Apaza",
+     "team": false
+    },
+    {
+     "name": "Rafael Oliveira",
+     "team": true
+    },
+    {
+     "name": "Fabio Ramos",
+     "team": false
+    }
+   ],
+   "url": "https://doi.org/10.1109/LRA.2020.3028830",
+   "arxiv": null,
+   "bib": "https://dblp.org/rec/journals/ral/ApazaOR21.bib"
+  },
+  {
+   "key": "conf/ijcai/HuynhPZ21",
+   "title": "Optimal Transport for Deep Generative Models: State of the Art and Research Challenges",
+   "year": 2021,
+   "venue": "IJCAI",
+   "venueFull": "IJCAI",
+   "type": "conference",
+   "authors": [
+    {
+     "name": "Viet Huynh",
+     "team": false
+    },
+    {
+     "name": "Dinh Q. Phung",
+     "team": false
+    },
+    {
+     "name": "He Zhao",
+     "team": true
+    }
+   ],
+   "url": "https://doi.org/10.24963/IJCAI.2021/607",
+   "arxiv": null,
+   "bib": "https://dblp.org/rec/conf/ijcai/HuynhPZ21.bib"
+  },
+  {
+   "key": "conf/ijcai/ZhaoPHJ0B21",
+   "title": "Topic Modelling Meets Deep Neural Networks: A Survey",
+   "year": 2021,
+   "venue": "IJCAI",
+   "venueFull": "IJCAI",
+   "type": "conference",
+   "authors": [
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Dinh Q. Phung",
+     "team": false
+    },
+    {
+     "name": "Viet Huynh",
+     "team": false
+    },
+    {
+     "name": "Yuan Jin",
+     "team": false
+    },
+    {
+     "name": "Lan Du",
+     "team": false
+    },
+    {
+     "name": "Wray L. Buntine",
+     "team": false
+    }
+   ],
+   "url": "https://doi.org/10.24963/IJCAI.2021/638",
+   "arxiv": "https://arxiv.org/abs/2103.00498",
+   "bib": "https://dblp.org/rec/conf/ijcai/ZhaoPHJ0B21.bib"
+  },
+  {
+   "key": "conf/nips/TranRMMBF21",
+   "title": "Model Selection for Bayesian Autoencoders",
+   "year": 2021,
+   "venue": "NeurIPS",
+   "venueFull": "NeurIPS",
+   "type": "conference",
+   "authors": [
+    {
+     "name": "Ba-Hien Tran",
+     "team": false
+    },
+    {
+     "name": "Simone Rossi",
+     "team": false
+    },
+    {
+     "name": "Dimitrios Milios",
+     "team": false
+    },
+    {
+     "name": "Pietro Michiardi",
+     "team": false
+    },
+    {
+     "name": "Edwin V. Bonilla",
+     "team": true
+    },
+    {
+     "name": "Maurizio Filippone",
+     "team": false
+    }
+   ],
+   "url": "https://proceedings.neurips.cc/paper/2021/hash/a41db61e2728ef963614a8c8755b9b9a-Abstract.html",
+   "arxiv": "https://arxiv.org/abs/2106.06245",
+   "bib": "https://dblp.org/rec/conf/nips/TranRMMBF21.bib"
+  },
+  {
+   "key": "conf/rss/BarcelosL0BBR21",
+   "title": "Dual Online Stein Variational Inference for Control and Dynamics",
+   "year": 2021,
+   "venue": "Robotics: Science and Systems",
+   "venueFull": "Robotics: Science and Systems",
+   "type": "conference",
+   "authors": [
+    {
+     "name": "Lucas Barcelos",
+     "team": false
+    },
+    {
+     "name": "Alexander Lambert",
+     "team": false
+    },
+    {
+     "name": "Rafael Oliveira",
+     "team": true
+    },
+    {
+     "name": "Paulo V. K. Borges",
+     "team": false
+    },
+    {
+     "name": "Byron Boots",
+     "team": false
+    },
+    {
+     "name": "Fabio Ramos",
+     "team": false
+    }
+   ],
+   "url": "https://doi.org/10.15607/RSS.2021.XVII.068",
+   "arxiv": "https://arxiv.org/abs/2103.12890",
+   "bib": "https://dblp.org/rec/conf/rss/BarcelosL0BBR21.bib"
+  },
+  {
+   "key": "conf/uai/NguyenL0TNP21",
+   "title": "Most: multi-source domain adaptation via optimal transport for student-teacher learning",
+   "year": 2021,
+   "venue": "UAI",
+   "venueFull": "UAI",
+   "type": "conference",
+   "authors": [
+    {
+     "name": "Tuan Nguyen",
+     "team": false
+    },
+    {
+     "name": "Trung Le",
+     "team": false
+    },
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Quan Hung Tran",
+     "team": false
+    },
+    {
+     "name": "Truyen Nguyen",
+     "team": false
+    },
+    {
+     "name": "Dinh Q. Phung",
+     "team": false
+    }
+   ],
+   "url": "https://proceedings.mlr.press/v161/nguyen21a.html",
+   "arxiv": null,
+   "bib": "https://dblp.org/rec/conf/uai/NguyenL0TNP21.bib"
+  },
+  {
+   "key": "conf/uai/OliveiraOR21",
+   "title": "No-regret approximate inference via Bayesian optimisation",
+   "year": 2021,
+   "venue": "UAI",
+   "venueFull": "UAI",
+   "type": "conference",
+   "authors": [
+    {
+     "name": "Rafael Oliveira",
+     "team": true
+    },
+    {
+     "name": "Lionel Ott",
+     "team": false
+    },
+    {
+     "name": "Fabio Ramos",
+     "team": false
+    }
+   ],
+   "url": "https://proceedings.mlr.press/v161/oliveira21a.html",
+   "arxiv": null,
+   "bib": "https://dblp.org/rec/conf/uai/OliveiraOR21.bib"
+  },
+  {
+   "key": "journals/corr/abs-2104-13484",
+   "title": "Improved and Efficient Text Adversarial Attacks using Target Information",
+   "year": 2021,
+   "venue": "arXiv",
+   "venueFull": "CoRR",
+   "type": "preprint",
+   "authors": [
+    {
+     "name": "Mahmoud Hossam",
+     "team": false
+    },
+    {
+     "name": "Trung Le",
+     "team": false
+    },
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Viet Huynh",
+     "team": false
+    },
+    {
+     "name": "Dinh Phung",
+     "team": false
+    }
+   ],
+   "url": "https://arxiv.org/abs/2104.13484",
+   "arxiv": "https://arxiv.org/abs/2104.13484",
+   "bib": "https://dblp.org/rec/journals/corr/abs-2104-13484.bib"
+  },
+  {
+   "key": "journals/corr/abs-2107-01650",
+   "title": "Learning ODEs via Diffeomorphisms for Fast and Robust Integration",
+   "year": 2021,
+   "venue": "arXiv",
+   "venueFull": "CoRR",
+   "type": "preprint",
+   "authors": [
+    {
+     "name": "Weiming Zhi",
+     "team": false
+    },
+    {
+     "name": "Tin Lai",
+     "team": false
+    },
+    {
+     "name": "Lionel Ott",
+     "team": false
+    },
+    {
+     "name": "Edwin V. Bonilla",
+     "team": true
+    },
+    {
+     "name": "Fabio Ramos",
+     "team": false
+    }
+   ],
+   "url": "https://arxiv.org/abs/2107.01650",
+   "arxiv": "https://arxiv.org/abs/2107.01650",
+   "bib": "https://dblp.org/rec/journals/corr/abs-2107-01650.bib"
+  },
+  {
+   "key": "journals/corr/abs-2107-11626",
+   "title": "Multi-Label Image Classification with Contrastive Learning",
+   "year": 2021,
+   "venue": "arXiv",
+   "venueFull": "CoRR",
+   "type": "preprint",
+   "authors": [
+    {
+     "name": "Son Duy Dao",
+     "team": false
+    },
+    {
+     "name": "Ethan Zhao",
+     "team": true
+    },
+    {
+     "name": "Dinh Phung",
+     "team": false
+    },
+    {
+     "name": "Jianfei Cai",
+     "team": false
+    }
+   ],
+   "url": "https://arxiv.org/abs/2107.11626",
+   "arxiv": "https://arxiv.org/abs/2107.11626",
+   "bib": "https://dblp.org/rec/journals/corr/abs-2107-11626.bib"
+  },
+  {
+   "key": "journals/corr/abs-2101-10027",
+   "title": "Understanding and Achieving Efficient Robustness with Adversarial Contrastive Learning",
+   "year": 2021,
+   "venue": "arXiv",
+   "venueFull": "CoRR",
+   "type": "preprint",
+   "authors": [
+    {
+     "name": "Tuan-Anh Bui",
+     "team": false
+    },
+    {
+     "name": "Trung Le",
+     "team": false
+    },
+    {
+     "name": "He Zhao",
+     "team": true
+    },
+    {
+     "name": "Paul Montague",
+     "team": false
+    },
+    {
+     "name": "Seyit Camtepe",
+     "team": false
+    },
+    {
+     "name": "Dinh Phung",
+     "team": false
+    }
+   ],
+   "url": "https://arxiv.org/abs/2101.10027",
+   "arxiv": "https://arxiv.org/abs/2101.10027",
+   "bib": "https://dblp.org/rec/journals/corr/abs-2101-10027.bib"
+  }
+ ]
+}
