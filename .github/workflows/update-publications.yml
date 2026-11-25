@@ -1,0 +1,47 @@
+name: Update publications
+
+# Refreshes data/publications.json from the team's DBLP profiles.
+# Runs every Monday, whenever the config or script changes, and on demand
+# (Actions tab -> "Update publications" -> "Run workflow").
+on:
+  schedule:
+    - cron: "17 20 * * 0"   # Sunday 20:17 UTC = Monday morning in Sydney
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - data/publications-config.json
+      - scripts/update_publications.py
+      - .github/workflows/update-publications.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-publications
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Fetch publications from DBLP
+        run: python3 scripts/update_publications.py
+
+      - name: Commit if the list changed
+        run: |
+          if git diff --quiet -- data/publications.json && git ls-files --error-unmatch data/publications.json >/dev/null 2>&1; then
+            echo "Publication list unchanged."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/publications.json
+          git commit -m "Update publications from DBLP"
+          git push

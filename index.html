@@ -168,6 +168,41 @@
   .contact .mail { font-family: var(--mono); font-size: 15px; color: #fff; }
   @media (max-width: 820px) { .contact { grid-template-columns: 1fr; padding: 44px 28px; } }
 
+
+  /* ---------- full publication list ---------- */
+  .all-pubs { margin-top: 72px; border-top: 1px solid var(--line); padding-top: 48px; }
+  .all-head { display: flex; justify-content: space-between; align-items: end; gap: 20px; flex-wrap: wrap; margin-bottom: 22px; }
+  .all-head h3 { font-family: var(--serif); font-weight: 400; font-size: 32px; margin: 6px 0 0; }
+  .all-head .src { font-size: 13px; color: var(--muted); }
+  .all-controls { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-bottom: 28px; }
+  .all-controls input[type=search], .all-controls select { font: 14px var(--sans); padding: 10px 14px; border: 1px solid var(--line); border-radius: 10px; background: #fff; color: var(--ink); }
+  .all-controls input[type=search] { flex: 1 1 280px; min-width: 0; }
+  .all-controls input[type=search]:focus, .all-controls select:focus { outline: 2px solid rgba(31,165,179,.35); border-color: var(--teal); }
+  .all-controls label { font-size: 14px; color: var(--muted); display: inline-flex; gap: 8px; align-items: center; cursor: pointer; }
+  .yr { display: flex; align-items: baseline; gap: 14px; margin: 34px 0 6px; }
+  .yr h4 { font-family: var(--serif); font-weight: 400; font-size: 26px; margin: 0; }
+  .yr::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+  .plist { list-style: none; margin: 0; padding: 0; }
+  .pi { display: grid; grid-template-columns: 116px 1fr; gap: 18px; padding: 16px 0; border-bottom: 1px dashed var(--line); }
+  .pi:last-child { border-bottom: 0; }
+  .pi .venue { display: inline-block; font-size: 11px; }
+  .pi .v-neurips { background: #eeecfb; color: #5a4fc0; }
+  .pi .v-icml { background: #e4f4f6; color: var(--teal-deep); }
+  .pi .v-iclr { background: #fdf0dc; color: #a8650f; }
+  .pi .v-pre { background: #f1efe9; color: var(--muted); }
+  .pi .v-other { background: #eaf0f6; color: #34506e; }
+  .pi .pt { font-family: var(--serif); font-size: 17px; font-weight: 600; color: var(--ink); line-height: 1.35; }
+  .pi .pt:hover { color: var(--teal-deep); }
+  .pi .pa { font-size: 13.5px; color: var(--muted); margin: 4px 0 6px; }
+  .pi .pa b { color: var(--ink); font-weight: 600; }
+  .pi .pl { display: flex; gap: 14px; flex-wrap: wrap; font-size: 12.5px; font-weight: 600; }
+  .pi .pl a, .pi .pl button { color: var(--teal-deep); background: none; border: 0; padding: 0; font: inherit; cursor: pointer; }
+  .pi .feat { color: #a8650f !important; }
+  .more-btn { margin: 26px auto 0; display: block; font: 600 14px var(--sans); padding: 11px 22px; border-radius: 999px; border: 1px solid var(--line); background: #fff; color: var(--ink); cursor: pointer; }
+  .more-btn:hover { border-color: var(--teal); color: var(--teal-deep); }
+  .empty { color: var(--muted); font-size: 15px; padding: 18px 0; }
+  @media (max-width: 640px) { .pi { grid-template-columns: 1fr; gap: 6px; } }
+
   footer { padding: 48px 0 56px; color: var(--muted); font-size: 13.5px; }
   footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
 
@@ -301,6 +336,22 @@
         <div class="filters" id="filters" role="toolbar" aria-label="Filter publications by research area"></div>
       </div>
       <div class="pubs" id="pubs"></div>
+
+      <div class="all-pubs reveal" id="all-publications">
+        <div class="all-head">
+          <div>
+            <div class="eyebrow">Full list</div>
+            <h3>All publications</h3>
+          </div>
+          <div class="src" id="all-src"></div>
+        </div>
+        <div class="all-controls">
+          <input type="search" id="all-q" placeholder="Search titles, authors or venues" aria-label="Search publications">
+          <select id="all-member" aria-label="Filter by team member"><option value="">Everyone</option></select>
+          <label><input type="checkbox" id="all-pre" checked> Include preprints</label>
+        </div>
+        <div id="all-list"><p class="empty">Loading publications…</p></div>
+      </div>
     </div>
   </section>
 
@@ -1027,6 +1078,56 @@ function focusPub(id) {
   }));
   try { sessionStorage.setItem("funml-stars", JSON.stringify(cache)); } catch (e) {}
   document.querySelectorAll(".stars").forEach(s => { const n = cache[s.dataset.repo]; if (n) s.textContent = "★ " + n; });
+})();
+
+/* =====================================================================
+   FULL PUBLICATION LIST (data/publications.json, refreshed weekly from DBLP
+   by .github/workflows/update-publications.yml)
+   ===================================================================== */
+(async function allPublications() {
+  const list = $("#all-list"), src = $("#all-src"), q = $("#all-q"), mem = $("#all-member"), pre = $("#all-pre");
+  let data;
+  try { const res = await fetch("data/publications.json", { cache: "no-cache" }); if (!res.ok) throw 0; data = await res.json(); }
+  catch (e) { list.innerHTML = `<p class="empty">The full list is generated automatically from DBLP and will appear here after the next update.</p>`; return; }
+  const norm = t => t.toLowerCase().replace(/[^a-z0-9]+/g, "");
+  const featured = Object.fromEntries(PUBS.map(p => [norm(p.title), p]));
+  const vclass = (p) => p.type === "preprint" ? "v-pre" : ({ NeurIPS: "v-neurips", ICML: "v-icml", ICLR: "v-iclr" }[p.venue] || "v-other");
+  const pubs = data.publications.map(p => {
+    const f = featured[norm(p.title)];
+    // a featured paper's venue is known before DBLP lists it, so prefer it
+    return f && f.venue !== "Project" ? { ...p, venue: f.venue, year: f.year, type: "conference", featuredId: f.id } : p;
+  }).sort((a, b) => b.year - a.year);
+  data.members.forEach(m => mem.appendChild(el("option", { value: m.name }, esc(m.name))));
+  src.innerHTML = `Since ${data.since} · from <a href="https://dblp.org">DBLP</a> · updated ${esc(data.updated)}`;
+  let showAll = false;
+  function render() {
+    const words = q.value.toLowerCase().split(/\s+/).filter(Boolean), who = mem.value;
+    const hits = pubs.filter(p => (pre.checked || p.type !== "preprint")
+      && (!who || p.authors.some(a => a.name === who))
+      && words.every(w => (p.title + " " + p.venue + " " + p.venueFull + " " + p.authors.map(a => a.name).join(" ")).toLowerCase().includes(w)));
+    const filtering = words.length || who;
+    const shown = showAll || filtering ? hits : hits.slice(0, 25);
+    if (!hits.length) { list.innerHTML = `<p class="empty">No publications match.</p>`; return; }
+    let html = "", year = null;
+    shown.forEach(p => {
+      if (p.year !== year) { if (year !== null) html += "</ol>"; year = p.year; html += `<div class="yr"><h4>${year}</h4></div><ol class="plist">`; }
+      const authors = p.authors.map(a => a.team ? `<b>${esc(a.name)}</b>` : esc(a.name)).join(", ");
+      html += `<li class="pi"><div><span class="venue ${vclass(p)}">${esc(p.type === "preprint" ? "Preprint" : p.venue)}</span></div><div>
+        <a class="pt" href="${esc(p.url)}">${esc(p.title)}</a>
+        <div class="pa">${authors}</div>
+        <div class="pl">${p.arxiv && p.arxiv !== p.url ? `<a href="${esc(p.arxiv)}">arXiv</a>` : ""}<a href="${esc(p.bib)}">BibTeX</a>${p.featuredId ? `<button type="button" class="feat" data-focus="${p.featuredId}">★ Featured above</button>` : ""}</div>
+      </div></li>`;
+    });
+    html += "</ol>";
+    if (shown.length < hits.length) html += `<button type="button" class="more-btn" id="all-more">Show all publications</button>`;
+    list.innerHTML = html;
+  }
+  list.addEventListener("click", e => {
+    if (e.target.id === "all-more") { showAll = true; render(); }
+    const f = e.target.closest("[data-focus]"); if (f) focusPub(f.dataset.focus);
+  });
+  [q, mem, pre].forEach(x => x.addEventListener("input", render));
+  render();
 })();
 
 /* nav + scroll reveal */

@@ -1,0 +1,12 @@
+{
+  "_comment": "Edit this file to change whose papers appear on the site. 'pid' is the DBLP person ID (from https://dblp.org/pid/<pid>). 'years' is how many years back to include, counted from the current year. 'hide' lists DBLP keys of records to leave out. 'extra' lists DBLP keys of records to add even if they are not on a member's profile (e.g. when DBLP has attributed a paper to the wrong person).",
+  "years": 5,
+  "members": [
+    { "name": "Edwin V. Bonilla",    "pid": "23/1754" },
+    { "name": "Daniel M. Steinberg", "pid": "155/1887" },
+    { "name": "He Zhao",             "pid": "98/3487-1" },
+    { "name": "Rafael Oliveira",     "pid": "62/7803" }
+  ],
+  "hide": [],
+  "extra": []
+}
