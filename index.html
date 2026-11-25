@@ -138,6 +138,7 @@
   .pub .v-icml { background: #e4f4f6; color: var(--teal-deep); }
   .pub .v-iclr { background: #fdf0dc; color: #a8650f; }
   .pub .v-proj { background: #fbe7e6; color: #b4433d; }
+  .pub .v-pre { background: #f1efe9; color: var(--muted); }
   .award { font: 600 11px var(--sans); color: #a8650f; }
   .pub h3 { font-family: var(--serif); font-weight: 600; font-size: 19px; line-height: 1.28; margin: 0 0 8px; }
   .pub .authors { font-size: 13.5px; color: var(--muted); margin: 0 0 18px; }
@@ -440,6 +441,19 @@ const PUBS = [
 }`
   },
   {
+    id: "arrow", short: "Arrow", year: 2026, venue: "Preprint", areas: ["causal"],
+    title: "Arrow: A Foundation Model for Causal Discovery",
+    authors: ["Ryan Thompson", "He Zhao", "Daniel M. Steinberg", "Edwin V. Bonilla"],
+    paper: "https://arxiv.org/abs/2605.07204", code: "https://github.com/csiro-funml/arrowfm", repo: "arrowfm",
+    fig: { draw: "arrow" },
+    bib: `@article{thompson2026arrow,
+  title   = {Arrow: A foundation model for causal discovery},
+  author  = {Thompson, Ryan and Zhao, He and Steinberg, Daniel M and Bonilla, Edwin V},
+  journal = {arXiv preprint arXiv:2605.07204},
+  year    = {2026}
+}`
+  },
+  {
     id: "mswt", short: "Multi-scale wavelet transformers", year: 2026, venue: "ICML", areas: ["sciml"],
     title: "Multi-Scale Wavelet Transformers for Operator Learning of Dynamical Systems",
     authors: ["Xuesong Wang", "Michael Groom", "Rafael Oliveira", "He Zhao", "Terence O'Kane", "Edwin V. Bonilla"],
@@ -580,7 +594,7 @@ function fitCanvas(c) {
   return { ctx, w, h };
 }
 function toast(msg) { const t = $("#toast"); t.textContent = msg; t.classList.add("show"); clearTimeout(t._h); t._h = setTimeout(() => t.classList.remove("show"), 1600); }
-const venueClass = v => ({ NeurIPS: "v-neurips", ICML: "v-icml", ICLR: "v-iclr" }[v] || "v-proj");
+const venueClass = v => ({ NeurIPS: "v-neurips", ICML: "v-icml", ICLR: "v-iclr", Preprint: "v-pre" }[v] || "v-proj");
 
 // Run an animation only while its canvas is on screen
 function animateWhenVisible(canvas, drawFn) {
@@ -919,6 +933,35 @@ document.querySelectorAll("canvas[data-anim]").forEach(c => animateWhenVisible(c
    ILLUSTRATIONS for papers without an extracted figure
    ===================================================================== */
 const ILLUS = {
+  arrow(ctx, w, h) { // zero-shot causal discovery: data table -> model -> edge probabilities -> DAG
+    const r = rng(12), p = 5, mono = "500 10px 'JetBrains Mono', monospace";
+    // data table
+    const tx = 16, ty = 30, cw = Math.min(14, (w * .24) / p), rows = 9, rh = Math.min(11, (h - 60) / rows);
+    for (let i = 0; i < rows; i++) for (let j = 0; j < p; j++) { ctx.fillStyle = `rgba(31,165,179,${.15 + .6 * r()})`; ctx.fillRect(tx + j * cw, ty + i * rh, cw - 2, rh - 2); }
+    ctx.font = mono; ctx.fillStyle = "#5b6676"; ctx.fillText("data (n × p)", tx, 20);
+    // model box
+    const bx = tx + p * cw + w * .05, bw = w * .15, by = h / 2 - 18;
+    ctx.strokeStyle = "#c9c3b5"; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.moveTo(tx + p * cw + 4, h / 2); ctx.lineTo(bx - 4, h / 2); ctx.stroke();
+    ctx.fillStyle = "#172231"; ctx.beginPath(); ctx.roundRect(bx, by, bw, 36, 10); ctx.fill();
+    ctx.fillStyle = "#fff"; ctx.font = "600 13px Inter, sans-serif"; ctx.textAlign = "center"; ctx.fillText("Arrow", bx + bw / 2, h / 2 + 5); ctx.textAlign = "start";
+    // edge-probability matrix
+    const truth = [[0, 1, 1, 0, 0], [0, 0, 0, 1, 0], [0, 0, 0, 1, 1], [0, 0, 0, 0, 1], [0, 0, 0, 0, 0]];
+    const mx = bx + bw + w * .05, ms = Math.min(13, (h - 60) / p);
+    ctx.beginPath(); ctx.moveTo(bx + bw + 4, h / 2); ctx.lineTo(mx - 4, h / 2); ctx.stroke();
+    for (let i = 0; i < p; i++) for (let j = 0; j < p; j++) { const pr = i === j ? 0 : truth[i][j] ? .7 + .3 * r() : .15 * r(); ctx.fillStyle = `rgba(240,162,59,${.08 + .9 * pr})`; ctx.fillRect(mx + j * ms, h / 2 - p * ms / 2 + i * ms, ms - 2, ms - 2); }
+    ctx.font = mono; ctx.fillStyle = "#5b6676"; ctx.fillText("P(edge)", mx, h / 2 - p * ms / 2 - 8);
+    // decoded DAG
+    const gx = mx + p * ms + w * .05, gw = w - gx - 18, gh = h - 70, gy = 40;
+    if (gw > 60) {
+      const pos = [[.08, .5], [.4, .14], [.4, .86], [.68, .5], [.92, .18]].map(([a, b]) => [gx + a * gw, gy + b * gh]);
+      ctx.strokeStyle = "#0e7c88"; ctx.fillStyle = "#0e7c88"; ctx.lineWidth = 1.6;
+      truth.forEach((row, i) => row.forEach((e, j) => { if (!e) return; const [x1, y1] = pos[i], [x2, y2] = pos[j], a = Math.atan2(y2 - y1, x2 - x1), ex = x2 - 9 * Math.cos(a), ey = y2 - 9 * Math.sin(a);
+        ctx.beginPath(); ctx.moveTo(x1 + 8 * Math.cos(a), y1 + 8 * Math.sin(a)); ctx.lineTo(ex, ey); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(ex + 4 * Math.cos(a), ey + 4 * Math.sin(a)); ctx.lineTo(ex - 5 * Math.cos(a - .5), ey - 5 * Math.sin(a - .5)); ctx.lineTo(ex - 5 * Math.cos(a + .5), ey - 5 * Math.sin(a + .5)); ctx.fill(); }));
+      pos.forEach(([x, y]) => { ctx.fillStyle = "#fff"; ctx.strokeStyle = "#1fa5b3"; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(x, y, 7, 0, 7); ctx.fill(); ctx.stroke(); });
+      ctx.font = mono; ctx.fillStyle = "#5b6676"; ctx.fillText("DAG", gx, 20);
+    }
+  },
   genbo(ctx, w, h) { // generative proposals shift toward high-utility regions
     const f = x => .55 * Math.exp(-((x - .7) ** 2) / .006) + .3 * Math.exp(-((x - .3) ** 2) / .01) + .08 * Math.sin(x * 20);
     const X = x => 20 + x * (w - 40), base = h - 26, Y = v => base - v * (h - 60);
@@ -980,7 +1023,7 @@ const ILLUS = {
    RENDER: chips, timeline, publications, people
    ===================================================================== */
 (function render() {
-  const papers = PUBS.filter(p => p.venue !== "Project");
+  const papers = PUBS.filter(p => p.venue !== "Project" && p.venue !== "Preprint");
   // chips under each area
   document.querySelectorAll("[data-chips]").forEach(box => {
     PUBS.filter(p => p.areas.includes(box.dataset.chips)).forEach(p => {
@@ -1095,7 +1138,8 @@ function focusPub(id) {
   const pubs = data.publications.map(p => {
     const f = featured[norm(p.title)];
     // a featured paper's venue is known before DBLP lists it, so prefer it
-    return f && f.venue !== "Project" ? { ...p, venue: f.venue, year: f.year, type: "conference", featuredId: f.id } : p;
+    if (!f) return p;
+    return f.venue === "Preprint" ? { ...p, featuredId: f.id } : { ...p, venue: f.venue, year: f.year, type: "conference", featuredId: f.id };
   }).sort((a, b) => b.year - a.year);
   data.members.forEach(m => mem.appendChild(el("option", { value: m.name }, esc(m.name))));
   src.innerHTML = `Since ${data.since} · from <a href="https://dblp.org">DBLP</a> · updated ${esc(data.updated)}`;
