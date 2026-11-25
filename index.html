@@ -147,6 +147,12 @@
   .lk { display: inline-flex; align-items: center; gap: 6px; font: 600 12.5px var(--sans); padding: 7px 12px; border-radius: 8px; border: 1px solid var(--line); color: var(--ink); background: #fff; cursor: pointer; }
   .lk:hover { border-color: var(--teal); color: var(--teal-deep); text-decoration: none; }
   .lk svg { width: 14px; height: 14px; }
+  .lk-primary { background: var(--teal); border-color: var(--teal); color: #fff; }
+  .lk-primary:hover { background: var(--teal-deep); border-color: var(--teal-deep); color: #fff; }
+  .fig-link { display: block; }
+  .fig-link .fig { transition: opacity .2s; }
+  .fig-link:hover .fig { opacity: .85; }
+  .area-link { display: inline-block; margin: -6px 0 16px; font-size: 14px; font-weight: 600; }
   .stars { margin-left: auto; font: 500 12px var(--mono); color: var(--muted); }
 
   /* ---------- people ---------- */
@@ -278,6 +284,7 @@
             <div class="num">01</div>
             <h3>Causal AI</h3>
             <p>Moving from correlation to cause: discovering causal structure from data, quantifying uncertainty over causal graphs, and bringing human experts into the loop.</p>
+            <a class="area-link" href="https://csiro-funml.github.io/CaPE/">Try the CaPE interactive demo →</a>
             <div class="chips" data-chips="causal"></div>
           </div>
         </article>
@@ -431,6 +438,7 @@ const PUBS = [
     title: "Causal Preference Elicitation",
     authors: ["Edwin V. Bonilla", "He Zhao", "Daniel M. Steinberg"],
     paper: "https://arxiv.org/abs/2602.01483", code: "https://github.com/csiro-funml/CaPE", repo: "CaPE",
+    project: "https://csiro-funml.github.io/CaPE/",
     fig: { img: "images/cape.svg", tag: "paper" },
     bib: `@inproceedings{bonilla2026cape,
   title     = {Causal Preference Elicitation},
@@ -1046,7 +1054,8 @@ const ILLUS = {
   });
 
   // publication cards
-  const icon = { paper: '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 1.5h5l3 3v10H4z"/><path d="M9 1.5v3h3M6 8h4M6 11h4"/></svg>',
+  const icon = { project: '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="8" cy="8" r="6.5"/><path d="M1.5 8h13M8 1.5c2 2 2.6 4 2.6 6.5S10 12.5 8 14.5M8 1.5C6 3.5 5.4 5.5 5.4 8S6 12.5 8 14.5"/></svg>',
+    paper: '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 1.5h5l3 3v10H4z"/><path d="M9 1.5v3h3M6 8h4M6 11h4"/></svg>',
     code: '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5.5 4 1.5 8l4 4M10.5 4l4 4-4 4"/></svg>',
     bib: '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4.5" y="4.5" width="9" height="10" rx="1.5"/><path d="M2.5 11V2.5a1 1 0 0 1 1-1H10"/></svg>' };
   const grid = $("#pubs");
@@ -1067,13 +1076,15 @@ const ILLUS = {
       window.addEventListener("resize", paint);
     }
     fig.appendChild(el("span", { class: "figtag" }, isPaperFig ? "From the paper" : "Illustration"));
-    card.appendChild(fig);
+    if (p.project) { const a = el("a", { href: p.project, "aria-label": "Open the " + p.short + " project page", class: "fig-link" }); a.appendChild(fig); card.appendChild(a); }
+    else card.appendChild(fig);
     const authors = p.authors.map(a => TEAM.has(a) ? `<b>${esc(a)}</b>` : esc(a)).join(", ");
     const body = el("div", { class: "body" }, `
       <div class="meta"><span class="venue ${venueClass(p.venue)}">${esc(p.venue)} ${p.venue !== "Project" ? p.year : ""}</span>${p.award ? `<span class="award">★ ${esc(p.award)}</span>` : ""}</div>
       <h3>${esc(p.title)}</h3>
       ${authors ? `<p class="authors">${authors}</p>` : `<p class="authors">Open-source platform for climate attribution, forecasting and decision intelligence.</p>`}
       <div class="links">
+        ${p.project ? `<a class="lk lk-primary" href="${p.project}">${icon.project}Project page</a>` : ""}
         ${p.paper ? `<a class="lk" href="${p.paper}">${icon.paper}Paper</a>` : ""}
         ${p.code ? `<a class="lk" href="${p.code}">${icon.code}Code</a>` : ""}
         ${p.bib ? `<button class="lk" type="button" data-bib="${p.id}">${icon.bib}BibTeX</button>` : ""}
@@ -1139,7 +1150,8 @@ function focusPub(id) {
     const f = featured[norm(p.title)];
     // a featured paper's venue is known before DBLP lists it, so prefer it
     if (!f) return p;
-    return f.venue === "Preprint" ? { ...p, featuredId: f.id } : { ...p, venue: f.venue, year: f.year, type: "conference", featuredId: f.id };
+    const extra = { featuredId: f.id, project: f.project };
+    return f.venue === "Preprint" ? { ...p, ...extra } : { ...p, venue: f.venue, year: f.year, type: "conference", ...extra };
   }).sort((a, b) => b.year - a.year);
   data.members.forEach(m => mem.appendChild(el("option", { value: m.name }, esc(m.name))));
   src.innerHTML = `Since ${data.since} · from <a href="https://dblp.org">DBLP</a> · updated ${esc(data.updated)}`;
@@ -1159,7 +1171,7 @@ function focusPub(id) {
       html += `<li class="pi"><div><span class="venue ${vclass(p)}">${esc(p.type === "preprint" ? "Preprint" : p.venue)}</span></div><div>
         <a class="pt" href="${esc(p.url)}">${esc(p.title)}</a>
         <div class="pa">${authors}</div>
-        <div class="pl">${p.arxiv && p.arxiv !== p.url ? `<a href="${esc(p.arxiv)}">arXiv</a>` : ""}<a href="${esc(p.bib)}">BibTeX</a>${p.featuredId ? `<button type="button" class="feat" data-focus="${p.featuredId}">★ Featured above</button>` : ""}</div>
+        <div class="pl">${p.project ? `<a href="${esc(p.project)}">Project page</a>` : ""}${p.arxiv && p.arxiv !== p.url ? `<a href="${esc(p.arxiv)}">arXiv</a>` : ""}<a href="${esc(p.bib)}">BibTeX</a>${p.featuredId ? `<button type="button" class="feat" data-focus="${p.featuredId}">★ Featured above</button>` : ""}</div>
       </div></li>`;
     });
     html += "</ol>";
